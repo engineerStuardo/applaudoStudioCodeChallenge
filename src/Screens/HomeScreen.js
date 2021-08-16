@@ -1,6 +1,13 @@
 import React from 'react';
 import {View, Text, Dimensions, ScrollView} from 'react-native';
-import {Avatar, Button, Card, Title, Paragraph} from 'react-native-paper';
+import {
+  Avatar,
+  Button,
+  Card,
+  Title,
+  Paragraph,
+  Divider,
+} from 'react-native-paper';
 
 export const HomeScreen = () => (
   <ScrollView>
@@ -24,11 +31,13 @@ export const HomeScreen = () => (
           marginTop: -80,
         }}>
         <Card>
+          <View style={{alignItems: 'center', marginTop: 25}}>
+            <Title>PERSONAL INFO</Title>
+          </View>
           <View
             style={{
               alignItems: 'center',
-              marginTop: 20,
-              marginBottom: 20,
+              marginBottom: 5,
               padding: 30,
             }}>
             <View style={{marginBottom: 25}}>
@@ -43,16 +52,48 @@ export const HomeScreen = () => (
             <Paragraph>Computer Science Engineer</Paragraph>
             <Title>Age</Title>
             <Paragraph>30years old</Paragraph>
-            <Title>Actual job</Title>
-            <Paragraph>Analyst Programmer</Paragraph>
-
-            <Avatar.Image
-              style={{marginTop: 5}}
-              size={80}
-              source={require('../Assets/Images/appladostudio.png')}
-            />
+            <Title>Hobbies</Title>
+            <Paragraph>
+              Play Basketball, hang out with friends and family and of course
+              lear more about React Natve
+            </Paragraph>
           </View>
         </Card>
+        <View style={{marginTop: 25}}>
+          <Card>
+            <View style={{alignItems: 'center', marginTop: 25}}>
+              <Title>PROFESSIONAL INFO</Title>
+            </View>
+            <View
+              style={{
+                alignItems: 'center',
+                marginBottom: 5,
+                padding: 30,
+              }}>
+              <View style={{marginBottom: 25}}>
+                <Avatar.Image
+                  size={180}
+                  source={require('../Assets/Images/work.jpg')}
+                />
+              </View>
+              <Divider />
+              <Title>Job</Title>
+              <Paragraph>Analyst Programmer</Paragraph>
+              <Title>From - To</Title>
+              <Paragraph>01/01/2020 - Actually</Paragraph>
+              <Title>Company Name</Title>
+              <Paragraph>Francisco Gavidia's University</Paragraph>
+              <View style={{marginTop: 50, alignItems: 'center'}}>
+                <Title>Job</Title>
+                <Paragraph>Technical Support</Paragraph>
+                <Title>From - To</Title>
+                <Paragraph>15/02/2015 - 31/10/2019</Paragraph>
+                <Title>Company Name</Title>
+                <Paragraph>TIGO El Salvador</Paragraph>
+              </View>
+            </View>
+          </Card>
+        </View>
       </View>
     </View>
   </ScrollView>
