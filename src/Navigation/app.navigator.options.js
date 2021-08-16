@@ -2,7 +2,7 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 const TAB_ICON = {
-  Home: 'info-circle',
+  Home: 'address-book',
   Anime: 'list-alt',
   Favorite: 'heart',
 };
