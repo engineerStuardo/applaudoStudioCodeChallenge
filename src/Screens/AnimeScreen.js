@@ -1,7 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, FlatList, Image, ActivityIndicator} from 'react-native';
+import {TextInput} from 'react-native-paper';
 
 import {getAnimeData} from '../Services/Services';
+import {CardList} from '../Components/CardList';
+import {ListLoader} from '../Components/ListLoader';
 
 export const AnimeScreen = () => {
   const [animes, setAnimes] = useState([]);
@@ -29,43 +32,27 @@ export const AnimeScreen = () => {
   }, []);
 
   return (
-    <View>
-      {animes && (
-        <FlatList
-          onEndReached={getData}
-          onEndReachedThreshold={0.5}
-          ListFooterComponent={() => {
-            return (
-              <View>
-                {loading && (
-                  <ActivityIndicator color="black" style={{margin: 15}} />
-                )}
-              </View>
-            );
-          }}
-          numColumns={2}
-          data={animes}
-          renderItem={({
-            item: {
-              attributes: {
-                posterImage: {tiny},
-              },
-            },
-          }) => {
-            return (
-              <>
-                <Image
-                  style={{width: 150, height: 250}}
-                  source={{
-                    uri: tiny,
-                  }}
-                />
-              </>
-            );
-          }}
-          keyExtractor={anime => anime.id}
+    <View style={{flex: 1}}>
+      <View style={{padding: 25}}>
+        <TextInput
+          label="Search Anime"
+          secureTextEntry
+          right={<TextInput.Icon name="eye" />}
         />
-      )}
+      </View>
+      <View style={{flex: 1, alignItems: 'center', marginTop: 0}}>
+        {animes && (
+          <FlatList
+            onEndReached={getData}
+            onEndReachedThreshold={0.5}
+            ListFooterComponent={() => <ListLoader loading />}
+            numColumns={2}
+            data={animes}
+            renderItem={anime => <CardList anime={anime} />}
+            keyExtractor={anime => anime.id}
+          />
+        )}
+      </View>
     </View>
   );
 };
