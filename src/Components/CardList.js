@@ -4,6 +4,8 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import styled from 'styled-components/native';
 import {useNavigation} from '@react-navigation/native';
 
+import {useFavoritesContext} from '../Context/FavoritesCustomHook';
+
 const FavouriteButton = styled(TouchableOpacity)`
   position: absolute;
   top: 25px;
@@ -20,7 +22,12 @@ export const CardList = ({anime}) => {
     },
   } = anime;
 
+  const {favorites, addToFavorites, removeFromFavorites} =
+    useFavoritesContext();
+
   const navigation = useNavigation();
+
+  const isFavorite = favorites.find(item => item.id === anime.item.id);
 
   return (
     <View>
@@ -35,8 +42,17 @@ export const CardList = ({anime}) => {
           }}
         />
       </TouchableOpacity>
-      <FavouriteButton onPress={() => console.log('icon')}>
-        <Icon name={'heart'} size={35} color={'#919191'} />
+      <FavouriteButton
+        onPress={() => {
+          !isFavorite
+            ? addToFavorites(anime.item)
+            : removeFromFavorites(anime.item.id);
+        }}>
+        <Icon
+          name={'heart'}
+          size={35}
+          color={isFavorite ? 'orange' : '#919191'}
+        />
       </FavouriteButton>
     </View>
   );
