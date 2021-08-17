@@ -8,12 +8,14 @@ import {
   Paragraph,
   Divider,
 } from 'react-native-paper';
+import * as Animatable from 'react-native-animatable';
 
 export const HomeScreen = () => (
   <ScrollView>
     <View style={{flex: 1}}>
       <View style={{backgroundColor: 'orange', alignItems: 'center'}}>
-        <Text
+        <Animatable.Text
+          animation="slideInLeft"
           style={{
             color: 'white',
             fontWeight: 'bold',
@@ -22,7 +24,7 @@ export const HomeScreen = () => (
             marginBottom: 80,
           }}>
           Information
-        </Text>
+        </Animatable.Text>
       </View>
       <View
         style={{
@@ -30,37 +32,42 @@ export const HomeScreen = () => (
           padding: 15,
           marginTop: -80,
         }}>
-        <Card>
-          <View style={{alignItems: 'center', marginTop: 25}}>
-            <Title>PERSONAL INFO</Title>
-          </View>
-          <View
-            style={{
-              alignItems: 'center',
-              marginBottom: 5,
-              padding: 30,
-            }}>
-            <View style={{marginBottom: 25}}>
-              <Avatar.Image
-                style={{backgroundColor: 'orange'}}
-                size={180}
-                source={require('../Assets/Images/foto.jpg')}
-              />
+        <Animatable.View animation="fadeInUpBig">
+          <Card>
+            <View style={{alignItems: 'center', marginTop: 25}}>
+              <Title>PERSONAL INFO</Title>
             </View>
-            <Title>Name</Title>
-            <Paragraph>Italo Stuardo Cortez Silva</Paragraph>
-            <Title>Degree</Title>
-            <Paragraph>Computer Science Engineer</Paragraph>
-            <Title>Age</Title>
-            <Paragraph>30years old</Paragraph>
-            <Title>Hobbies</Title>
-            <Paragraph>
-              Play Basketball, hang out with friends and family and of course
-              lear more about React Natve
-            </Paragraph>
-          </View>
-        </Card>
-        <View style={{marginTop: 25}}>
+            <View
+              style={{
+                alignItems: 'center',
+                marginBottom: 5,
+                padding: 30,
+              }}>
+              <Animatable.View
+                animation="pulse"
+                iterationCount="infinite"
+                style={{marginBottom: 25}}>
+                <Avatar.Image
+                  style={{backgroundColor: 'orange'}}
+                  size={180}
+                  source={require('../Assets/Images/foto.jpg')}
+                />
+              </Animatable.View>
+              <Title>Name</Title>
+              <Paragraph>Italo Stuardo Cortez Silva</Paragraph>
+              <Title>Degree</Title>
+              <Paragraph>Computer Science Engineer</Paragraph>
+              <Title>Age</Title>
+              <Paragraph>30years old</Paragraph>
+              <Title>Hobbies</Title>
+              <Paragraph>
+                Play Basketball, hang out with friends and family and of course
+                lear more about React Natve
+              </Paragraph>
+            </View>
+          </Card>
+        </Animatable.View>
+        <Animatable.View animation="fadeInDownBig" style={{marginTop: 25}}>
           <Card>
             <View style={{alignItems: 'center', marginTop: 25}}>
               <Title>PROFESSIONAL INFO</Title>
@@ -71,13 +78,16 @@ export const HomeScreen = () => (
                 marginBottom: 5,
                 padding: 30,
               }}>
-              <View style={{marginBottom: 25}}>
+              <Animatable.View
+                animation="pulse"
+                iterationCount="infinite"
+                style={{marginBottom: 25}}>
                 <Avatar.Image
                   style={{backgroundColor: 'orange'}}
                   size={180}
                   source={require('../Assets/Images/work.jpg')}
                 />
-              </View>
+              </Animatable.View>
               <Divider />
               <Title>Job</Title>
               <Paragraph>Analyst Programmer</Paragraph>
@@ -95,7 +105,7 @@ export const HomeScreen = () => (
               </View>
             </View>
           </Card>
-        </View>
+        </Animatable.View>
       </View>
     </View>
   </ScrollView>
