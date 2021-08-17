@@ -16,3 +16,8 @@ export const getAnimeData = async offset => {
   );
   return resp.data.data;
 };
+
+export const getAnime = async id => {
+  const resp = await axios.get(`${apiURL}/anime/${id}`, headers);
+  return resp.data.data;
+};
