@@ -42,6 +42,7 @@ export const HomeScreen = () => (
             }}>
             <View style={{marginBottom: 25}}>
               <Avatar.Image
+                style={{backgroundColor: 'orange'}}
                 size={180}
                 source={require('../Assets/Images/foto.jpg')}
               />
@@ -72,6 +73,7 @@ export const HomeScreen = () => (
               }}>
               <View style={{marginBottom: 25}}>
                 <Avatar.Image
+                  style={{backgroundColor: 'orange'}}
                   size={180}
                   source={require('../Assets/Images/work.jpg')}
                 />
