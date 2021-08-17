@@ -15,7 +15,7 @@ export const CardList = ({anime}) => {
   const {
     item: {
       attributes: {
-        posterImage: {tiny},
+        posterImage: {original},
       },
     },
   } = anime;
@@ -25,11 +25,13 @@ export const CardList = ({anime}) => {
   return (
     <View>
       <TouchableOpacity
-        onPress={() => navigation.navigate('AnimeDetail', {anime})}>
+        onPress={() =>
+          navigation.navigate('AnimeDetail', {animeId: anime.item.id})
+        }>
         <Image
           style={{width: 125, height: 225, margin: 20, borderRadius: 25}}
           source={{
-            uri: tiny,
+            uri: original,
           }}
         />
       </TouchableOpacity>
