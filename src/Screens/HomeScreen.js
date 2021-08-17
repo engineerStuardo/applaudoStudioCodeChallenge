@@ -19,7 +19,7 @@ export const HomeScreen = () => (
             marginTop: 30,
             marginBottom: 80,
           }}>
-          Information
+          Hire Me, Please??
         </Animatable.Text>
       </Animatable.View>
       <View
