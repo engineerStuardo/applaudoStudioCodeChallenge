@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, FlatList, Image, ActivityIndicator} from 'react-native';
+import {View, FlatList, Dimensions} from 'react-native';
 import {TextInput} from 'react-native-paper';
 
 import {getAnimeData} from '../Services/Services';
 import {CardList} from '../Components/CardList';
 import {ListLoader} from '../Components/ListLoader';
+
+const {width, height} = Dimensions.get('screen');
 
 export const AnimeScreen = () => {
   const [animes, setAnimes] = useState([]);
@@ -35,12 +37,18 @@ export const AnimeScreen = () => {
     <View style={{flex: 1}}>
       <View style={{padding: 25}}>
         <TextInput
+          mode="outlined"
           label="Search Anime"
           secureTextEntry
-          right={<TextInput.Icon name="eye" />}
+          right={<TextInput.Icon name="database-search" />}
         />
       </View>
-      <View style={{flex: 1, alignItems: 'center', marginTop: 0}}>
+      <View
+        style={{
+          flex: 1,
+          width: width,
+          alignItems: 'center',
+        }}>
         {animes && (
           <FlatList
             onEndReached={getData}
