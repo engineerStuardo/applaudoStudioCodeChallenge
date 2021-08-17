@@ -1,15 +1,8 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  Image,
-  ActivityIndicator,
-  TouchableOpacity,
-  Platform,
-} from 'react-native';
+import {View, Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import styled from 'styled-components/native';
+import {useNavigation} from '@react-navigation/native';
 
 const FavouriteButton = styled(TouchableOpacity)`
   position: absolute;
@@ -27,18 +20,21 @@ export const CardList = ({anime}) => {
     },
   } = anime;
 
+  const navigation = useNavigation();
+
   return (
     <View>
-      <TouchableOpacity onPress={() => console.log('image')}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('AnimeDetail', {anime})}>
         <Image
-          style={{width: 150, height: 250, margin: 15, borderRadius: 25}}
+          style={{width: 125, height: 225, margin: 20, borderRadius: 25}}
           source={{
             uri: tiny,
           }}
         />
       </TouchableOpacity>
       <FavouriteButton onPress={() => console.log('icon')}>
-        <Icon name={'heart'} size={35} color={'orange'} />
+        <Icon name={'heart'} size={35} color={'#919191'} />
       </FavouriteButton>
     </View>
   );
