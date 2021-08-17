@@ -1,19 +1,15 @@
 import React from 'react';
-import {View, Text, Dimensions, ScrollView} from 'react-native';
-import {
-  Avatar,
-  Button,
-  Card,
-  Title,
-  Paragraph,
-  Divider,
-} from 'react-native-paper';
+import {View, ScrollView} from 'react-native';
+import {Avatar, Card, Title, Paragraph} from 'react-native-paper';
 import * as Animatable from 'react-native-animatable';
 
 export const HomeScreen = () => (
   <ScrollView>
     <View style={{flex: 1}}>
-      <View style={{backgroundColor: 'orange', alignItems: 'center'}}>
+      <Animatable.View
+        animation="jello"
+        iterationCount="infinite"
+        style={{backgroundColor: 'orange', alignItems: 'center'}}>
         <Animatable.Text
           animation="slideInLeft"
           style={{
@@ -25,7 +21,7 @@ export const HomeScreen = () => (
           }}>
           Information
         </Animatable.Text>
-      </View>
+      </Animatable.View>
       <View
         style={{
           width: '100%',
@@ -34,25 +30,25 @@ export const HomeScreen = () => (
         }}>
         <Animatable.View animation="fadeInUpBig">
           <Card>
-            <View style={{alignItems: 'center', marginTop: 25}}>
+            <Animatable.View
+              animation="pulse"
+              iterationCount="infinite"
+              style={{alignItems: 'center', marginTop: 25}}>
               <Title>PERSONAL INFO</Title>
-            </View>
+            </Animatable.View>
             <View
               style={{
                 alignItems: 'center',
                 marginBottom: 5,
                 padding: 30,
               }}>
-              <Animatable.View
-                animation="pulse"
-                iterationCount="infinite"
-                style={{marginBottom: 25}}>
+              <View style={{marginBottom: 25}}>
                 <Avatar.Image
                   style={{backgroundColor: 'orange'}}
                   size={180}
                   source={require('../Assets/Images/foto.jpg')}
                 />
-              </Animatable.View>
+              </View>
               <Title>Name</Title>
               <Paragraph>Italo Stuardo Cortez Silva</Paragraph>
               <Title>Degree</Title>
@@ -69,26 +65,25 @@ export const HomeScreen = () => (
         </Animatable.View>
         <Animatable.View animation="fadeInDownBig" style={{marginTop: 25}}>
           <Card>
-            <View style={{alignItems: 'center', marginTop: 25}}>
+            <Animatable.View
+              animation="pulse"
+              iterationCount="infinite"
+              style={{alignItems: 'center', marginTop: 25}}>
               <Title>PROFESSIONAL INFO</Title>
-            </View>
+            </Animatable.View>
             <View
               style={{
                 alignItems: 'center',
                 marginBottom: 5,
                 padding: 30,
               }}>
-              <Animatable.View
-                animation="pulse"
-                iterationCount="infinite"
-                style={{marginBottom: 25}}>
+              <View style={{marginBottom: 25}}>
                 <Avatar.Image
                   style={{backgroundColor: 'orange'}}
                   size={180}
                   source={require('../Assets/Images/work.jpg')}
                 />
-              </Animatable.View>
-              <Divider />
+              </View>
               <Title>Job</Title>
               <Paragraph>Analyst Programmer</Paragraph>
               <Title>From - To</Title>
