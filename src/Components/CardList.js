@@ -9,6 +9,14 @@ import {
   Platform,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import styled from 'styled-components/native';
+
+const FavouriteButton = styled(TouchableOpacity)`
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  z-index: 9;
+`;
 
 export const CardList = ({anime}) => {
   const {
@@ -29,18 +37,9 @@ export const CardList = ({anime}) => {
           }}
         />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => console.log('icon')}>
-        <View
-          style={{
-            position: 'absolute',
-            top: -250,
-            right: 25,
-            zIndex: 9999,
-            elevation: Platform.OS === 'android' ? 50 : 0,
-          }}>
-          <Icon name={'heart'} size={35} color={'gray'} />
-        </View>
-      </TouchableOpacity>
+      <FavouriteButton onPress={() => console.log('icon')}>
+        <Icon name={'heart'} size={35} color={'orange'} />
+      </FavouriteButton>
     </View>
   );
 };
