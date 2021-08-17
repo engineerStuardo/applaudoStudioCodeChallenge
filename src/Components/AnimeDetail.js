@@ -27,7 +27,7 @@ export const AnimeDetail = ({route}) => {
         delay={400}
         style={{
           zIndex: 10,
-          marginTop: 350,
+          marginTop: height / 2.5,
           borderTopLeftRadius: 50,
           borderTopRightRadius: 50,
           backgroundColor: 'white',
