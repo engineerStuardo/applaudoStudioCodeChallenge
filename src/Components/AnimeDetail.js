@@ -13,6 +13,7 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import styled from 'styled-components/native';
 
 import {ListLoader} from '../Components/ListLoader';
+import {AnimeDescription} from '../Components/AnimeDescription';
 
 const {width, height} = Dimensions.get('screen');
 
@@ -97,44 +98,7 @@ export const AnimeDetail = ({route, navigation}) => {
               }}>
               <Icon name={'youtube-square'} size={40} color={'red'} />
             </YoutubeButton>
-            <View
-              style={{
-                flex: 1,
-                flexDirection: 'row',
-              }}>
-              <Image
-                style={{width: 150, height: 250, margin: 15, borderRadius: 15}}
-                source={{
-                  uri: anime.attributes.posterImage.original,
-                }}
-              />
-              <View
-                style={{
-                  justifyContent: 'center',
-                  // backgroundColor: 'red',
-                  width: width / 2,
-                }}>
-                <Text style={{fontSize: 25, fontWeight: 'bold'}}>
-                  {anime.attributes.titles.en || anime.attributes.titles.en_jp}
-                </Text>
-                <Text style={{fontSize: 15, fontWeight: 'bold'}}>
-                  Popularity Rank:{' '}
-                </Text>
-                <Text>{anime.attributes.popularityRank || 'Not Found'}</Text>
-                <Text style={{fontSize: 15, fontWeight: 'bold'}}>
-                  Rating Rank:
-                </Text>
-                <Text> {anime.attributes.ratingRank || 'Not Found'}</Text>
-                <Text style={{fontSize: 15, fontWeight: 'bold'}}>
-                  Episode Count:
-                </Text>
-                <Text> {anime.attributes.episodeCount || 'Not Found'}</Text>
-                <Text style={{fontSize: 15, fontWeight: 'bold'}}>
-                  Episode Length:
-                </Text>
-                <Text> {anime.attributes.episodeLength || 'Not Found'}</Text>
-              </View>
-            </View>
+            <AnimeDescription anime={anime} />
             <View style={{padding: 25, alignItems: 'center'}}>
               <Text
                 style={{
