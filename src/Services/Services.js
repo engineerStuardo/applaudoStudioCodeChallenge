@@ -21,3 +21,8 @@ export const getAnime = async id => {
   const resp = await axios.get(`${apiURL}/anime/${id}`, headers);
   return resp.data.data;
 };
+
+export const getAnimeSearch = async text => {
+  const resp = await axios.get(`${apiURL}/anime?filter[text]=${text}`, headers);
+  return resp.data.data;
+};
