@@ -15,9 +15,8 @@ export const FavoriteComponent = ({favorite}) => {
       <Divider />
       <TouchableOpacity
         onPress={() =>
-          navigation.navigate('Anime', {
-            screen: 'AnimeDetail',
-            params: {animeId: favorite.item.id, isFavorite: true},
+          navigation.navigate('AnimeFavoriteDetail', {
+            animeId: favorite.item.id,
           })
         }>
         <View
