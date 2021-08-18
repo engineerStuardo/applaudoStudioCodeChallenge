@@ -22,7 +22,10 @@ export const getAnime = async id => {
   return resp.data.data;
 };
 
-export const getAnimeSearch = async text => {
-  const resp = await axios.get(`${apiURL}/anime?filter[text]=${text}`, headers);
+export const getAnimeSearch = async (text, offset) => {
+  const resp = await axios.get(
+    `${apiURL}/anime?filter[text]=${text}&page[offset]=${offset}`,
+    headers,
+  );
   return resp.data.data;
 };
