@@ -15,10 +15,9 @@ export const CardList = ({anime}) => {
   } = anime;
 
   const {favorites} = useFavoritesContext();
+  const isFavorite = favorites.find(item => item.id === anime.item.id);
 
   const navigation = useNavigation();
-
-  const isFavorite = favorites.find(item => item.id === anime.item.id);
 
   return (
     <View>
