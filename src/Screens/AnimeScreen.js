@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {View, FlatList, Dimensions} from 'react-native';
+import {View, FlatList, Dimensions, Image} from 'react-native';
 import {TextInput} from 'react-native-paper';
+import * as Animatable from 'react-native-animatable';
 
 import {getAnimeData, getAnimeSearch} from '../Services/Services';
 import {CardList} from '../Components/CardList';
@@ -51,8 +52,8 @@ export const AnimeScreen = () => {
   }, []);
 
   return (
-    <View style={{flex: 1}}>
-      <View style={{padding: 25}}>
+    <View style={{flex: 1, backgroundColor: '#FFFFFF'}}>
+      <View style={{padding: 25, paddingBottom: 5}}>
         <TextInput
           mode="outlined"
           label="Search Anime"
@@ -67,6 +68,12 @@ export const AnimeScreen = () => {
           }}
         />
       </View>
+      <Animatable.Image
+        animation="pulse"
+        iterationCount="infinite"
+        style={{width: '100%', height: 150}}
+        source={require('../Assets/Images/anime.png')}
+      />
       <View
         style={{
           flex: 1,
