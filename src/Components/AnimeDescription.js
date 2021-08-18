@@ -12,9 +12,15 @@ import * as Animatable from 'react-native-animatable';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import styled from 'styled-components/native';
 
+import {FavoriteButton} from '../Components/FavouriteButton';
+import {useFavoritesContext} from '../Context/FavoritesCustomHook';
+
 const {width, height} = Dimensions.get('screen');
 
 export const AnimeDescription = ({anime}) => {
+  const {favorites} = useFavoritesContext();
+  const isFavorite = favorites.find(item => item.id === anime.id);
+
   return (
     <View
       style={{
@@ -27,6 +33,9 @@ export const AnimeDescription = ({anime}) => {
           uri: anime.attributes.posterImage.original,
         }}
       />
+      <View>
+        <FavoriteButton anime={anime} isFavorite={isFavorite} isDescription />
+      </View>
       <View
         style={{
           justifyContent: 'center',
