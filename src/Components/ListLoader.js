@@ -2,7 +2,7 @@ import React from 'react';
 import {View} from 'react-native';
 import {ActivityIndicator, Colors} from 'react-native-paper';
 
-export const ListLoader = ({loading}) => {
+export const ListLoader = ({loading, loadingSearch}) => {
   return (
     <View
       style={{
@@ -11,7 +11,7 @@ export const ListLoader = ({loading}) => {
         alignItems: 'center',
         padding: 25,
       }}>
-      {loading && (
+      {(loading || loadingSearch) && (
         <ActivityIndicator
           animating={true}
           color={Colors.yellow800}
