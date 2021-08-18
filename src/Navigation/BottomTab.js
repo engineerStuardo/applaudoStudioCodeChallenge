@@ -4,8 +4,8 @@ import {NavigationContainer} from '@react-navigation/native';
 
 import {HomeScreen} from '../Screens/HomeScreen';
 import {AnimeStack} from './AnimeStack';
-import {FavoriteScreen} from '../Screens/FavoriteScreen';
 import {createScreenOptions} from './app.navigator.options';
+import {FavoriteStack} from './FavoriteStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -16,7 +16,7 @@ export const MainNavigation = () => (
       initialRouteName="Restaurant">
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Anime" component={AnimeStack} />
-      <Tab.Screen name="Favorite" component={FavoriteScreen} />
+      <Tab.Screen name="Favorite" component={FavoriteStack} />
     </Tab.Navigator>
   </NavigationContainer>
 );
