@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, FlatList} from 'react-native';
+import React from 'react';
+import {View, FlatList} from 'react-native';
 import {useFavoritesContext} from '../Context/FavoritesCustomHook';
 
-import {AnimeDescription} from '../Components/AnimeDescription';
+import {FavoriteComponent} from '../Components/FavoriteComponent';
 
 export const FavoriteScreen = () => {
   const {favorites} = useFavoritesContext();
@@ -11,7 +11,7 @@ export const FavoriteScreen = () => {
       {favorites && (
         <FlatList
           data={favorites}
-          renderItem={favorite => <AnimeDescription anime={favorite.item} />}
+          renderItem={favorite => <FavoriteComponent favorite={favorite} />}
           keyExtractor={favorite => favorite.id}
         />
       )}
