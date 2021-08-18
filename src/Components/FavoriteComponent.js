@@ -20,7 +20,7 @@ export const FavoriteComponent = ({favorite}) => {
       }>
       <View
         style={{
-          paddingLeft: width / 8,
+          paddingLeft: width / 150,
           alignItems: 'center',
           justifyContent: 'center',
         }}>
