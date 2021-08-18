@@ -11,6 +11,7 @@ import {
 import * as Animatable from 'react-native-animatable';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import styled from 'styled-components/native';
+import {CommonActions} from '@react-navigation/native';
 
 import {ListLoader} from '../Components/ListLoader';
 import {AnimeDescription} from '../Components/AnimeDescription';
@@ -34,7 +35,7 @@ const YoutubeButton = styled(TouchableOpacity)`
 `;
 
 export const AnimeDetail = ({route, navigation}) => {
-  const {animeId} = route.params;
+  const {animeId, isFavorite} = route.params;
   const [anime, setAnime] = useState();
   const [loading, setLoading] = useState(false);
   const [moreSynopsis, setMoreSynopsis] = useState(false);
@@ -55,14 +56,22 @@ export const AnimeDetail = ({route, navigation}) => {
 
   useEffect(() => {
     getAnimeDetail();
-  }, []);
+  }, [animeId]);
 
   return (
     <ScrollView>
       {loading && <ListLoader loading />}
       {anime && (
         <>
-          <GoBackButton onPress={() => navigation.goBack()}>
+          <GoBackButton
+            onPress={() => {
+              if (isFavorite) {
+                navigation.popToTop();
+                navigation.navigate('Favorite');
+              } else {
+                navigation.goBack();
+              }
+            }}>
             <Icon name={'chevron-left'} size={35} color={'orange'} />
           </GoBackButton>
           <Animatable.View
