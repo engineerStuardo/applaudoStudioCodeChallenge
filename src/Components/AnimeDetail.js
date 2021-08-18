@@ -65,12 +65,7 @@ export const AnimeDetail = ({route, navigation}) => {
         <>
           <GoBackButton
             onPress={() => {
-              if (isFavorite) {
-                navigation.popToTop();
-                navigation.navigate('Favorite');
-              } else {
-                navigation.goBack();
-              }
+              navigation.goBack();
             }}>
             <Icon name={'chevron-left'} size={35} color={'orange'} />
           </GoBackButton>
