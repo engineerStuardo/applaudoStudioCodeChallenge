@@ -58,7 +58,7 @@ export const AnimeScreen = () => {
           label="Search Anime"
           value={search}
           textContentType="name"
-          keyboardType="username"
+          keyboardType="default"
           autoCapitalize="none"
           onChangeText={search => setSearch(search)}
           theme={{colors: {primary: 'orange'}}}
