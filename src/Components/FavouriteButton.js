@@ -12,15 +12,15 @@ const FavoriteIcon = styled(TouchableOpacity)`
   z-index: 9;
 `;
 
-export const FavoriteButton = ({anime, isFavorite}) => {
+export const FavoriteButton = ({anime, isFavorite, isDescription}) => {
   const {addToFavorites, removeFromFavorites} = useFavoritesContext();
 
   return (
     <FavoriteIcon
       onPress={() => {
         !isFavorite
-          ? addToFavorites(anime.item)
-          : removeFromFavorites(anime.item.id);
+          ? addToFavorites(isDescription ? anime : anime.item)
+          : removeFromFavorites(isDescription ? anime.id : anime.item.id);
       }}>
       <Icon
         name={'heart'}
