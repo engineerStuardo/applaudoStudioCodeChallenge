@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, FlatList, Dimensions} from 'react-native';
 import {TextInput} from 'react-native-paper';
 
-import {getAnimeData} from '../Services/Services';
+import {getAnimeData, getAnimeSearch} from '../Services/Services';
 import {CardList} from '../Components/CardList';
 import {ListLoader} from '../Components/ListLoader';
 
@@ -12,6 +12,7 @@ export const AnimeScreen = () => {
   const [animes, setAnimes] = useState([]);
   const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState();
 
   const getData = async () => {
     if (!loading) {
@@ -29,6 +30,22 @@ export const AnimeScreen = () => {
     }
   };
 
+  const searchAnime = async text => {
+    try {
+      if (text === '') {
+        setOffset(0);
+        setAnimes([]);
+        getData();
+        return;
+      }
+      const data = await getAnimeSearch(text);
+      console.log(data);
+      setAnimes(data);
+    } catch (error) {
+    } finally {
+    }
+  };
+
   useEffect(() => {
     getData();
   }, []);
@@ -39,8 +56,15 @@ export const AnimeScreen = () => {
         <TextInput
           mode="outlined"
           label="Search Anime"
-          secureTextEntry
-          right={<TextInput.Icon name="database-search" />}
+          value={search}
+          textContentType="name"
+          keyboardType="username"
+          autoCapitalize="none"
+          onChangeText={search => setSearch(search)}
+          theme={{colors: {primary: 'orange'}}}
+          onSubmitEditing={() => {
+            searchAnime(search);
+          }}
         />
       </View>
       <View
