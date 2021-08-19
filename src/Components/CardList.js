@@ -14,7 +14,7 @@ export const CardList = ({anime, type}) => {
       },
     },
   } = anime;
-
+  const redirectTo = type === 'anime' ? 'AnimeDetail' : 'MangaDetail';
   const {favorites} = useFavoritesContext();
   const isFavorite = favorites.find(item => item.id === anime.item.id);
 
@@ -24,7 +24,7 @@ export const CardList = ({anime, type}) => {
     <View>
       <TouchableOpacity
         onPress={() =>
-          navigation.navigate('AnimeDetail', {animeId: anime.item.id, type})
+          navigation.navigate(redirectTo, {animeId: anime.item.id, type})
         }>
         <CardImage
           source={{
