@@ -20,10 +20,11 @@ const FavoritesText = styled(Text)`
 
 const NoFavoriteText = styled(Text)`
   font-size: 17px;
+  margin-bottom: 50px;
 `;
 
 const FavoriteButton = styled(Button)`
-  margin-top: 50px;
+  margin-top: 10px;
   padding: 5px;
 `;
 

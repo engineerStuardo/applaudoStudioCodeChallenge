@@ -30,6 +30,14 @@ export const NoFavorites = () => {
         onPress={() => navigation.navigate('Anime', {screen: 'AnimeScreen'})}>
         Go to Anime
       </FavoriteButton>
+      <Text>or</Text>
+      <FavoriteButton
+        icon="heart"
+        mode="outlined"
+        color={'#f08e25'}
+        onPress={() => navigation.navigate('Manga', {screen: 'MangaScreen'})}>
+        Go to Manga
+      </FavoriteButton>
     </NoFavoritesContainer>
   );
 };
