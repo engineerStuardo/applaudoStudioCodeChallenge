@@ -1,13 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {Dimensions} from 'react-native';
 
 import {getFullData, getSearch} from '../Services/Services';
 import {ListLoader} from '../Components/ListLoader';
 import {InputText} from '../Components/InputText';
 import {ListImages} from '../Components/ListImages';
 import {AnimeScreenContainer, AnimeLogo} from '../Styles/AnimeScreenStyles';
-
-const {width, height} = Dimensions.get('screen');
 
 export const Anime = ({type}) => {
   const [animes, setAnimes] = useState([]);

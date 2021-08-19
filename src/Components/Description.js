@@ -1,16 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  Dimensions,
-  ScrollView,
-  TouchableOpacity,
-  Linking,
-} from 'react-native';
-import * as Animatable from 'react-native-animatable';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
-import styled from 'styled-components/native';
+import React from 'react';
+import {View, Text, Dimensions} from 'react-native';
 
 import {FavoriteButton} from '../Components/FavouriteButton';
 import {useFavoritesContext} from '../Context/FavoritesCustomHook';

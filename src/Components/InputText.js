@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, Keyboard} from 'react-native';
-import {TextInput, Colors} from 'react-native-paper';
+import {Keyboard} from 'react-native';
+import {Colors} from 'react-native-paper';
 
 import {
   InputContainer,

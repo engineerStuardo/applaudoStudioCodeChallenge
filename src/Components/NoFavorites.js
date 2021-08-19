@@ -1,9 +1,7 @@
 import React from 'react';
-import {View, FlatList, Image, Text} from 'react-native';
-import {useFavoritesContext} from '../Context/FavoritesCustomHook';
+import {Text} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-import {Button} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 
 import {

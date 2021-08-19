@@ -1,10 +1,5 @@
-import React from 'react';
-import {View, FlatList, Image, Text} from 'react-native';
-import {useFavoritesContext} from '../Context/FavoritesCustomHook';
-import * as Animatable from 'react-native-animatable';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import {View, Text} from 'react-native';
 import {Button} from 'react-native-paper';
-import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components/native';
 
 const NoFavoritesContainer = styled(View)`

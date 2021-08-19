@@ -1,4 +1,4 @@
-import {View, Image, TouchableOpacity} from 'react-native';
+import {Image} from 'react-native';
 import styled from 'styled-components/native';
 
 const CardImage = styled(Image)`

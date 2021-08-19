@@ -1,5 +1,4 @@
 import React from 'react';
-import {View} from 'react-native';
 import {ActivityIndicator, Colors} from 'react-native-paper';
 
 import {LoaderContainer} from '../Styles/ListLoaderStyles';

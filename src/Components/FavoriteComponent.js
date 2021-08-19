@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Dimensions, TouchableOpacity, Text} from 'react-native';
+import {Dimensions, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Divider} from 'react-native-paper';
 

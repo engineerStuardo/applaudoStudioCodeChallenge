@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image, TouchableOpacity} from 'react-native';
+import {View, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import {useFavoritesContext} from '../Context/FavoritesCustomHook';
