@@ -1,7 +1,7 @@
 import {View} from 'react-native';
 import {Avatar} from 'react-native-paper';
 import * as Animatable from 'react-native-animatable';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 const MainContainer = styled(View)`
   flex: 1;
