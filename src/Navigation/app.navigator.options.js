@@ -1,9 +1,10 @@
 import React from 'react';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import Icon from 'react-native-vector-icons/dist/Ionicons';
 
 const TAB_ICON = {
-  Home: 'address-book',
-  Anime: 'list-alt',
+  Home: 'person-sharp',
+  Anime: 'logo-apple-appstore',
+  Manga: 'logo-markdown',
   Favorite: 'heart',
 };
 
