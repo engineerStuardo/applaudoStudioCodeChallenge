@@ -6,6 +6,9 @@ import * as Animatable from 'react-native-animatable';
 import {getAnimeData, getAnimeSearch} from '../Services/Services';
 import {CardList} from '../Components/CardList';
 import {ListLoader} from '../Components/ListLoader';
+import {InputText} from '../Components/InputText';
+import {ListAnimeImages} from '../Components/ListAnimeImages';
+import {AnimeScreenContainer, AnimeLogo} from '../Styles/AnimeScreenStyles';
 
 const {width, height} = Dimensions.get('screen');
 
@@ -70,62 +73,27 @@ export const AnimeScreen = () => {
   }, []);
 
   return (
-    <View style={{flex: 1, backgroundColor: '#FFFFFF'}}>
-      <View style={{padding: 25, paddingBottom: 15}}>
-        <TextInput
-          style={{height: 40}}
-          mode="outlined"
-          label="Search Anime"
-          value={search}
-          textContentType="name"
-          keyboardType="default"
-          autoCapitalize="none"
-          onChangeText={search => setSearch(search)}
-          theme={{colors: {primary: 'orange'}}}
-          onSubmitEditing={() => {
-            searchAnime(search);
-          }}
-          right={
-            <TextInput.Icon
-              style={{marginTop: 12}}
-              name="backspace"
-              color={Colors.orange500}
-              size={30}
-              onPress={() => {
-                const start = true;
-                Keyboard.dismiss();
-                setSearch('');
-                getData(start);
-              }}
-            />
-          }
-        />
-      </View>
-      <Animatable.Image
+    <AnimeScreenContainer>
+      <InputText
+        search={search}
+        setSearch={setSearch}
+        searchAnime={searchAnime}
+        getData={getData}
+      />
+      <AnimeLogo
         animation="pulse"
         iterationCount="infinite"
-        style={{width: '100%', height: 150}}
         source={require('../Assets/Images/anime.png')}
       />
       {loadingSearch && <ListLoader loadingSearch />}
-      <View
-        style={{
-          flex: 1,
-          width: width,
-          alignItems: 'center',
-        }}>
-        {animes && !loadingSearch && (
-          <FlatList
-            onEndReached={search ? () => resetList() : () => getData()}
-            onEndReachedThreshold={0.5}
-            ListFooterComponent={() => <ListLoader loading />}
-            numColumns={2}
-            data={animes}
-            renderItem={anime => <CardList anime={anime} />}
-            keyExtractor={anime => anime.id}
-          />
-        )}
-      </View>
-    </View>
+      <ListAnimeImages
+        animes={animes}
+        loadingSearch={loadingSearch}
+        search={search}
+        resetList={resetList}
+        getData={getData}
+        loading={loading}
+      />
+    </AnimeScreenContainer>
   );
 };

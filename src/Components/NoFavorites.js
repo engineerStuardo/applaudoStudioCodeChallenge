@@ -6,24 +6,30 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import {Button} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 
+import {
+  NoFavoritesContainer,
+  FavoritesText,
+  NoFavoriteText,
+  FavoriteButton,
+} from '../Styles/NoFavoritesStyles';
+
 export const NoFavorites = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <NoFavoritesContainer>
       <Animatable.View animation="pulse" iterationCount="infinite">
         <Icon name={'heart'} size={50} color={'orange'} />
       </Animatable.View>
-      <Text style={{fontSize: 35, marginBottom: 30}}>Favorites</Text>
-      <Text style={{fontSize: 17}}>No favorites yet...</Text>
-      <Button
-        style={{marginTop: 50, padding: 5}}
+      <FavoritesText>Favorites</FavoritesText>
+      <NoFavoriteText>No favorites yet...</NoFavoriteText>
+      <FavoriteButton
         icon="heart"
         mode="outlined"
         color={'#f08e25'}
         onPress={() => navigation.navigate('Anime', {screen: 'AnimeScreen'})}>
         Go to Anime
-      </Button>
-    </View>
+      </FavoriteButton>
+    </NoFavoritesContainer>
   );
 };

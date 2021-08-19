@@ -1,16 +1,18 @@
 import React from 'react';
-import {FlatList} from 'react-native';
-import * as Animatable from 'react-native-animatable';
+import {FlatList, View} from 'react-native';
 
+import {FavoriteImage} from '../Styles/FavoritesStyles';
 import {FavoriteComponent} from './FavoriteComponent';
+import {useFavoritesContext} from '../Context/FavoritesCustomHook';
 
-export const Favorites = ({favorites}) => {
+export const Favorites = () => {
+  const {favorites} = useFavoritesContext();
+
   return (
     <>
-      <Animatable.Image
+      <FavoriteImage
         animation="zoomIn"
         iterationCount="infinite"
-        style={{width: '100%', height: 200}}
         source={require('../Assets/Images/favorite.jpg')}
       />
       <FlatList

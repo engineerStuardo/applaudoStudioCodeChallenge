@@ -4,6 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 
 import {useFavoritesContext} from '../Context/FavoritesCustomHook';
 import {FavoriteButton} from './FavouriteButton';
+import {CardImage} from '../Styles/CardListStyles';
 
 export const CardList = ({anime}) => {
   const {
@@ -25,8 +26,7 @@ export const CardList = ({anime}) => {
         onPress={() =>
           navigation.navigate('AnimeDetail', {animeId: anime.item.id})
         }>
-        <Image
-          style={{width: 125, height: 225, margin: 20, borderRadius: 25}}
+        <CardImage
           source={{
             uri: original,
           }}

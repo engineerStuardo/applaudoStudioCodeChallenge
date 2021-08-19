@@ -14,6 +14,13 @@ import styled from 'styled-components/native';
 
 import {FavoriteButton} from '../Components/FavouriteButton';
 import {useFavoritesContext} from '../Context/FavoritesCustomHook';
+import {
+  AnimeDescriptionContainer,
+  AnimeImage,
+  AnimeInfoContainer,
+  TitleText,
+  SubTitleText,
+} from '../Styles/AnimeDescriptionStyles';
 
 const {width, height} = Dimensions.get('screen');
 
@@ -22,13 +29,8 @@ export const AnimeDescription = ({anime}) => {
   const isFavorite = favorites.find(item => item.id === anime.id);
 
   return (
-    <View
-      style={{
-        flex: 1,
-        flexDirection: 'row',
-      }}>
-      <Image
-        style={{width: 150, height: 250, margin: 15, borderRadius: 15}}
+    <AnimeDescriptionContainer>
+      <AnimeImage
         source={{
           uri: anime.attributes.posterImage.original,
         }}
@@ -36,26 +38,19 @@ export const AnimeDescription = ({anime}) => {
       <View>
         <FavoriteButton anime={anime} isFavorite={isFavorite} isDescription />
       </View>
-      <View
-        style={{
-          justifyContent: 'center',
-          // backgroundColor: 'red',
-          width: width / 2,
-        }}>
-        <Text style={{fontSize: 25, fontWeight: 'bold'}}>
+      <AnimeInfoContainer animeWidth={width}>
+        <TitleText>
           {anime.attributes.titles.en || anime.attributes.titles.en_jp}
-        </Text>
-        <Text style={{fontSize: 15, fontWeight: 'bold'}}>
-          Popularity Rank:{' '}
-        </Text>
+        </TitleText>
+        <SubTitleText>Popularity Rank: </SubTitleText>
         <Text>{anime.attributes.popularityRank || 'Not Found'}</Text>
-        <Text style={{fontSize: 15, fontWeight: 'bold'}}>Rating Rank:</Text>
+        <SubTitleText>Rating Rank:</SubTitleText>
         <Text> {anime.attributes.ratingRank || 'Not Found'}</Text>
-        <Text style={{fontSize: 15, fontWeight: 'bold'}}>Episode Count:</Text>
+        <SubTitleText>Episode Count:</SubTitleText>
         <Text> {anime.attributes.episodeCount || 'Not Found'}</Text>
-        <Text style={{fontSize: 15, fontWeight: 'bold'}}>Episode Length:</Text>
+        <SubTitleText>Episode Length:</SubTitleText>
         <Text> {anime.attributes.episodeLength || 'Not Found'}</Text>
-      </View>
-    </View>
+      </AnimeInfoContainer>
+    </AnimeDescriptionContainer>
   );
 };

@@ -1,9 +1,10 @@
 import React from 'react';
-import {View, Dimensions, TouchableOpacity} from 'react-native';
+import {View, Dimensions, TouchableOpacity, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Divider} from 'react-native-paper';
 
 import {AnimeDescription} from './AnimeDescription';
+import {AnimeDescriptionContainer} from '../Styles/FavoriteComponentStyles';
 
 const {width, height} = Dimensions.get('screen');
 
@@ -19,14 +20,9 @@ export const FavoriteComponent = ({favorite}) => {
             animeId: favorite.item.id,
           })
         }>
-        <View
-          style={{
-            paddingLeft: width / 150,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
+        <AnimeDescriptionContainer animeWidth={width}>
           <AnimeDescription anime={favorite.item} />
-        </View>
+        </AnimeDescriptionContainer>
       </TouchableOpacity>
     </>
   );

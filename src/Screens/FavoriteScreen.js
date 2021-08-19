@@ -1,20 +1,16 @@
 import React from 'react';
-import {View} from 'react-native';
-import {useFavoritesContext} from '../Context/FavoritesCustomHook';
 
+import {FavoriteContainer} from '../Styles/FavoriteScreenStyles';
 import {NoFavorites} from '../Components/NoFavorites';
 import {Favorites} from '../Components/Favorites';
+import {useFavoritesContext} from '../Context/FavoritesCustomHook';
 
 export const FavoriteScreen = () => {
   const {favorites} = useFavoritesContext();
 
   return (
-    <View style={{flex: 1, backgroundColor: '#FFFFFF'}}>
-      {favorites.length > 0 ? (
-        <Favorites favorites={favorites} />
-      ) : (
-        <NoFavorites />
-      )}
-    </View>
+    <FavoriteContainer>
+      {favorites.length > 0 ? <Favorites /> : <NoFavorites />}
+    </FavoriteContainer>
   );
 };
