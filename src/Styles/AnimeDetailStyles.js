@@ -16,6 +16,13 @@ const YoutubeButton = styled(TouchableOpacity)`
   z-index: 99999;
 `;
 
+const NoVideoText = styled(TouchableOpacity)`
+  position: absolute;
+  top: 270px;
+  left: 33px;
+  z-index: 99999;
+`;
+
 const CoverImageContainer = styled(Animatable.View)`
   position: absolute;
   top: 0;
@@ -55,6 +62,7 @@ const ShowMoreText = styled(Text)`
 export {
   GoBackButton,
   YoutubeButton,
+  NoVideoText,
   CoverImageContainer,
   CoverImage,
   AnimeDescriptionContainer,

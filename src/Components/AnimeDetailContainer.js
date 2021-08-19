@@ -14,6 +14,7 @@ import {getAnime} from '../Services/Services';
 import {TopCoverImage} from '../Components/CoverImage';
 import {
   YoutubeButton,
+  NoVideoText,
   AnimeDescriptionContainer,
   SynopsisContainer,
   SynopsisText,
@@ -32,16 +33,23 @@ export const AnimeDetailContainer = ({
       animation="slideInDown"
       delay={400}
       heightMargin={height}>
-      <YoutubeButton
-        onPress={() => {
-          Linking.openURL(
-            `vnd.youtube://watch/${anime.attributes.youtubeVideoId}`,
-          ).catch(err => {
-            console.log(err);
-          });
-        }}>
-        <Icon name={'youtube-square'} size={40} color={'red'} />
-      </YoutubeButton>
+      {anime.attributes.youtubeVideoId ? (
+        <YoutubeButton
+          onPress={() => {
+            Linking.openURL(
+              `vnd.youtube://watch/${anime.attributes.youtubeVideoId}`,
+            ).catch(err => {
+              console.log(err);
+            });
+          }}>
+          <Icon name={'youtube-square'} size={40} color={'red'} />
+        </YoutubeButton>
+      ) : (
+        <NoVideoText>
+          <Text>No video available</Text>
+        </NoVideoText>
+      )}
+
       <AnimeDescription anime={anime} />
       <SynopsisContainer>
         <SynopsisText>Synopsis</SynopsisText>
