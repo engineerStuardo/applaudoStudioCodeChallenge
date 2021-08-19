@@ -7,7 +7,7 @@ import {TopCoverImage} from './CoverImage';
 import {DetailContainer} from './DetailContainer';
 
 export const Detail = ({route, navigation}) => {
-  const {animeId, isFavorite} = route.params;
+  const {animeId, isFavorite, type} = route.params;
   const [anime, setAnime] = useState();
   const [loading, setLoading] = useState(false);
   const [moreSynopsis, setMoreSynopsis] = useState(false);
@@ -15,7 +15,7 @@ export const Detail = ({route, navigation}) => {
   const getAnimeDetail = async () => {
     try {
       setLoading(true);
-      const data = await getDataById(animeId);
+      const data = await getDataById(type, animeId);
       setAnime(data);
     } catch (error) {
       console.log(error);

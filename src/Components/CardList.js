@@ -6,7 +6,7 @@ import {useFavoritesContext} from '../Context/FavoritesCustomHook';
 import {FavoriteButton} from './FavouriteButton';
 import {CardImage} from '../Styles/CardListStyles';
 
-export const CardList = ({anime}) => {
+export const CardList = ({anime, type}) => {
   const {
     item: {
       attributes: {
@@ -24,7 +24,7 @@ export const CardList = ({anime}) => {
     <View>
       <TouchableOpacity
         onPress={() =>
-          navigation.navigate('AnimeDetail', {animeId: anime.item.id})
+          navigation.navigate('AnimeDetail', {animeId: anime.item.id, type})
         }>
         <CardImage
           source={{
