@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import {FavoriteScreen} from '../Screens/FavoriteScreen';
-import {AnimeDetail} from '../Components/AnimeDetail';
+import {Detail} from '../Components/Detail';
 
 const Stack = createStackNavigator();
 
@@ -20,7 +20,7 @@ export const FavoriteStack = () => (
         headerShown: false,
       }}
       name={'AnimeFavoriteDetail'}
-      component={AnimeDetail}
+      component={Detail}
     />
   </Stack.Navigator>
 );

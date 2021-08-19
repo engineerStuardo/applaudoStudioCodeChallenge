@@ -1,35 +1,22 @@
-import React, {useState, useEffect} from 'react';
-import {
-  Text,
-  Dimensions,
-  ScrollView,
-  TouchableOpacity,
-  Linking,
-} from 'react-native';
+import React from 'react';
+import {Text, Dimensions, TouchableOpacity, Linking} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
-import {ListLoader} from '../Components/ListLoader';
-import {AnimeDescription} from '../Components/AnimeDescription';
-import {getAnime} from '../Services/Services';
-import {TopCoverImage} from '../Components/CoverImage';
+import {Description} from './Description';
 import {
   YoutubeButton,
   NoVideoText,
-  AnimeDescriptionContainer,
+  DescriptionContainer,
   SynopsisContainer,
   SynopsisText,
   ShowMoreText,
-} from '../Styles/AnimeDetailStyles';
+} from '../Styles/DetailStyles';
 
 const {width, height} = Dimensions.get('screen');
 
-export const AnimeDetailContainer = ({
-  anime,
-  moreSynopsis,
-  setMoreSynopsis,
-}) => {
+export const DetailContainer = ({anime, moreSynopsis, setMoreSynopsis}) => {
   return (
-    <AnimeDescriptionContainer
+    <DescriptionContainer
       animation="slideInDown"
       delay={400}
       heightMargin={height}>
@@ -50,7 +37,7 @@ export const AnimeDetailContainer = ({
         </NoVideoText>
       )}
 
-      <AnimeDescription anime={anime} />
+      <Description anime={anime} />
       <SynopsisContainer>
         <SynopsisText>Synopsis</SynopsisText>
         <Text>
@@ -64,6 +51,6 @@ export const AnimeDetailContainer = ({
           </ShowMoreText>
         </TouchableOpacity>
       </SynopsisContainer>
-    </AnimeDescriptionContainer>
+    </DescriptionContainer>
   );
 };

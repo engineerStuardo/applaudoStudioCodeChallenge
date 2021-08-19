@@ -9,22 +9,22 @@ const headers = {
   },
 };
 
-export const getAnimeData = async offset => {
+export const getFullData = async (type, offset) => {
   const resp = await axios.get(
-    `${apiURL}/anime?page[limit]=10&page[offset]=${offset}`,
+    `${apiURL}/${type}?page[limit]=10&page[offset]=${offset}`,
     headers,
   );
   return resp.data.data;
 };
 
-export const getAnime = async id => {
-  const resp = await axios.get(`${apiURL}/anime/${id}`, headers);
+export const getDataById = async (type, id) => {
+  const resp = await axios.get(`${apiURL}/${type}/${id}`, headers);
   return resp.data.data;
 };
 
-export const getAnimeSearch = async (text, offset) => {
+export const getSearch = async (type, text, offset) => {
   const resp = await axios.get(
-    `${apiURL}/anime?filter[text]=${text}&page[offset]=${offset}`,
+    `${apiURL}/${type}?filter[text]=${text}&page[offset]=${offset}`,
     headers,
   );
   return resp.data.data;

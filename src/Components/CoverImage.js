@@ -6,7 +6,7 @@ import {
   GoBackButton,
   CoverImageContainer,
   CoverImage,
-} from '../Styles/AnimeDetailStyles';
+} from '../Styles/DetailStyles';
 
 const {width, height} = Dimensions.get('screen');
 

@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import {ScrollView} from 'react-native';
 
-import {ListLoader} from '../Components/ListLoader';
-import {getAnime} from '../Services/Services';
-import {TopCoverImage} from '../Components/CoverImage';
-import {AnimeDetailContainer} from '../Components/AnimeDetailContainer';
+import {ListLoader} from './ListLoader';
+import {getDataById} from '../Services/Services';
+import {TopCoverImage} from './CoverImage';
+import {DetailContainer} from './DetailContainer';
 
-export const AnimeDetail = ({route, navigation}) => {
+export const Detail = ({route, navigation}) => {
   const {animeId, isFavorite} = route.params;
   const [anime, setAnime] = useState();
   const [loading, setLoading] = useState(false);
@@ -15,7 +15,7 @@ export const AnimeDetail = ({route, navigation}) => {
   const getAnimeDetail = async () => {
     try {
       setLoading(true);
-      const data = await getAnime(animeId);
+      const data = await getDataById(animeId);
       setAnime(data);
     } catch (error) {
       console.log(error);
@@ -35,7 +35,7 @@ export const AnimeDetail = ({route, navigation}) => {
       {anime && (
         <>
           <TopCoverImage anime={anime} navigation={navigation} />
-          <AnimeDetailContainer
+          <DetailContainer
             anime={anime}
             moreSynopsis={moreSynopsis}
             setMoreSynopsis={setMoreSynopsis}

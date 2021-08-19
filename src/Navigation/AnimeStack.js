@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import {AnimeScreen} from '../Screens/AnimeScreen';
-import {AnimeDetail} from '../Components/AnimeDetail';
+import {Detail} from '../Components/Detail';
 
 const Stack = createStackNavigator();
 
@@ -20,7 +20,7 @@ export const AnimeStack = () => (
         headerShown: false,
       }}
       name={'AnimeDetail'}
-      component={AnimeDetail}
+      component={Detail}
     />
   </Stack.Navigator>
 );

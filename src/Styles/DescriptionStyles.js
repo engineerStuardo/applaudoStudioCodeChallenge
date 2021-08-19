@@ -1,19 +1,19 @@
 import {View, Text, Image} from 'react-native';
 import styled from 'styled-components/native';
 
-const AnimeDescriptionContainer = styled(View)`
+const DescriptionContainer = styled(View)`
   flex: 0;
   flex-direction: row;
 `;
 
-const AnimeImage = styled(Image)`
+const AvatarImage = styled(Image)`
   width: 150px;
   height: 250px;
   margin: 15px;
   border-radius: 15px;
 `;
 
-const AnimeInfoContainer = styled(View)`
+const InfoContainer = styled(View)`
   justify-content: center;
   width: ${props => `${props.animeWidth / 2}px`};
 `;
@@ -30,9 +30,9 @@ const SubTitleText = styled(Text)`
 `;
 
 export {
-  AnimeDescriptionContainer,
-  AnimeImage,
-  AnimeInfoContainer,
+  DescriptionContainer,
+  AvatarImage,
+  InfoContainer,
   TitleText,
   SubTitleText,
 };

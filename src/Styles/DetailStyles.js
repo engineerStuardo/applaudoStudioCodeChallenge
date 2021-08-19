@@ -34,7 +34,7 @@ const CoverImage = styled(Image)`
   height: ${props => `${props.coverHeight / 1.5}px`};
 `;
 
-const AnimeDescriptionContainer = styled(Animatable.View)`
+const DescriptionContainer = styled(Animatable.View)`
   z-index: 10;
   border-top-left-radius: 50px;
   border-top-right-radius: 50px;
@@ -65,7 +65,7 @@ export {
   NoVideoText,
   CoverImageContainer,
   CoverImage,
-  AnimeDescriptionContainer,
+  DescriptionContainer,
   SynopsisContainer,
   SynopsisText,
   ShowMoreText,

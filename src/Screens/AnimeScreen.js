@@ -1,13 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {View, FlatList, Dimensions, Image, Keyboard} from 'react-native';
-import {TextInput, Colors} from 'react-native-paper';
-import * as Animatable from 'react-native-animatable';
+import {Dimensions} from 'react-native';
 
-import {getAnimeData, getAnimeSearch} from '../Services/Services';
-import {CardList} from '../Components/CardList';
+import {getFullData, getSearch} from '../Services/Services';
 import {ListLoader} from '../Components/ListLoader';
 import {InputText} from '../Components/InputText';
-import {ListAnimeImages} from '../Components/ListAnimeImages';
+import {ListImages} from '../Components/ListImages';
 import {AnimeScreenContainer, AnimeLogo} from '../Styles/AnimeScreenStyles';
 
 const {width, height} = Dimensions.get('screen');
@@ -24,11 +21,11 @@ export const AnimeScreen = () => {
       setLoading(true);
       try {
         if (start) {
-          const data = await getAnimeData(0);
+          const data = await getFullData(0);
           setAnimes(data);
           setOffset(10);
         } else {
-          const data = await getAnimeData(offset);
+          const data = await getFullData(offset);
           setAnimes([...animes, ...data]);
           setOffset(offset + 10);
         }
@@ -44,7 +41,7 @@ export const AnimeScreen = () => {
   const searchAnime = async text => {
     try {
       setLoadingSearch(true);
-      const data = await getAnimeSearch(text);
+      const data = await getSearch(text);
       setAnimes(data);
     } catch (error) {
       console.log(err);
@@ -57,7 +54,7 @@ export const AnimeScreen = () => {
   const resetList = async () => {
     try {
       setLoading(true);
-      const data = await getAnimeSearch(search, offset);
+      const data = await getSearch(search, offset);
       setAnimes([...animes, ...data]);
       setOffset(offset + 10);
     } catch (error) {
@@ -90,7 +87,7 @@ export const AnimeScreen = () => {
             source={require('../Assets/Images/anime.png')}
           />
           {loadingSearch && <ListLoader loadingSearch />}
-          <ListAnimeImages
+          <ListImages
             animes={animes}
             loadingSearch={loadingSearch}
             search={search}

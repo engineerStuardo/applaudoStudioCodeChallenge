@@ -15,22 +15,22 @@ import styled from 'styled-components/native';
 import {FavoriteButton} from '../Components/FavouriteButton';
 import {useFavoritesContext} from '../Context/FavoritesCustomHook';
 import {
-  AnimeDescriptionContainer,
-  AnimeImage,
-  AnimeInfoContainer,
+  DescriptionContainer,
+  AvatarImage,
+  InfoContainer,
   TitleText,
   SubTitleText,
-} from '../Styles/AnimeDescriptionStyles';
+} from '../Styles/DescriptionStyles';
 
 const {width, height} = Dimensions.get('screen');
 
-export const AnimeDescription = ({anime}) => {
+export const Description = ({anime}) => {
   const {favorites} = useFavoritesContext();
   const isFavorite = favorites.find(item => item.id === anime.id);
 
   return (
-    <AnimeDescriptionContainer>
-      <AnimeImage
+    <DescriptionContainer>
+      <AvatarImage
         source={{
           uri: anime.attributes.posterImage.original,
         }}
@@ -38,7 +38,7 @@ export const AnimeDescription = ({anime}) => {
       <View>
         <FavoriteButton anime={anime} isFavorite={isFavorite} isDescription />
       </View>
-      <AnimeInfoContainer animeWidth={width}>
+      <InfoContainer animeWidth={width}>
         <TitleText>
           {anime.attributes.titles.en || anime.attributes.titles.en_jp}
         </TitleText>
@@ -50,7 +50,7 @@ export const AnimeDescription = ({anime}) => {
         <Text> {anime.attributes.episodeCount || 'Not Found'}</Text>
         <SubTitleText>Episode Length:</SubTitleText>
         <Text> {anime.attributes.episodeLength || 'Not Found'}</Text>
-      </AnimeInfoContainer>
-    </AnimeDescriptionContainer>
+      </InfoContainer>
+    </DescriptionContainer>
   );
 };

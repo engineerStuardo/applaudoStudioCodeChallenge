@@ -1,18 +1,13 @@
-import React, {useState, useEffect} from 'react';
-import {View, FlatList, Dimensions, Image, Keyboard} from 'react-native';
-import {TextInput, Colors} from 'react-native-paper';
-import * as Animatable from 'react-native-animatable';
+import React from 'react';
+import {FlatList, Dimensions} from 'react-native';
 
-import {getAnimeData, getAnimeSearch} from '../Services/Services';
-import {CardList} from '../Components/CardList';
-import {ListLoader} from '../Components/ListLoader';
-import {InputText} from '../Components/InputText';
-import {AnimeLogo} from '../Styles/AnimeScreenStyles';
-import {ListImageContainer} from '../Styles/ListAnimeImagesStyles';
+import {CardList} from './CardList';
+import {ListLoader} from './ListLoader';
+import {ListImageContainer} from '../Styles/ListImagesStyles';
 
 const {width, height} = Dimensions.get('screen');
 
-export const ListAnimeImages = ({
+export const ListImages = ({
   animes,
   loadingSearch,
   search,
