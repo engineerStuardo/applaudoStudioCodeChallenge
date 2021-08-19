@@ -73,27 +73,33 @@ export const AnimeScreen = () => {
   }, []);
 
   return (
-    <AnimeScreenContainer>
-      <InputText
-        search={search}
-        setSearch={setSearch}
-        searchAnime={searchAnime}
-        getData={getData}
-      />
-      <AnimeLogo
-        animation="pulse"
-        iterationCount="infinite"
-        source={require('../Assets/Images/anime.png')}
-      />
-      {loadingSearch && <ListLoader loadingSearch />}
-      <ListAnimeImages
-        animes={animes}
-        loadingSearch={loadingSearch}
-        search={search}
-        resetList={resetList}
-        getData={getData}
-        loading={loading}
-      />
-    </AnimeScreenContainer>
+    <>
+      {animes.length === 0 ? (
+        <ListLoader loading />
+      ) : (
+        <AnimeScreenContainer>
+          <InputText
+            search={search}
+            setSearch={setSearch}
+            searchAnime={searchAnime}
+            getData={getData}
+          />
+          <AnimeLogo
+            animation="pulse"
+            iterationCount="infinite"
+            source={require('../Assets/Images/anime.png')}
+          />
+          {loadingSearch && <ListLoader loadingSearch />}
+          <ListAnimeImages
+            animes={animes}
+            loadingSearch={loadingSearch}
+            search={search}
+            resetList={resetList}
+            getData={getData}
+            loading={loading}
+          />
+        </AnimeScreenContainer>
+      )}
+    </>
   );
 };
