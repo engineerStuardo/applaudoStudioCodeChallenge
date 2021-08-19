@@ -11,9 +11,7 @@ const Tab = createBottomTabNavigator();
 
 export const MainNavigation = () => (
   <NavigationContainer>
-    <Tab.Navigator
-      screenOptions={createScreenOptions}
-      initialRouteName="Restaurant">
+    <Tab.Navigator screenOptions={createScreenOptions}>
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Anime" component={AnimeStack} />
       <Tab.Screen name="Favorite" component={FavoriteStack} />
