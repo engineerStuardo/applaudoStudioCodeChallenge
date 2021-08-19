@@ -1,6 +1,5 @@
-import React from 'react';
-import {View, Text} from 'react-native';
-import {Avatar, Card, Title, Paragraph} from 'react-native-paper';
+import {View} from 'react-native';
+import {Avatar} from 'react-native-paper';
 import * as Animatable from 'react-native-animatable';
 import styled from 'styled-components';
 
