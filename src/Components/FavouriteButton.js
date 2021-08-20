@@ -20,7 +20,6 @@ export const FavoriteButton = ({data, isFavorite, isDescription}) => {
   return (
     <FavoriteIcon
       onPress={() => {
-        console.log(type);
         !isFavorite
           ? addToFavorites(isDescription ? data : data.item)
           : removeFromFavorites(isDescription ? data.id : data.item.id);
