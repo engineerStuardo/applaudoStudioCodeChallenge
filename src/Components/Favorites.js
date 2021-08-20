@@ -18,7 +18,7 @@ export const Favorites = () => {
       <FlatList
         data={favorites}
         renderItem={favorite => <FavoriteComponent favorite={favorite} />}
-        keyExtractor={favorite => favorite.id}
+        keyExtractor={favorite => `${favorite.id}+${Math.random()}`}
       />
     </>
   );
