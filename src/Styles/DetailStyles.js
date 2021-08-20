@@ -12,7 +12,14 @@ const GoBackButton = styled(TouchableOpacity)`
 const YoutubeButton = styled(TouchableOpacity)`
   position: absolute;
   top: 270px;
-  left: 70px;
+  left: 50px;
+  z-index: 99999;
+`;
+
+const ShareButton = styled(TouchableOpacity)`
+  position: absolute;
+  top: ${props => `${props.videoAvailable ? 270 : 295}px`};
+  left: ${props => `${props.videoAvailable ? 100 : 74}px`};
   z-index: 99999;
 `;
 
@@ -45,6 +52,7 @@ const DescriptionContainer = styled(Animatable.View)`
 const SynopsisContainer = styled(View)`
   padding: 25px;
   align-items: center;
+  margin-top: 20px;
 `;
 
 const SynopsisText = styled(Text)`
@@ -62,6 +70,7 @@ const ShowMoreText = styled(Text)`
 export {
   GoBackButton,
   YoutubeButton,
+  ShareButton,
   NoVideoText,
   CoverImageContainer,
   CoverImage,
