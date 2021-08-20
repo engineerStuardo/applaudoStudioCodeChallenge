@@ -7,16 +7,16 @@ import {TopCoverImage} from './CoverImage';
 import {DetailContainer} from './DetailContainer';
 
 export const Detail = ({route, navigation}) => {
-  const {animeId, isFavorite, type} = route.params;
-  const [anime, setAnime] = useState();
+  const {id, isFavorite, type} = route.params;
+  const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
   const [moreSynopsis, setMoreSynopsis] = useState(false);
 
-  const getAnimeDetail = async () => {
+  const getDetail = async () => {
     try {
       setLoading(true);
-      const data = await getDataById(type, animeId);
-      setAnime(data);
+      const data = await getDataById(type, id);
+      setData(data);
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -26,17 +26,17 @@ export const Detail = ({route, navigation}) => {
   };
 
   useEffect(() => {
-    getAnimeDetail();
-  }, [animeId]);
+    getDetail();
+  }, [id]);
 
   return (
     <ScrollView>
       {loading && <ListLoader loading />}
-      {anime && (
+      {data && (
         <>
-          <TopCoverImage anime={anime} navigation={navigation} />
+          <TopCoverImage dataInfo={data} navigation={navigation} />
           <DetailContainer
-            anime={anime}
+            dataInfo={data}
             moreSynopsis={moreSynopsis}
             setMoreSynopsis={setMoreSynopsis}
           />

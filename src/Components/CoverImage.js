@@ -10,7 +10,7 @@ import {
 
 const {width, height} = Dimensions.get('screen');
 
-export const TopCoverImage = ({anime, navigation}) => {
+export const TopCoverImage = ({dataInfo, navigation}) => {
   return (
     <>
       <GoBackButton
@@ -25,7 +25,7 @@ export const TopCoverImage = ({anime, navigation}) => {
           coverHeight={height}
           resizeMode="cover"
           source={{
-            uri: anime.attributes.posterImage.original,
+            uri: dataInfo.attributes.posterImage.original,
           }}
         />
       </CoverImageContainer>

@@ -26,7 +26,10 @@ export const CardList = ({dataItem}) => {
     <View>
       <TouchableOpacity
         onPress={() =>
-          navigation.navigate(redirectTo, {animeId: dataItem.item.id, type})
+          navigation.navigate(redirectTo, {
+            id: dataItem.item.id,
+            type: type,
+          })
         }>
         <CardImage
           source={{

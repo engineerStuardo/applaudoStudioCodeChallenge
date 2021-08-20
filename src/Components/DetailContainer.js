@@ -14,17 +14,17 @@ import {
 
 const {width, height} = Dimensions.get('screen');
 
-export const DetailContainer = ({anime, moreSynopsis, setMoreSynopsis}) => {
+export const DetailContainer = ({dataInfo, moreSynopsis, setMoreSynopsis}) => {
   return (
     <DescriptionContainer
       animation="slideInDown"
       delay={400}
       heightMargin={height}>
-      {anime.attributes.youtubeVideoId ? (
+      {dataInfo.attributes.youtubeVideoId ? (
         <YoutubeButton
           onPress={() => {
             Linking.openURL(
-              `vnd.youtube://watch/${anime.attributes.youtubeVideoId}`,
+              `vnd.youtube://watch/${dataInfo.attributes.youtubeVideoId}`,
             ).catch(err => {
               console.log(err);
             });
@@ -37,13 +37,13 @@ export const DetailContainer = ({anime, moreSynopsis, setMoreSynopsis}) => {
         </NoVideoText>
       )}
 
-      <Description anime={anime} />
+      <Description dataInfo={dataInfo} />
       <SynopsisContainer>
         <SynopsisText>Synopsis</SynopsisText>
         <Text>
           {!moreSynopsis
-            ? `${anime.attributes.synopsis.substring(0, 200)}...`
-            : anime.attributes.synopsis || 'Not Found'}
+            ? `${dataInfo.attributes.synopsis.substring(0, 200)}...`
+            : dataInfo.attributes.synopsis || 'Not Found'}
         </Text>
         <TouchableOpacity onPress={() => setMoreSynopsis(!moreSynopsis)}>
           <ShowMoreText>

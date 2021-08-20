@@ -17,7 +17,7 @@ export const FavoriteComponent = ({favorite}) => {
       <TouchableOpacity
         onPress={() =>
           navigation.navigate('AnimeFavoriteDetail', {
-            animeId: favorite.item.id,
+            id: favorite.item.id,
             type: favorite.item.type,
           })
         }>
