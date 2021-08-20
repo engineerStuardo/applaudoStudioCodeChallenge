@@ -12,7 +12,7 @@ export const Manga = () => {
   const [loading, setLoading] = useState(false);
   const [loadingSearch, setLoadingSearch] = useState(false);
   const [search, setSearch] = useState();
-  const type = 'manga';
+  const [type, setType] = useState('manga');
 
   const getData = async start => {
     if (!loading) {

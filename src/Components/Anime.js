@@ -12,7 +12,7 @@ export const Anime = () => {
   const [loading, setLoading] = useState(false);
   const [loadingSearch, setLoadingSearch] = useState(false);
   const [search, setSearch] = useState();
-  const type = 'anime';
+  const [type, setType] = useState('anime');
 
   const getData = async start => {
     if (!loading) {
