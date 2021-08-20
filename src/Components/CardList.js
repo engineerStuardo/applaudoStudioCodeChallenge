@@ -15,10 +15,13 @@ export const CardList = ({dataItem}) => {
       },
     },
   } = dataItem;
+
   const {type} = useTypeContext();
   const redirectTo = type === 'anime' ? 'AnimeDetail' : 'MangaDetail';
   const {favorites} = useFavoritesContext();
-  const isFavorite = favorites.find(item => item.id === dataItem.item.id);
+  const isFavorite = favorites.find(
+    item => item.id === dataItem.item.id && dataItem.item.type === item.type,
+  );
 
   const navigation = useNavigation();
 
