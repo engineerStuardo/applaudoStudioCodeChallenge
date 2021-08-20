@@ -5,13 +5,15 @@ import {ListLoader} from '../Components/ListLoader';
 import {InputText} from '../Components/InputText';
 import {ListImages} from '../Components/ListImages';
 import {AnimeScreenContainer, AnimeLogo} from '../Styles/AnimeScreenStyles';
+import {useTypeContext} from '../Context/TypeCustomHook';
 
-export const Anime = ({type}) => {
+export const Anime = () => {
   const [animes, setAnimes] = useState([]);
   const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(false);
   const [loadingSearch, setLoadingSearch] = useState(false);
   const [search, setSearch] = useState();
+  const {type} = useTypeContext();
 
   const getData = async start => {
     if (!loading) {
@@ -22,9 +24,11 @@ export const Anime = ({type}) => {
           setAnimes(data);
           setOffset(10);
         } else {
-          const data = await getFullData(type, offset);
-          setAnimes([...animes, ...data]);
-          setOffset(offset + 10);
+          if (type) {
+            const data = await getFullData(type, offset);
+            setAnimes([...animes, ...data]);
+            setOffset(offset + 10);
+          }
         }
       } catch (error) {
         console.log(error);
@@ -64,7 +68,7 @@ export const Anime = ({type}) => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [type]);
 
   return (
     <>
@@ -85,7 +89,6 @@ export const Anime = ({type}) => {
           />
           {loadingSearch && <ListLoader loadingSearch />}
           <ListImages
-            type={type}
             animes={animes}
             loadingSearch={loadingSearch}
             search={search}

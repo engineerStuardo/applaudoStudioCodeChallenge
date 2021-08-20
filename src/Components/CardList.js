@@ -5,8 +5,9 @@ import {useNavigation} from '@react-navigation/native';
 import {useFavoritesContext} from '../Context/FavoritesCustomHook';
 import {FavoriteButton} from './FavouriteButton';
 import {CardImage} from '../Styles/CardListStyles';
+import {useTypeContext} from '../Context/TypeCustomHook';
 
-export const CardList = ({anime, type}) => {
+export const CardList = ({anime}) => {
   const {
     item: {
       attributes: {
@@ -14,6 +15,7 @@ export const CardList = ({anime, type}) => {
       },
     },
   } = anime;
+  const {type} = useTypeContext();
   const redirectTo = type === 'anime' ? 'AnimeDetail' : 'MangaDetail';
   const {favorites} = useFavoritesContext();
   const isFavorite = favorites.find(item => item.id === anime.item.id);

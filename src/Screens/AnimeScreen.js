@@ -1,8 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import {Anime} from '../Components/Anime';
+import {useTypeContext} from '../Context/TypeCustomHook';
 
 export const AnimeScreen = () => {
-  const [type, setType] = useState('anime');
-  return <Anime type={type} />;
+  const {setType} = useTypeContext();
+
+  useEffect(() => {
+    setType('anime');
+  }, []);
+
+  return <Anime />;
 };

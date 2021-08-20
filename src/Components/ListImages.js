@@ -14,7 +14,6 @@ export const ListImages = ({
   resetList,
   getData,
   loading,
-  type,
 }) => {
   return (
     <ListImageContainer containerWidth={width}>
@@ -25,7 +24,7 @@ export const ListImages = ({
           ListFooterComponent={() => <ListLoader loading={loading} />}
           numColumns={2}
           data={animes}
-          renderItem={anime => <CardList type={type} anime={anime} />}
+          renderItem={anime => <CardList anime={anime} />}
           keyExtractor={anime => anime.id}
         />
       )}
