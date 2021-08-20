@@ -18,6 +18,7 @@ export const FavoriteComponent = ({favorite}) => {
         onPress={() =>
           navigation.navigate('AnimeFavoriteDetail', {
             animeId: favorite.item.id,
+            type: favorite.item.type,
           })
         }>
         <DescriptionContainer animeWidth={width}>
