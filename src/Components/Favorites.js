@@ -14,7 +14,7 @@ export const Favorites = () => {
   return (
     <>
       <FavoriteImage
-        animation="zoomIn"
+        animation="pulse"
         iterationCount="infinite"
         source={require('../Assets/Images/favorite.jpg')}
       />
