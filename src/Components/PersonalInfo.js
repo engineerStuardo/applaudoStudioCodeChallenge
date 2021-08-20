@@ -1,12 +1,14 @@
 import React from 'react';
 import {Card, Title, Paragraph} from 'react-native-paper';
 import * as Animatable from 'react-native-animatable';
+import Icon from 'react-native-vector-icons/dist/Ionicons';
 
 import {
   PersonalInfoTitleContainer,
   PersonalInfoContainer,
   AvatarContainer,
   AvatarPhoto,
+  TechContainer,
 } from '../Styles/HomeScreenStyles';
 
 export const PersonalInfoCard = () => {
@@ -27,8 +29,17 @@ export const PersonalInfoCard = () => {
           <Paragraph>Italo Stuardo Cortez Silva</Paragraph>
           <Title>Degree</Title>
           <Paragraph>Computer Science Engineer</Paragraph>
-          <Title>Age</Title>
-          <Paragraph>30years old</Paragraph>
+          <Title>Phone</Title>
+          <Paragraph>7682-2732</Paragraph>
+          <Title>Email</Title>
+          <Paragraph>ingeniero.stuardo@gmail.com</Paragraph>
+          <Title>Tecnologies</Title>
+          <TechContainer>
+            <Icon name={'logo-react'} size={35} color={'#61DBFB'} />
+            <Icon name={'logo-javascript'} size={35} color={'orange'} />
+            <Icon name={'logo-css3'} size={35} color={'#2565AE'} />
+            <Icon name={'logo-html5'} size={35} color={'#EF6127'} />
+          </TechContainer>
           <Title>Hobbies</Title>
           <Paragraph>
             Play Basketball, hang out with friends and family and of course lear

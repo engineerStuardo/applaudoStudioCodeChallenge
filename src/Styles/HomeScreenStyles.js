@@ -1,5 +1,5 @@
 import {View} from 'react-native';
-import {Avatar} from 'react-native-paper';
+import {Avatar, Paragraph} from 'react-native-paper';
 import * as Animatable from 'react-native-animatable';
 import styled from 'styled-components/native';
 
@@ -73,6 +73,13 @@ const FirstJobContainer = styled(View)`
   align-items: center;
 `;
 
+const TechContainer = styled(Paragraph)`
+  height: 50px;
+  padding-top: 20px;
+  align-items: center;
+  justify-content: center;
+`;
+
 export {
   MainContainer,
   TextContainer,
@@ -88,4 +95,5 @@ export {
   ProfessionalAvatarContainer,
   ProfessionalAvatarPhoto,
   FirstJobContainer,
+  TechContainer,
 };
