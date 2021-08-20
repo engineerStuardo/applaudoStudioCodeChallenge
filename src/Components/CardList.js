@@ -7,18 +7,18 @@ import {FavoriteButton} from './FavouriteButton';
 import {CardImage} from '../Styles/CardListStyles';
 import {useTypeContext} from '../Context/TypeCustomHook';
 
-export const CardList = ({anime}) => {
+export const CardList = ({dataItem}) => {
   const {
     item: {
       attributes: {
         posterImage: {original},
       },
     },
-  } = anime;
+  } = dataItem;
   const {type} = useTypeContext();
   const redirectTo = type === 'anime' ? 'AnimeDetail' : 'MangaDetail';
   const {favorites} = useFavoritesContext();
-  const isFavorite = favorites.find(item => item.id === anime.item.id);
+  const isFavorite = favorites.find(item => item.id === dataItem.item.id);
 
   const navigation = useNavigation();
 
@@ -26,7 +26,7 @@ export const CardList = ({anime}) => {
     <View>
       <TouchableOpacity
         onPress={() =>
-          navigation.navigate(redirectTo, {animeId: anime.item.id, type})
+          navigation.navigate(redirectTo, {animeId: dataItem.item.id, type})
         }>
         <CardImage
           source={{
@@ -34,7 +34,7 @@ export const CardList = ({anime}) => {
           }}
         />
       </TouchableOpacity>
-      <FavoriteButton anime={anime} isFavorite={isFavorite} />
+      <FavoriteButton data={dataItem} isFavorite={isFavorite} />
     </View>
   );
 };

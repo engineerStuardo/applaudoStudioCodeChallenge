@@ -88,7 +88,7 @@ export const Anime = () => {
           />
           {loadingSearch && <ListLoader loadingSearch />}
           <ListImages
-            animes={animes}
+            dataList={animes}
             loadingSearch={loadingSearch}
             search={search}
             resetList={resetList}

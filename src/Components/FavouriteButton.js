@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import styled from 'styled-components/native';
 
 import {useFavoritesContext} from '../Context/FavoritesCustomHook';
+import {useTypeContext} from '../Context/TypeCustomHook';
 
 const FavoriteIcon = styled(TouchableOpacity)`
   position: absolute;
@@ -12,15 +13,17 @@ const FavoriteIcon = styled(TouchableOpacity)`
   z-index: 9;
 `;
 
-export const FavoriteButton = ({anime, isFavorite, isDescription}) => {
+export const FavoriteButton = ({data, isFavorite, isDescription}) => {
+  const {type} = useTypeContext();
   const {addToFavorites, removeFromFavorites} = useFavoritesContext();
 
   return (
     <FavoriteIcon
       onPress={() => {
+        console.log(type);
         !isFavorite
-          ? addToFavorites(isDescription ? anime : anime.item)
-          : removeFromFavorites(isDescription ? anime.id : anime.item.id);
+          ? addToFavorites(isDescription ? data : data.item)
+          : removeFromFavorites(isDescription ? data.id : data.item.id);
       }}>
       <Icon
         name={'heart'}

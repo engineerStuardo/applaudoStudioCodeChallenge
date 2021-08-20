@@ -88,7 +88,7 @@ export const Manga = () => {
           />
           {loadingSearch && <ListLoader loadingSearch />}
           <ListImages
-            animes={mangas}
+            dataList={mangas}
             loadingSearch={loadingSearch}
             search={search}
             resetList={resetList}

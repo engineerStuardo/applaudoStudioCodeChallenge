@@ -8,7 +8,7 @@ import {ListImageContainer} from '../Styles/ListImagesStyles';
 const {width, height} = Dimensions.get('screen');
 
 export const ListImages = ({
-  animes,
+  dataList,
   loadingSearch,
   search,
   resetList,
@@ -17,15 +17,15 @@ export const ListImages = ({
 }) => {
   return (
     <ListImageContainer containerWidth={width}>
-      {animes && !loadingSearch && (
+      {dataList && !loadingSearch && (
         <FlatList
           onEndReached={search ? () => resetList() : () => getData()}
           onEndReachedThreshold={0.5}
           ListFooterComponent={() => <ListLoader loading={loading} />}
           numColumns={2}
-          data={animes}
-          renderItem={anime => <CardList anime={anime} />}
-          keyExtractor={anime => anime.id}
+          data={dataList}
+          renderItem={dataItem => <CardList dataItem={dataItem} />}
+          keyExtractor={dataItem => dataItem.id}
         />
       )}
     </ListImageContainer>
