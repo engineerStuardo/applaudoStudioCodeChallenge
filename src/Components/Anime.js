@@ -5,7 +5,6 @@ import {ListLoader} from '../Components/ListLoader';
 import {InputText} from '../Components/InputText';
 import {ListImages} from '../Components/ListImages';
 import {AnimeScreenContainer, AnimeLogo} from '../Styles/AnimeScreenStyles';
-import {useTypeContext} from '../Context/TypeCustomHook';
 
 export const Anime = () => {
   const [animes, setAnimes] = useState([]);
@@ -13,7 +12,7 @@ export const Anime = () => {
   const [loading, setLoading] = useState(false);
   const [loadingSearch, setLoadingSearch] = useState(false);
   const [search, setSearch] = useState();
-  const {type} = useTypeContext();
+  const type = 'anime';
 
   const getData = async start => {
     if (!loading) {
@@ -24,7 +23,7 @@ export const Anime = () => {
           setAnimes(data);
           setOffset(10);
         } else {
-          if (type) {
+          if (type && type === 'anime') {
             const data = await getFullData(type, offset);
             setAnimes([...animes, ...data]);
             setOffset(offset + 10);
@@ -68,7 +67,7 @@ export const Anime = () => {
 
   useEffect(() => {
     getData();
-  }, [type]);
+  }, []);
 
   return (
     <>

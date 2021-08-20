@@ -6,12 +6,13 @@ import {InputText} from '../Components/InputText';
 import {ListImages} from '../Components/ListImages';
 import {AnimeScreenContainer, AnimeLogo} from '../Styles/AnimeScreenStyles';
 
-export const Manga = ({type}) => {
+export const Manga = () => {
   const [mangas, setAnimes] = useState([]);
   const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(false);
   const [loadingSearch, setLoadingSearch] = useState(false);
   const [search, setSearch] = useState();
+  const type = 'manga';
 
   const getData = async start => {
     if (!loading) {
@@ -22,9 +23,11 @@ export const Manga = ({type}) => {
           setAnimes(data);
           setOffset(10);
         } else {
-          const data = await getFullData(type, offset);
-          setAnimes([...mangas, ...data]);
-          setOffset(offset + 10);
+          if (type) {
+            const data = await getFullData(type, offset);
+            setAnimes([...mangas, ...data]);
+            setOffset(offset + 10);
+          }
         }
       } catch (error) {
         console.log(error);
@@ -85,7 +88,6 @@ export const Manga = ({type}) => {
           />
           {loadingSearch && <ListLoader loadingSearch />}
           <ListImages
-            type={type}
             animes={mangas}
             loadingSearch={loadingSearch}
             search={search}
