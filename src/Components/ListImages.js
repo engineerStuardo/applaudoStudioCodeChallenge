@@ -1,11 +1,11 @@
-import React, {useMemo, useCallback} from 'react';
+import React from 'react';
 import {FlatList, Dimensions} from 'react-native';
 
 import {CardList} from './CardList';
 import {ListLoader} from './ListLoader';
 import {ListImageContainer} from '../Styles/ListImagesStyles';
 
-const {width, height} = Dimensions.get('screen');
+const {width} = Dimensions.get('screen');
 
 export const ListImages = ({
   dataList,
