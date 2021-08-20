@@ -10,8 +10,14 @@ export const FavoritesProvider = ({children}) => {
     setFavorites([...favorites, anime]);
   };
 
-  const removeFromFavorites = id => {
-    const newFavorites = favorites.filter(item => item.id !== id);
+  const removeFromFavorites = (id, type) => {
+    const newFavorites = favorites.filter(item => {
+      if (item.id !== id) {
+        return item;
+      } else if (item.type !== type) {
+        return item;
+      }
+    });
     setFavorites(newFavorites);
   };
 
