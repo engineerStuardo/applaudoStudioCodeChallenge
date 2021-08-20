@@ -7,13 +7,16 @@ import {
   InputTextField,
   InputTextIcon,
 } from '../Styles/InputTextStyles';
+import {useTypeContext} from '../Context/TypeCustomHook';
 
 export const InputText = ({search, setSearch, searchAnime, getData}) => {
+  const {type} = useTypeContext();
+
   return (
     <InputContainer>
       <InputTextField
         mode="outlined"
-        label="Search Anime"
+        label={type === 'anime' ? 'Search Anime' : 'Search Manga'}
         value={search}
         textContentType="name"
         keyboardType="default"
