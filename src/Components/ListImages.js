@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo, useCallback} from 'react';
 import {FlatList, Dimensions} from 'react-native';
 
 import {CardList} from './CardList';
@@ -15,17 +15,21 @@ export const ListImages = ({
   getData,
   loading,
 }) => {
+  const listFooter = () => <ListLoader loading={loading} />;
+  const renderItem = dataItem => <CardList dataItem={dataItem} />;
+  const keyExtractor = dataItem => dataItem.id;
+
   return (
     <ListImageContainer containerWidth={width}>
       {dataList && !loadingSearch && (
         <FlatList
           onEndReached={search ? () => resetList() : () => getData()}
           onEndReachedThreshold={0.5}
-          ListFooterComponent={() => <ListLoader loading={loading} />}
+          ListFooterComponent={listFooter}
           numColumns={2}
           data={dataList}
-          renderItem={dataItem => <CardList dataItem={dataItem} />}
-          keyExtractor={dataItem => dataItem.id}
+          renderItem={renderItem}
+          keyExtractor={keyExtractor}
         />
       )}
     </ListImageContainer>

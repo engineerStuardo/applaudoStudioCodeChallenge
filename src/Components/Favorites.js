@@ -8,6 +8,9 @@ import {useFavoritesContext} from '../Context/FavoritesCustomHook';
 export const Favorites = () => {
   const {favorites} = useFavoritesContext();
 
+  const renderItem = favorite => <FavoriteComponent favorite={favorite} />;
+  const keyExtractor = favorite => `${favorite.id}+${Math.random()}`;
+
   return (
     <>
       <FavoriteImage
@@ -17,8 +20,8 @@ export const Favorites = () => {
       />
       <FlatList
         data={favorites}
-        renderItem={favorite => <FavoriteComponent favorite={favorite} />}
-        keyExtractor={favorite => `${favorite.id}+${Math.random()}`}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
       />
     </>
   );
