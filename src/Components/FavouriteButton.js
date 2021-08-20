@@ -22,7 +22,10 @@ export const FavoriteButton = ({data, isFavorite, isDescription}) => {
       onPress={() => {
         !isFavorite
           ? addToFavorites(isDescription ? data : data.item)
-          : removeFromFavorites(isDescription ? data.id : data.item.id);
+          : removeFromFavorites(
+              isDescription ? data.id : data.item.id,
+              isDescription ? data.type : data.item.type,
+            );
       }}>
       <Icon
         name={'heart'}
