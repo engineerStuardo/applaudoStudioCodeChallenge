@@ -10,12 +10,17 @@ import {
   TitleText,
   SubTitleText,
 } from '../Styles/DescriptionStyles';
+import {useTypeContext} from '../Context/TypeCustomHook';
 
 const {width, height} = Dimensions.get('screen');
 
 export const Description = ({dataInfo}) => {
   const {favorites} = useFavoritesContext();
-  const isFavorite = favorites.find(item => item.id === dataInfo.id);
+  const {type} = useTypeContext();
+
+  const isFavorite = favorites.find(
+    item => item.id === dataInfo.id && item.type === type,
+  );
 
   return (
     <DescriptionContainer>
