@@ -22,7 +22,7 @@ export const FavoriteComponent = ({favorite}) => {
           })
         }>
         <DescriptionContainer animeWidth={width}>
-          <Description anime={favorite.item} />
+          <Description dataInfo={favorite.item} />
         </DescriptionContainer>
       </TouchableOpacity>
     </>

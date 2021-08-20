@@ -13,32 +13,32 @@ import {
 
 const {width, height} = Dimensions.get('screen');
 
-export const Description = ({anime}) => {
+export const Description = ({dataInfo}) => {
   const {favorites} = useFavoritesContext();
-  const isFavorite = favorites.find(item => item.id === anime.id);
+  const isFavorite = favorites.find(item => item.id === dataInfo.id);
 
   return (
     <DescriptionContainer>
       <AvatarImage
         source={{
-          uri: anime.attributes.posterImage.original,
+          uri: dataInfo.attributes.posterImage.original,
         }}
       />
       <View>
-        <FavoriteButton anime={anime} isFavorite={isFavorite} isDescription />
+        <FavoriteButton data={dataInfo} isFavorite={isFavorite} isDescription />
       </View>
       <InfoContainer animeWidth={width}>
         <TitleText>
-          {anime.attributes.titles.en || anime.attributes.titles.en_jp}
+          {dataInfo.attributes.titles.en || dataInfo.attributes.titles.en_jp}
         </TitleText>
         <SubTitleText>Popularity Rank: </SubTitleText>
-        <Text>{anime.attributes.popularityRank || 'Not Found'}</Text>
+        <Text>{dataInfo.attributes.popularityRank || 'Not Found'}</Text>
         <SubTitleText>Rating Rank:</SubTitleText>
-        <Text> {anime.attributes.ratingRank || 'Not Found'}</Text>
+        <Text> {dataInfo.attributes.ratingRank || 'Not Found'}</Text>
         <SubTitleText>Episode Count:</SubTitleText>
-        <Text> {anime.attributes.episodeCount || 'Not Found'}</Text>
+        <Text> {dataInfo.attributes.episodeCount || 'Not Found'}</Text>
         <SubTitleText>Episode Length:</SubTitleText>
-        <Text> {anime.attributes.episodeLength || 'Not Found'}</Text>
+        <Text> {dataInfo.attributes.episodeLength || 'Not Found'}</Text>
       </InfoContainer>
     </DescriptionContainer>
   );
