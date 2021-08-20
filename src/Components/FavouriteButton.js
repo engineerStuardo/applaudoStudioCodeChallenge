@@ -1,20 +1,10 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-import styled from 'styled-components/native';
 
 import {useFavoritesContext} from '../Context/FavoritesCustomHook';
-import {useTypeContext} from '../Context/TypeCustomHook';
-
-const FavoriteIcon = styled(TouchableOpacity)`
-  position: absolute;
-  top: 25px;
-  right: 25px;
-  z-index: 9;
-`;
+import {FavoriteIcon} from '../Styles/FavoriteButtonStyles';
 
 export const FavoriteButton = ({data, isFavorite, isDescription}) => {
-  const {type} = useTypeContext();
   const {addToFavorites, removeFromFavorites} = useFavoritesContext();
 
   return (

@@ -11,7 +11,7 @@ export const ListImages = ({
   dataList,
   loadingSearch,
   search,
-  resetList,
+  getDataByTextSearch,
   getData,
   loading,
 }) => {
@@ -23,7 +23,7 @@ export const ListImages = ({
     <ListImageContainer containerWidth={width}>
       {dataList && !loadingSearch && (
         <FlatList
-          onEndReached={search ? () => resetList() : () => getData()}
+          onEndReached={search ? () => getDataByTextSearch() : () => getData()}
           onEndReachedThreshold={0.5}
           ListFooterComponent={listFooter}
           numColumns={2}

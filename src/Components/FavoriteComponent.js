@@ -6,10 +6,14 @@ import {Divider} from 'react-native-paper';
 import {Description} from './Description';
 import {DescriptionContainer} from '../Styles/FavoriteComponentStyles';
 
-const {width, height} = Dimensions.get('screen');
+const {width} = Dimensions.get('screen');
 
 export const FavoriteComponent = ({favorite}) => {
   const navigation = useNavigation();
+
+  const {
+    item: {id: favoriteId, type: favoriteType},
+  } = favorite;
 
   return (
     <>
@@ -17,8 +21,8 @@ export const FavoriteComponent = ({favorite}) => {
       <TouchableOpacity
         onPress={() =>
           navigation.navigate('AnimeFavoriteDetail', {
-            id: favorite.item.id,
-            type: favorite.item.type,
+            id: favoriteId,
+            type: favoriteType,
           })
         }>
         <DescriptionContainer animeWidth={width}>

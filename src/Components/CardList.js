@@ -13,6 +13,8 @@ export const CardList = ({dataItem}) => {
       attributes: {
         posterImage: {original},
       },
+      id: dataId,
+      type: dataType,
     },
   } = dataItem;
 
@@ -20,7 +22,7 @@ export const CardList = ({dataItem}) => {
   const redirectTo = type === 'anime' ? 'AnimeDetail' : 'MangaDetail';
   const {favorites} = useFavoritesContext();
   const isFavorite = favorites.find(
-    item => item.id === dataItem.item.id && dataItem.item.type === item.type,
+    item => item.id === dataId && dataType === item.type,
   );
 
   const navigation = useNavigation();
@@ -30,7 +32,7 @@ export const CardList = ({dataItem}) => {
       <TouchableOpacity
         onPress={() =>
           navigation.navigate(redirectTo, {
-            id: dataItem.item.id,
+            id: dataId,
             type: type,
           })
         }>

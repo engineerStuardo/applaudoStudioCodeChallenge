@@ -14,20 +14,19 @@ import {ShareButtonComponent} from './ShareButtonComponent';
 const {width, height} = Dimensions.get('screen');
 
 export const DetailContainer = ({dataInfo, moreSynopsis, setMoreSynopsis}) => {
+  const {
+    attributes: {youtubeVideoId, synopsis, titles},
+  } = dataInfo;
+
   const share = async () => {
     try {
       await Share.share({
-        message:
-          dataInfo.attributes.titles.en || dataInfo.attributes.titles.en_jp,
+        message: titles.en || titles.en_jp,
       });
     } catch (error) {
       console.log(error);
     }
   };
-
-  const {
-    attributes: {youtubeVideoId, synopsis},
-  } = dataInfo;
 
   return (
     <DescriptionContainer
@@ -41,7 +40,7 @@ export const DetailContainer = ({dataInfo, moreSynopsis, setMoreSynopsis}) => {
         <SynopsisText>Synopsis</SynopsisText>
         <Text>
           {!moreSynopsis
-            ? `${synopsis.substring(0, 200)}...`
+            ? `${synopsis.substring(0, 125)}...`
             : synopsis || 'Not Found'}
         </Text>
         <TouchableOpacity onPress={() => setMoreSynopsis(!moreSynopsis)}>

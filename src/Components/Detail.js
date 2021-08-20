@@ -7,7 +7,7 @@ import {TopCoverImage} from './CoverImage';
 import {DetailContainer} from './DetailContainer';
 
 export const Detail = ({route, navigation}) => {
-  const {id, isFavorite, type} = route.params;
+  const {id, type} = route.params;
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
   const [moreSynopsis, setMoreSynopsis] = useState(false);

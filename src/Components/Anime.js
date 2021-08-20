@@ -15,26 +15,24 @@ export const Anime = () => {
   const [type, setType] = useState('anime');
 
   const getData = async start => {
-    if (!loading) {
+    try {
       setLoading(true);
-      try {
-        if (start) {
-          const data = await getFullData(type, 0);
-          setAnimes(data);
-          setOffset(10);
-        } else {
-          if (type && type === 'anime') {
-            const data = await getFullData(type, offset);
-            setAnimes([...animes, ...data]);
-            setOffset(offset + 10);
-          }
+      if (start) {
+        const data = await getFullData(type, 0);
+        setAnimes(data);
+        setOffset(10);
+      } else {
+        if (type && type === 'anime') {
+          const data = await getFullData(type, offset);
+          setAnimes([...animes, ...data]);
+          setOffset(offset + 10);
         }
-      } catch (error) {
-        console.log(error);
-        setLoading(false);
-      } finally {
-        setLoading(false);
       }
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -51,7 +49,7 @@ export const Anime = () => {
     }
   };
 
-  const resetList = async () => {
+  const getDataByTextSearch = async () => {
     try {
       setLoading(true);
       const data = await getSearch(type, search, offset);
@@ -91,7 +89,7 @@ export const Anime = () => {
             dataList={animes}
             loadingSearch={loadingSearch}
             search={search}
-            resetList={resetList}
+            getDataByTextSearch={getDataByTextSearch}
             getData={getData}
             loading={loading}
           />
