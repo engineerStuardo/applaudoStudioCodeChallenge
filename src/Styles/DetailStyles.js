@@ -60,8 +60,7 @@ const DescriptionContainer = styled(Animatable.View)`
   background-color: ${props =>
     props.isPortrait ? 'white' : 'rgba(255, 255, 255, 0.8)'};
   width: ${props => (props.isPortrait ? '100%' : '450px')};
-  margin-top: ${props =>
-    props.isPortrait ? `${props.heightMargin / 2.5}px` : '30px'};
+  margin-top: ${props => (props.isPortrait ? `205px` : '30px')};
   margin-bottom: ${props => (props.isPortrait ? '0px' : '30px')};
   border-bottom-left-radius: ${props => (props.isPortrait ? '0px' : '50px')};
   border-bottom-right-radius: ${props => (props.isPortrait ? '0px' : '50px')}; ;
