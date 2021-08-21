@@ -1,16 +1,19 @@
 import React, {useState, useEffect} from 'react';
-import {ScrollView} from 'react-native';
+import {ScrollView, View} from 'react-native';
 
 import {ListLoader} from './ListLoader';
 import {getDataById} from '../Services/Services';
 import {TopCoverImage} from './CoverImage';
 import {DetailContainer} from './DetailContainer';
+import {useOrientation} from '../CustomHooks/useOrientation';
+import {BackgroundImage} from '../Styles/DetailStyles';
 
 export const Detail = ({route, navigation}) => {
   const {id, type} = route.params;
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
   const [moreSynopsis, setMoreSynopsis] = useState(false);
+  const orientation = useOrientation();
 
   const getDetail = async () => {
     try {
@@ -24,6 +27,7 @@ export const Detail = ({route, navigation}) => {
       setLoading(false);
     }
   };
+  console.log(JSON.stringify(data, null, 2));
 
   useEffect(() => {
     getDetail();
@@ -33,14 +37,23 @@ export const Detail = ({route, navigation}) => {
     <ScrollView>
       {loading && <ListLoader loading />}
       {data && (
-        <>
-          <TopCoverImage dataInfo={data} navigation={navigation} />
-          <DetailContainer
-            dataInfo={data}
-            moreSynopsis={moreSynopsis}
-            setMoreSynopsis={setMoreSynopsis}
-          />
-        </>
+        <BackgroundImage
+          source={{
+            uri: orientation.isPortrait
+              ? 'white'
+              : data.attributes.posterImage.original,
+          }}>
+          {orientation.isPortrait && (
+            <TopCoverImage dataInfo={data} navigation={navigation} />
+          )}
+          <View style={{alignItems: 'center'}}>
+            <DetailContainer
+              dataInfo={data}
+              moreSynopsis={moreSynopsis}
+              setMoreSynopsis={setMoreSynopsis}
+            />
+          </View>
+        </BackgroundImage>
       )}
     </ScrollView>
   );

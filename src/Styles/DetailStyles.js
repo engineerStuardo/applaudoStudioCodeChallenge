@@ -1,4 +1,10 @@
-import {Image, TouchableOpacity, View, Text} from 'react-native';
+import {
+  Image,
+  TouchableOpacity,
+  View,
+  Text,
+  ImageBackground,
+} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import styled from 'styled-components/native';
 
@@ -41,12 +47,24 @@ const CoverImage = styled(Image)`
   height: ${props => `${props.coverHeight / 1.5}px`};
 `;
 
+const BackgroundImage = styled(ImageBackground)`
+  flex: 1;
+  resize-mode: cover;
+  justify-content: center;
+`;
+
 const DescriptionContainer = styled(Animatable.View)`
   z-index: 10;
   border-top-left-radius: 50px;
   border-top-right-radius: 50px;
-  background-color: white;
-  margin-top: ${props => `${props.heightMargin / 2.5}px`};
+  background-color: ${props =>
+    props.isPortrait ? 'white' : 'rgba(255, 255, 255, 0.75)'};
+  width: ${props => (props.isPortrait ? '100%' : '450px')};
+  margin-top: ${props =>
+    props.isPortrait ? `${props.heightMargin / 2.5}px` : '30px'};
+  margin-bottom: ${props => (props.isPortrait ? '0px' : '30px')};
+  border-bottom-left-radius: ${props => (props.isPortrait ? '0px' : '50px')};
+  border-bottom-right-radius: ${props => (props.isPortrait ? '0px' : '50px')}; ;
 `;
 
 const SynopsisContainer = styled(View)`
@@ -74,6 +92,7 @@ export {
   NoVideoText,
   CoverImageContainer,
   CoverImage,
+  BackgroundImage,
   DescriptionContainer,
   SynopsisContainer,
   SynopsisText,

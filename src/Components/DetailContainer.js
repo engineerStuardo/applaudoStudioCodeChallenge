@@ -10,6 +10,7 @@ import {
 import {Description} from './Description';
 import {YoutubeButtonComponent} from './YoutubeButtonComponent';
 import {ShareButtonComponent} from './ShareButtonComponent';
+import {useOrientation} from '../CustomHooks/useOrientation';
 
 const {width, height} = Dimensions.get('screen');
 
@@ -17,6 +18,7 @@ export const DetailContainer = ({dataInfo, moreSynopsis, setMoreSynopsis}) => {
   const {
     attributes: {youtubeVideoId, synopsis, titles},
   } = dataInfo;
+  const orientation = useOrientation();
 
   const share = async () => {
     try {
@@ -30,6 +32,7 @@ export const DetailContainer = ({dataInfo, moreSynopsis, setMoreSynopsis}) => {
 
   return (
     <DescriptionContainer
+      isPortrait={orientation.isPortrait}
       animation="slideInDown"
       delay={400}
       heightMargin={height}>
