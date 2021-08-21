@@ -24,6 +24,11 @@ const CardInfoContainer = styled(View)`
   width: 100%;
   padding: 15px;
   margin-top: -80px;
+  align-items: center;
+`;
+
+const PersonalInfoMainContainer = styled(Animatable.View)`
+  width: ${props => (props.orientation === 'landscape' ? '500px' : '100%')};
 `;
 
 const PersonalInfoTitleContainer = styled(Animatable.View)`
@@ -46,6 +51,7 @@ const AvatarPhoto = styled(Avatar.Image)`
 `;
 
 const ProfessionalInfoContainer = styled(Animatable.View)`
+  width: ${props => (props.orientation === 'landscape' ? '500px' : '100%')};
   margin-top: 25px;
 `;
 
@@ -85,6 +91,7 @@ export {
   TextContainer,
   MainTitle,
   CardInfoContainer,
+  PersonalInfoMainContainer,
   PersonalInfoTitleContainer,
   PersonalInfoContainer,
   AvatarContainer,

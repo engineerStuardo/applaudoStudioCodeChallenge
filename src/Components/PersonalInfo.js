@@ -4,6 +4,7 @@ import * as Animatable from 'react-native-animatable';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 
 import {
+  PersonalInfoMainContainer,
   PersonalInfoTitleContainer,
   PersonalInfoContainer,
   AvatarContainer,
@@ -11,9 +12,11 @@ import {
   TechContainer,
 } from '../Styles/HomeScreenStyles';
 
-export const PersonalInfoCard = () => {
+export const PersonalInfoCard = ({orientation}) => {
   return (
-    <Animatable.View animation="fadeInUpBig">
+    <PersonalInfoMainContainer
+      animation="fadeInUpBig"
+      orientation={orientation}>
       <Card>
         <PersonalInfoTitleContainer animation="pulse" iterationCount="infinite">
           <Title>PERSONAL INFO</Title>
@@ -47,6 +50,6 @@ export const PersonalInfoCard = () => {
           </Paragraph>
         </PersonalInfoContainer>
       </Card>
-    </Animatable.View>
+    </PersonalInfoMainContainer>
   );
 };
