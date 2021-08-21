@@ -6,6 +6,7 @@ import {useFavoritesContext} from '../Context/FavoritesCustomHook';
 import {FavoriteButton} from './FavouriteButton';
 import {CardImage} from '../Styles/CardListStyles';
 import {useTypeContext} from '../Context/TypeCustomHook';
+import {useOrientation} from '../CustomHooks/useOrientation';
 
 export const CardList = ({dataItem}) => {
   const {
@@ -18,6 +19,7 @@ export const CardList = ({dataItem}) => {
     },
   } = dataItem;
 
+  const orientation = useOrientation();
   const {type} = useTypeContext();
   const redirectTo = type === 'anime' ? 'AnimeDetail' : 'MangaDetail';
   const {favorites} = useFavoritesContext();
@@ -37,6 +39,8 @@ export const CardList = ({dataItem}) => {
           })
         }>
         <CardImage
+          orientation={orientation}
+          isPortrait={orientation.isPortrait}
           source={{
             uri: original,
           }}

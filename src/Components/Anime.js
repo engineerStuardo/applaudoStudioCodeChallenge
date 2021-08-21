@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
+import {View} from 'react-native';
 
 import {getFullData, getSearch} from '../Services/Services';
 import {ListLoader} from '../Components/ListLoader';
 import {InputText} from '../Components/InputText';
 import {ListImages} from '../Components/ListImages';
 import {AnimeScreenContainer, AnimeLogo} from '../Styles/AnimeScreenStyles';
+import {useOrientation} from '../CustomHooks/useOrientation';
 
 export const Anime = () => {
   const [animes, setAnimes] = useState([]);
@@ -13,6 +15,7 @@ export const Anime = () => {
   const [loadingSearch, setLoadingSearch] = useState(false);
   const [search, setSearch] = useState();
   const [type, setType] = useState('anime');
+  const orientation = useOrientation();
 
   const getData = async start => {
     try {
@@ -72,18 +75,21 @@ export const Anime = () => {
       {animes.length === 0 ? (
         <ListLoader loading />
       ) : (
-        <AnimeScreenContainer>
-          <InputText
-            search={search}
-            setSearch={setSearch}
-            searchAnime={searchAnime}
-            getData={getData}
-          />
-          <AnimeLogo
-            animation="pulse"
-            iterationCount="infinite"
-            source={require('../Assets/Images/anime.png')}
-          />
+        <AnimeScreenContainer isPortrait={orientation.isPortrait}>
+          <View>
+            <InputText
+              isPortrait={orientation.isPortrait}
+              search={search}
+              setSearch={setSearch}
+              searchAnime={searchAnime}
+              getData={getData}
+            />
+            <AnimeLogo
+              animation="pulse"
+              iterationCount="infinite"
+              source={require('../Assets/Images/anime.png')}
+            />
+          </View>
           {loadingSearch && <ListLoader loadingSearch />}
           <ListImages
             dataList={animes}

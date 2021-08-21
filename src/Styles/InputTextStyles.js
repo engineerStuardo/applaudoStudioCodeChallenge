@@ -5,6 +5,7 @@ import styled from 'styled-components/native';
 const InputContainer = styled(View)`
   padding: 25px;
   padding-bottom: 15px;
+  width: ${props => (props.isPortrait ? '100%' : '210px')};
 `;
 
 const InputTextField = styled(TextInput)`
