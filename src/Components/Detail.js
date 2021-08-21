@@ -7,6 +7,7 @@ import {TopCoverImage} from './CoverImage';
 import {DetailContainer} from './DetailContainer';
 import {useOrientation} from '../CustomHooks/useOrientation';
 import {BackgroundImage} from '../Styles/DetailStyles';
+import {GoBackIcon} from './GoBackIcon';
 
 export const Detail = ({route, navigation}) => {
   const {id, type} = route.params;
@@ -27,7 +28,6 @@ export const Detail = ({route, navigation}) => {
       setLoading(false);
     }
   };
-  console.log(JSON.stringify(data, null, 2));
 
   useEffect(() => {
     getDetail();
@@ -46,6 +46,7 @@ export const Detail = ({route, navigation}) => {
           {orientation.isPortrait && (
             <TopCoverImage dataInfo={data} navigation={navigation} />
           )}
+          <GoBackIcon navigation={navigation} />
           <View style={{alignItems: 'center'}}>
             <DetailContainer
               dataInfo={data}

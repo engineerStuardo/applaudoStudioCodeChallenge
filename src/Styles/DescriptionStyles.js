@@ -15,13 +15,15 @@ const AvatarImage = styled(Image)`
 
 const InfoContainer = styled(View)`
   justify-content: center;
-  width: ${props => `${props.animeWidth / 2}px`};
+  margin-top: 10px;
+  width: ${props => (props.isPortrait ? '165px' : '260px')};
 `;
 
 const TitleText = styled(Text)`
   font-size: 25px;
   font-weight: bold;
   color: orange;
+  text-align: auto;
 `;
 
 const SubTitleText = styled(Text)`

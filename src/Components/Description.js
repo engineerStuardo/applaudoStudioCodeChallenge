@@ -10,6 +10,7 @@ import {
   TitleText,
   SubTitleText,
 } from '../Styles/DescriptionStyles';
+import {useOrientation} from '../CustomHooks/useOrientation';
 
 const {width} = Dimensions.get('screen');
 
@@ -27,6 +28,7 @@ export const Description = ({dataInfo}) => {
     id: dataId,
     type: dataType,
   } = dataInfo;
+  const orientation = useOrientation();
 
   const isFavorite = favorites.find(
     item => item.id === dataId && item.type === dataType,
@@ -42,7 +44,7 @@ export const Description = ({dataInfo}) => {
       <View>
         <FavoriteButton data={dataInfo} isFavorite={isFavorite} isDescription />
       </View>
-      <InfoContainer animeWidth={width}>
+      <InfoContainer animeWidth={width} isPortrait={orientation.isPortrait}>
         <TitleText>{titles.en || titles.en_jp}</TitleText>
         <SubTitleText>Popularity Rank: </SubTitleText>
         <Text>{popularityRank || 'Not Found'}</Text>

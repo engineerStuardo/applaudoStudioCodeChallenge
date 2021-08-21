@@ -58,7 +58,7 @@ const DescriptionContainer = styled(Animatable.View)`
   border-top-left-radius: 50px;
   border-top-right-radius: 50px;
   background-color: ${props =>
-    props.isPortrait ? 'white' : 'rgba(255, 255, 255, 0.75)'};
+    props.isPortrait ? 'white' : 'rgba(255, 255, 255, 0.8)'};
   width: ${props => (props.isPortrait ? '100%' : '450px')};
   margin-top: ${props =>
     props.isPortrait ? `${props.heightMargin / 2.5}px` : '30px'};
