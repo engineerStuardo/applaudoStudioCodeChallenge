@@ -92,6 +92,11 @@ const TechContainer = styled(Paragraph)`
   justify-content: center;
 `;
 
+const IconContainer = styled(Animatable.View)`
+  flex: 1;
+  flex-direction: row;
+`;
+
 export {
   MainContainer,
   TextContainer,
@@ -109,4 +114,5 @@ export {
   ProfessionalAvatarPhoto,
   FirstJobContainer,
   TechContainer,
+  IconContainer,
 };

@@ -1,6 +1,5 @@
 import React from 'react';
 import {Card, Title, Paragraph} from 'react-native-paper';
-import * as Animatable from 'react-native-animatable';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 
 import {
@@ -10,6 +9,7 @@ import {
   AvatarContainer,
   AvatarPhoto,
   TechContainer,
+  IconContainer,
 } from '../Styles/HomeScreenStyles';
 
 export const PersonalInfoCard = ({isPortrait}) => {
@@ -36,10 +36,12 @@ export const PersonalInfoCard = ({isPortrait}) => {
           <Paragraph>ingeniero.stuardo@gmail.com</Paragraph>
           <Title>Tecnologies</Title>
           <TechContainer>
-            <Icon name={'logo-react'} size={35} color={'#61DBFB'} />
-            <Icon name={'logo-javascript'} size={35} color={'orange'} />
-            <Icon name={'logo-css3'} size={35} color={'#2565AE'} />
-            <Icon name={'logo-html5'} size={35} color={'#EF6127'} />
+            <IconContainer animation="pulse" iterationCount="infinite">
+              <Icon name={'logo-react'} size={35} color={'#61DBFB'} />
+              <Icon name={'logo-javascript'} size={35} color={'orange'} />
+              <Icon name={'logo-css3'} size={35} color={'#2565AE'} />
+              <Icon name={'logo-html5'} size={35} color={'#EF6127'} />
+            </IconContainer>
           </TechContainer>
           <Title>Hobbies</Title>
           <Paragraph>
