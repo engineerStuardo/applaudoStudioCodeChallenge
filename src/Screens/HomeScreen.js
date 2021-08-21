@@ -9,15 +9,10 @@ import {
 } from '../Styles/HomeScreenStyles';
 import {PersonalInfoCard} from '../Components/PersonalInfo';
 import {ProfessionalInfoCard} from '../Components/ProfessionalInfo';
+import {useOrientation} from '../CustomHooks/useOrientation';
 
 export const HomeScreen = () => {
-  const [orientation, setOrientation] = useState();
-
-  Dimensions.addEventListener('change', () => {
-    const dim = Dimensions.get('screen');
-    const isPortrait = dim.height >= dim.width;
-    setOrientation(isPortrait ? 'portrait' : 'landscape');
-  });
+  const orientation = useOrientation();
 
   return (
     <ScrollView>
@@ -25,9 +20,14 @@ export const HomeScreen = () => {
         <TextContainer animation="jello" iterationCount="infinite">
           <MainTitle animation="slideInLeft">Hire Me, Please??</MainTitle>
         </TextContainer>
-        <CardInfoContainer orientation={orientation}>
-          <PersonalInfoCard orientation={orientation} />
-          <ProfessionalInfoCard orientation={orientation} />
+        <CardInfoContainer
+          isPortrait={orientation.isPortrait}
+          orientation={orientation}>
+          <PersonalInfoCard isPortrait={orientation.isPortrait} />
+          <ProfessionalInfoCard
+            isPortrait={orientation.isPortrait}
+            orientation={orientation}
+          />
         </CardInfoContainer>
       </MainContainer>
     </ScrollView>

@@ -12,11 +12,9 @@ import {
   TechContainer,
 } from '../Styles/HomeScreenStyles';
 
-export const PersonalInfoCard = ({orientation}) => {
+export const PersonalInfoCard = ({isPortrait}) => {
   return (
-    <PersonalInfoMainContainer
-      animation="fadeInUpBig"
-      orientation={orientation}>
+    <PersonalInfoMainContainer animation="fadeInUpBig" isPortrait={isPortrait}>
       <Card>
         <PersonalInfoTitleContainer animation="pulse" iterationCount="infinite">
           <Title>PERSONAL INFO</Title>

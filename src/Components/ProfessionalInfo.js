@@ -10,10 +10,11 @@ import {
   FirstJobContainer,
 } from '../Styles/HomeScreenStyles';
 
-export const ProfessionalInfoCard = ({orientation}) => {
+export const ProfessionalInfoCard = ({isPortrait, orientation}) => {
   return (
     <ProfessionalInfoContainer
       animation="fadeInDownBig"
+      isPortrait={isPortrait}
       orientation={orientation}>
       <Card>
         <ProfessionalTitleContainer animation="pulse" iterationCount="infinite">

@@ -25,10 +25,13 @@ const CardInfoContainer = styled(View)`
   padding: 15px;
   margin-top: -80px;
   align-items: center;
+  justify-content: center;
+  flex-direction: ${props =>
+    props.isPortrait || props.orientation.width < 700 ? 'column' : 'row'};
 `;
 
 const PersonalInfoMainContainer = styled(Animatable.View)`
-  width: ${props => (props.orientation === 'landscape' ? '500px' : '100%')};
+  width: ${props => (props.isPortrait ? '100%' : '350px')};
 `;
 
 const PersonalInfoTitleContainer = styled(Animatable.View)`
@@ -51,8 +54,11 @@ const AvatarPhoto = styled(Avatar.Image)`
 `;
 
 const ProfessionalInfoContainer = styled(Animatable.View)`
-  width: ${props => (props.orientation === 'landscape' ? '500px' : '100%')};
-  margin-top: 25px;
+  width: ${props => (props.isPortrait ? '100%' : '350px')};
+  margin-top: ${props =>
+    props.isPortrait || props.orientation.width < 700 ? '25px' : '0px'};
+  margin-left: ${props =>
+    props.isPortrait || props.orientation.width < 700 ? '0px' : '10px'}; ;
 `;
 
 const ProfessionalTitleContainer = styled(Animatable.View)`
@@ -67,7 +73,7 @@ const ProfessionalInfo = styled(View)`
 `;
 
 const ProfessionalAvatarContainer = styled(View)`
-  margin-bottom: 25px;
+  margin-bottom: 45px;
 `;
 
 const ProfessionalAvatarPhoto = styled(Avatar.Image)`
