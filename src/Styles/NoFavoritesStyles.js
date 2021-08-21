@@ -6,6 +6,17 @@ const NoFavoritesContainer = styled(View)`
   flex: 1;
   justify-content: center;
   align-items: center;
+  flex-direction: ${props => (props.isPortrait ? 'column' : 'row')};
+  margin-top: ${props => (props.isPortrait ? '0px' : '35px')}; ;
+`;
+
+const Container = styled(View)`
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  margin-right: ${props => (props.isPortrait ? '0px' : '30px')};
+  margin-bottom: ${props =>
+    props.applyMargin && !props.isPortrait ? '40px' : '0px'};
 `;
 
 const FavoritesText = styled(Text)`
@@ -23,4 +34,10 @@ const FavoriteButton = styled(Button)`
   padding: 5px;
 `;
 
-export {NoFavoritesContainer, FavoritesText, NoFavoriteText, FavoriteButton};
+export {
+  NoFavoritesContainer,
+  Container,
+  FavoritesText,
+  NoFavoriteText,
+  FavoriteButton,
+};
