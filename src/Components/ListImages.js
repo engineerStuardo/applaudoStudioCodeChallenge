@@ -37,6 +37,7 @@ export const ListImages = ({
           data={dataList}
           renderItem={renderItem}
           keyExtractor={keyExtractor}
+          persistentScrollbar={true}
         />
       )}
     </ListImageContainer>

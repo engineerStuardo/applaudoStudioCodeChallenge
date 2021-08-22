@@ -25,6 +25,7 @@ export const Favorites = () => {
         data={favorites}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
+        persistentScrollbar={true}
       />
     </FavoritesContainer>
   );
