@@ -10,9 +10,9 @@ import {
 import {useTypeContext} from '../Context/TypeCustomHook';
 
 export const InputText = ({
-  search,
-  setSearch,
-  searchAnime,
+  searchText,
+  setSearchText,
+  searchCategoryByText,
   getData,
   isPortrait,
 }) => {
@@ -23,14 +23,14 @@ export const InputText = ({
       <InputTextField
         mode="outlined"
         label={type === 'anime' ? 'Search Anime' : 'Search Manga'}
-        value={search}
+        value={searchText}
         textContentType="name"
         keyboardType="default"
         autoCapitalize="none"
-        onChangeText={search => setSearch(search)}
+        onChangeText={search => setSearchText(search)}
         theme={{colors: {primary: 'orange'}}}
         onSubmitEditing={() => {
-          searchAnime(search);
+          searchCategoryByText(searchText);
         }}
         right={
           <InputTextIcon.Icon
@@ -40,7 +40,7 @@ export const InputText = ({
             onPress={() => {
               const start = true;
               Keyboard.dismiss();
-              setSearch('');
+              setSearchText('');
               getData(start);
             }}
           />

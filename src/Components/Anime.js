@@ -5,7 +5,7 @@ import {getFullData, getSearch} from '../Services/Services';
 import {ListLoader} from '../Components/ListLoader';
 import {InputText} from '../Components/InputText';
 import {ListImages} from '../Components/ListImages';
-import {AnimeScreenContainer, AnimeLogo} from '../Styles/AnimeScreenStyles';
+import {ScreenContainer, Logo} from '../Styles/ScreenStyles';
 import {useOrientation} from '../CustomHooks/useOrientation';
 
 export const Anime = () => {
@@ -13,7 +13,7 @@ export const Anime = () => {
   const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(false);
   const [loadingSearch, setLoadingSearch] = useState(false);
-  const [search, setSearch] = useState();
+  const [searchText, setSearchText] = useState();
   const [type, setType] = useState('anime');
   const orientation = useOrientation();
 
@@ -25,11 +25,9 @@ export const Anime = () => {
         setAnimes(data);
         setOffset(10);
       } else {
-        if (type && type === 'anime') {
-          const data = await getFullData(type, offset);
-          setAnimes([...animes, ...data]);
-          setOffset(offset + 10);
-        }
+        const data = await getFullData(type, offset);
+        setAnimes([...animes, ...data]);
+        setOffset(offset + 10);
       }
     } catch (error) {
       console.log(error);
@@ -39,7 +37,7 @@ export const Anime = () => {
     }
   };
 
-  const searchAnime = async text => {
+  const searchCategoryByText = async text => {
     try {
       setLoadingSearch(true);
       const data = await getSearch(type, text);
@@ -52,10 +50,10 @@ export const Anime = () => {
     }
   };
 
-  const getDataByTextSearch = async () => {
+  const getMoreDataBySearch = async () => {
     try {
       setLoading(true);
-      const data = await getSearch(type, search, offset);
+      const data = await getSearch(type, searchText, offset);
       setAnimes([...animes, ...data]);
       setOffset(offset + 10);
     } catch (error) {
@@ -75,16 +73,16 @@ export const Anime = () => {
       {animes.length === 0 ? (
         <ListLoader loading />
       ) : (
-        <AnimeScreenContainer isPortrait={orientation.isPortrait}>
+        <ScreenContainer isPortrait={orientation.isPortrait}>
           <View>
             <InputText
               isPortrait={orientation.isPortrait}
-              search={search}
-              setSearch={setSearch}
-              searchAnime={searchAnime}
+              searchText={searchText}
+              setSearchText={setSearchText}
+              searchCategoryByText={searchCategoryByText}
               getData={getData}
             />
-            <AnimeLogo
+            <Logo
               animation="pulse"
               iterationCount="infinite"
               source={require('../Assets/Images/anime.png')}
@@ -94,12 +92,12 @@ export const Anime = () => {
           <ListImages
             dataList={animes}
             loadingSearch={loadingSearch}
-            search={search}
-            getDataByTextSearch={getDataByTextSearch}
+            searchText={searchText}
+            getMoreDataBySearch={getMoreDataBySearch}
             getData={getData}
             loading={loading}
           />
-        </AnimeScreenContainer>
+        </ScreenContainer>
       )}
     </>
   );

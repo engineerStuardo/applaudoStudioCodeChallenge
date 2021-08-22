@@ -11,8 +11,8 @@ const {width} = Dimensions.get('screen');
 export const ListImages = ({
   dataList,
   loadingSearch,
-  search,
-  getDataByTextSearch,
+  searchText,
+  getMoreDataBySearch,
   getData,
   loading,
 }) => {
@@ -29,7 +29,9 @@ export const ListImages = ({
       {dataList && !loadingSearch && (
         <FlatList
           key={orientation.isPortrait && 2}
-          onEndReached={search ? () => getDataByTextSearch() : () => getData()}
+          onEndReached={
+            searchText ? () => getMoreDataBySearch() : () => getData()
+          }
           onEndReachedThreshold={0.5}
           ListFooterComponent={listFooter}
           numColumns={orientation.isPortrait && 2}

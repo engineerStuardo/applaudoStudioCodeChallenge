@@ -5,15 +5,15 @@ import {getFullData, getSearch} from '../Services/Services';
 import {ListLoader} from '../Components/ListLoader';
 import {InputText} from '../Components/InputText';
 import {ListImages} from '../Components/ListImages';
-import {AnimeScreenContainer, AnimeLogo} from '../Styles/AnimeScreenStyles';
+import {ScreenContainer, Logo} from '../Styles/ScreenStyles';
 import {useOrientation} from '../CustomHooks/useOrientation';
 
 export const Manga = () => {
-  const [mangas, setAnimes] = useState([]);
+  const [mangas, setMangas] = useState([]);
   const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(false);
   const [loadingSearch, setLoadingSearch] = useState(false);
-  const [search, setSearch] = useState();
+  const [searchText, setSearchText] = useState();
   const [type, setType] = useState('manga');
   const orientation = useOrientation();
 
@@ -22,14 +22,12 @@ export const Manga = () => {
       setLoading(true);
       if (start) {
         const data = await getFullData(type, 0);
-        setAnimes(data);
+        setMangas(data);
         setOffset(10);
       } else {
-        if (type) {
-          const data = await getFullData(type, offset);
-          setAnimes([...mangas, ...data]);
-          setOffset(offset + 10);
-        }
+        const data = await getFullData(type, offset);
+        setMangas([...mangas, ...data]);
+        setOffset(offset + 10);
       }
     } catch (error) {
       console.log(error);
@@ -39,11 +37,11 @@ export const Manga = () => {
     }
   };
 
-  const searchAnime = async text => {
+  const searchCategoryByText = async text => {
     try {
       setLoadingSearch(true);
       const data = await getSearch(type, text);
-      setAnimes(data);
+      setMangas(data);
     } catch (error) {
       console.log(error);
       setLoadingSearch(false);
@@ -52,11 +50,11 @@ export const Manga = () => {
     }
   };
 
-  const getDataByTextSearch = async () => {
+  const getMoreDataBySearch = async () => {
     try {
       setLoading(true);
-      const data = await getSearch(type, search, offset);
-      setAnimes([...mangas, ...data]);
+      const data = await getSearch(type, searchText, offset);
+      setMangas([...mangas, ...data]);
       setOffset(offset + 10);
     } catch (error) {
       console.log(error);
@@ -75,16 +73,16 @@ export const Manga = () => {
       {mangas.length === 0 ? (
         <ListLoader loading />
       ) : (
-        <AnimeScreenContainer isPortrait={orientation.isPortrait}>
+        <ScreenContainer isPortrait={orientation.isPortrait}>
           <View>
             <InputText
               isPortrait={orientation.isPortrait}
-              search={search}
-              setSearch={setSearch}
-              searchAnime={searchAnime}
+              searchText={searchText}
+              setSearchText={setSearchText}
+              searchCategoryByText={searchCategoryByText}
               getData={getData}
             />
-            <AnimeLogo
+            <Logo
               animation="pulse"
               iterationCount="infinite"
               source={require('../Assets/Images/manga.png')}
@@ -94,12 +92,12 @@ export const Manga = () => {
           <ListImages
             dataList={mangas}
             loadingSearch={loadingSearch}
-            search={search}
-            getDataByTextSearch={getDataByTextSearch}
+            searchText={searchText}
+            getMoreDataBySearch={getMoreDataBySearch}
             getData={getData}
             loading={loading}
           />
-        </AnimeScreenContainer>
+        </ScreenContainer>
       )}
     </>
   );
