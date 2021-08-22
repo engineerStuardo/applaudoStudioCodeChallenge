@@ -45,7 +45,7 @@ export const Description = ({dataInfo}) => {
         <FavoriteButton data={dataInfo} isFavorite={isFavorite} isDescription />
       </View>
       <InfoContainer animeWidth={width} isPortrait={orientation.isPortrait}>
-        <TitleText>{titles.en || titles.en_jp}</TitleText>
+        <TitleText>{titles.en || titles.en_jp || 'Title Not found'}</TitleText>
         <SubTitleText>Popularity Rank: </SubTitleText>
         <Text>{popularityRank || 'Not Found'}</Text>
         <SubTitleText>Rating Rank:</SubTitleText>
