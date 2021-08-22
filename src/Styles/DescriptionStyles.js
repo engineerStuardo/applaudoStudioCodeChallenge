@@ -16,7 +16,8 @@ const AvatarImage = styled(Image)`
 const InfoContainer = styled(View)`
   justify-content: center;
   margin-top: 10px;
-  width: ${props => (props.isPortrait ? '165px' : '260px')};
+  width: ${props => (props.isPortrait ? '165px' : '190px')};
+  margin-right: 50px;
 `;
 
 const TitleText = styled(Text)`
