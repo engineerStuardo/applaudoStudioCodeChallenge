@@ -24,8 +24,8 @@ const YoutubeButton = styled(TouchableOpacity)`
 
 const ShareButton = styled(TouchableOpacity)`
   position: absolute;
-  top: ${props => `${props.videoAvailable ? 270 : 295}px`};
-  left: ${props => `${props.videoAvailable ? 100 : 74}px`};
+  top: ${({videoAvailable}) => `${videoAvailable ? 270 : 295}px`};
+  left: ${({videoAvailable}) => `${videoAvailable ? 100 : 74}px`};
   z-index: 99999;
 `;
 
@@ -43,8 +43,8 @@ const CoverImageContainer = styled(Animatable.View)`
 `;
 
 const CoverImage = styled(Image)`
-  width: ${props => `${props.coverWidth}px`};
-  height: ${props => `${props.coverHeight / 1.5}px`};
+  width: ${({coverWidth}) => `${coverWidth}px`};
+  height: ${({coverHeight}) => `${coverHeight / 1.5}px`};
 `;
 
 const BackgroundImage = styled(ImageBackground)`
@@ -57,13 +57,14 @@ const DescriptionContainer = styled(Animatable.View)`
   z-index: 10;
   border-top-left-radius: 50px;
   border-top-right-radius: 50px;
-  background-color: ${props =>
-    props.isPortrait ? 'white' : 'rgba(255, 255, 255, 0.8)'};
-  width: ${props => (props.isPortrait ? '100%' : '450px')};
-  margin-top: ${props => (props.isPortrait ? `205px` : '30px')};
-  margin-bottom: ${props => (props.isPortrait ? '0px' : '30px')};
-  border-bottom-left-radius: ${props => (props.isPortrait ? '0px' : '50px')};
-  border-bottom-right-radius: ${props => (props.isPortrait ? '0px' : '50px')}; ;
+  background-color: ${({isPortrait}) =>
+    isPortrait ? 'white' : 'rgba(255, 255, 255, 0.8)'};
+  width: ${({isPortrait}) => (isPortrait ? '100%' : '450px')};
+  margin-top: ${({isPortrait}) => (isPortrait ? `205px` : '30px')};
+  margin-bottom: ${({isPortrait}) => (isPortrait ? '0px' : '30px')};
+  border-bottom-left-radius: ${({isPortrait}) => (isPortrait ? '0px' : '50px')};
+  border-bottom-right-radius: ${({isPortrait}) =>
+    isPortrait ? '0px' : '50px'}; ;
 `;
 
 const SynopsisContainer = styled(View)`

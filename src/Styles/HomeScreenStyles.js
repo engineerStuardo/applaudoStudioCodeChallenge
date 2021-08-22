@@ -26,12 +26,12 @@ const CardInfoContainer = styled(View)`
   margin-top: -80px;
   align-items: center;
   justify-content: center;
-  flex-direction: ${props =>
-    props.isPortrait || props.orientation.width < 700 ? 'column' : 'row'};
+  flex-direction: ${({isPortrait, orientation}) =>
+    isPortrait || orientation.width < 700 ? 'column' : 'row'};
 `;
 
 const PersonalInfoMainContainer = styled(Animatable.View)`
-  width: ${props => (props.isPortrait ? '100%' : '350px')};
+  width: ${({isPortrait}) => (isPortrait ? '100%' : '350px')};
 `;
 
 const PersonalInfoTitleContainer = styled(Animatable.View)`
@@ -54,11 +54,11 @@ const AvatarPhoto = styled(Avatar.Image)`
 `;
 
 const ProfessionalInfoContainer = styled(Animatable.View)`
-  width: ${props => (props.isPortrait ? '100%' : '350px')};
-  margin-top: ${props =>
-    props.isPortrait || props.orientation.width < 700 ? '25px' : '0px'};
-  margin-left: ${props =>
-    props.isPortrait || props.orientation.width < 700 ? '0px' : '10px'}; ;
+  width: ${({isPortrait}) => (isPortrait ? '100%' : '350px')};
+  margin-top: ${({isPortrait, orientation}) =>
+    isPortrait || orientation.width < 700 ? '25px' : '0px'};
+  margin-left: ${({isPortrait, orientation}) =>
+    isPortrait || orientation.width < 700 ? '0px' : '10px'}; ;
 `;
 
 const ProfessionalTitleContainer = styled(Animatable.View)`
