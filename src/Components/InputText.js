@@ -19,9 +19,9 @@ export const InputText = ({
   const {type} = useTypeContext();
 
   return (
-    <InputContainer isPortrait={isPortrait}>
+    <InputContainer isPortrait={isPortrait} animation="fadeInLeft">
       <InputTextField
-        mode="outlined"
+        mode="flat"
         label={type === 'anime' ? 'Search Anime' : 'Search Manga'}
         value={searchText}
         textContentType="name"
