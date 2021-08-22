@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, Dimensions} from 'react-native';
 
 import {FavoriteButton} from '../Components/FavouriteButton';
-import {useFavoritesContext} from '../Context/FavoritesCustomHook';
+import {useFavoritesContext} from '../CustomHooks/useFavoritesContext';
 import {
   DescriptionContainer,
   AvatarImage,

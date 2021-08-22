@@ -3,7 +3,7 @@ import React from 'react';
 import {FavoriteContainer} from '../Styles/FavoriteScreenStyles';
 import {NoFavorites} from '../Components/NoFavorites';
 import {Favorites} from '../Components/Favorites';
-import {useFavoritesContext} from '../Context/FavoritesCustomHook';
+import {useFavoritesContext} from '../CustomHooks/useFavoritesContext';
 import {useOrientation} from '../CustomHooks/useOrientation';
 
 export const FavoriteScreen = () => {

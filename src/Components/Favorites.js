@@ -3,7 +3,7 @@ import {FlatList} from 'react-native';
 
 import {FavoriteImage, FavoritesContainer} from '../Styles/FavoritesStyles';
 import {FavoriteComponent} from './FavoriteComponent';
-import {useFavoritesContext} from '../Context/FavoritesCustomHook';
+import {useFavoritesContext} from '../CustomHooks/useFavoritesContext';
 import {useOrientation} from '../CustomHooks/useOrientation';
 
 export const Favorites = () => {

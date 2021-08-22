@@ -1,7 +1,7 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
-import {useFavoritesContext} from '../Context/FavoritesCustomHook';
+import {useFavoritesContext} from '../CustomHooks/useFavoritesContext';
 import {FavoriteIcon} from '../Styles/FavoriteButtonStyles';
 
 export const FavoriteButton = ({data, isFavorite, isDescription}) => {

@@ -1,6 +1,6 @@
 import {useContext} from 'react';
 
-import {TypeContext} from './TypeContext';
+import {TypeContext} from '../Context/TypeContext';
 
 export const useTypeContext = () => {
   return useContext(TypeContext);

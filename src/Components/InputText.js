@@ -7,7 +7,7 @@ import {
   InputTextField,
   InputTextIcon,
 } from '../Styles/InputTextStyles';
-import {useTypeContext} from '../Context/TypeCustomHook';
+import {useTypeContext} from '../CustomHooks/useTypeContext';
 
 export const InputText = ({
   searchText,
