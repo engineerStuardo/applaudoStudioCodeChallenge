@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react';
 import {getFullData, getSearch} from '../Services/Services';
 
 export const useApi = typeCategory => {
-  const [animes, setAnimes] = useState([]);
+  const [dataByCategory, setDataByCategory] = useState([]);
   const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(false);
   const [type, setType] = useState(typeCategory);
@@ -15,11 +15,11 @@ export const useApi = typeCategory => {
       setLoading(true);
       if (start) {
         const data = await getFullData(type, 0);
-        setAnimes(data);
+        setDataByCategory(data);
         setOffset(10);
       } else {
         const data = await getFullData(type, offset);
-        setAnimes([...animes, ...data]);
+        setDataByCategory([...dataByCategory, ...data]);
         setOffset(offset + 10);
       }
     } catch (error) {
@@ -34,7 +34,7 @@ export const useApi = typeCategory => {
     try {
       setLoadingSearch(true);
       const data = await getSearch(type, text);
-      setAnimes(data);
+      setDataByCategory(data);
     } catch (error) {
       console.log(error);
       setLoadingSearch(false);
@@ -47,7 +47,7 @@ export const useApi = typeCategory => {
     try {
       setLoading(true);
       const data = await getSearch(type, searchText, offset);
-      setAnimes([...animes, ...data]);
+      setDataByCategory([...dataByCategory, ...data]);
       setOffset(offset + 10);
     } catch (error) {
       console.log(error);
@@ -62,10 +62,10 @@ export const useApi = typeCategory => {
   }, []);
 
   return {
-    animes,
+    dataByCategory,
     offset,
     loading,
-    setAnimes,
+    setDataByCategory,
     setOffset,
     setLoading,
     searchCategoryByText,
