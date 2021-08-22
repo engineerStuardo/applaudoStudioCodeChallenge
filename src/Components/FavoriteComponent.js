@@ -1,12 +1,10 @@
 import React from 'react';
-import {Dimensions, TouchableOpacity} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Divider} from 'react-native-paper';
 
 import {Description} from './Description';
 import {DescriptionContainer} from '../Styles/FavoriteComponentStyles';
-
-const {width} = Dimensions.get('screen');
 
 export const FavoriteComponent = ({favorite}) => {
   const navigation = useNavigation();
@@ -25,7 +23,7 @@ export const FavoriteComponent = ({favorite}) => {
             type: favoriteType,
           })
         }>
-        <DescriptionContainer animeWidth={width}>
+        <DescriptionContainer>
           <Description dataInfo={favorite.item} />
         </DescriptionContainer>
       </TouchableOpacity>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Dimensions} from 'react-native';
+import {View, Text} from 'react-native';
 
 import {FavoriteButton} from '../Components/FavouriteButton';
 import {useFavoritesContext} from '../CustomHooks/useFavoritesContext';
@@ -11,8 +11,6 @@ import {
   SubTitleText,
 } from '../Styles/DescriptionStyles';
 import {useOrientation} from '../CustomHooks/useOrientation';
-
-const {width} = Dimensions.get('screen');
 
 export const Description = ({dataInfo}) => {
   const {favorites} = useFavoritesContext();
@@ -44,7 +42,7 @@ export const Description = ({dataInfo}) => {
       <View>
         <FavoriteButton data={dataInfo} isFavorite={isFavorite} isDescription />
       </View>
-      <InfoContainer animeWidth={width} isPortrait={orientation.isPortrait}>
+      <InfoContainer isPortrait={orientation.isPortrait}>
         <TitleText>{titles.en || titles.en_jp || 'Title Not found'}</TitleText>
         <SubTitleText>Popularity Rank: </SubTitleText>
         <Text>{popularityRank || 'Not Found'}</Text>

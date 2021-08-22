@@ -12,7 +12,7 @@ import {YoutubeButtonComponent} from './YoutubeButtonComponent';
 import {ShareButtonComponent} from './ShareButtonComponent';
 import {useOrientation} from '../CustomHooks/useOrientation';
 
-const {width, height} = Dimensions.get('screen');
+const {height} = Dimensions.get('screen');
 
 export const DetailContainer = ({dataInfo, moreSynopsis, setMoreSynopsis}) => {
   const {

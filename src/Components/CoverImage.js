@@ -5,7 +5,7 @@ import {CoverImageContainer, CoverImage} from '../Styles/DetailStyles';
 
 const {width, height} = Dimensions.get('screen');
 
-export const TopCoverImage = ({dataInfo, navigation}) => {
+export const TopCoverImage = ({dataInfo}) => {
   return (
     <>
       <CoverImageContainer animation="slideInUp" delay={400}>

@@ -1,12 +1,10 @@
 import React from 'react';
-import {FlatList, Dimensions} from 'react-native';
+import {FlatList} from 'react-native';
 
 import {CardList} from './CardList';
 import {ListLoader} from './ListLoader';
 import {ListImageContainer} from '../Styles/ListImagesStyles';
 import {useOrientation} from '../CustomHooks/useOrientation';
-
-const {width} = Dimensions.get('screen');
 
 export const ListImages = ({
   dataList,
@@ -23,7 +21,6 @@ export const ListImages = ({
 
   return (
     <ListImageContainer
-      containerWidth={width}
       isPortrait={orientation.isPortrait}
       orientation={orientation}>
       {dataList && !loadingSearch && (
