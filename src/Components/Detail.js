@@ -1,37 +1,20 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {ScrollView, View} from 'react-native';
 
 import {ListLoader} from './ListLoader';
-import {getDataById} from '../Services/Services';
 import {TopCoverImage} from './CoverImage';
 import {DetailContainer} from './DetailContainer';
 import {useOrientation} from '../CustomHooks/useOrientation';
 import {BackgroundImage} from '../Styles/DetailStyles';
 import {GoBackIcon} from './GoBackIcon';
+import {useDetail} from '../CustomHooks/useDetail';
 
 export const Detail = ({route, navigation}) => {
   const {id, type} = route.params;
-  const [data, setData] = useState();
-  const [loading, setLoading] = useState(false);
   const [moreSynopsis, setMoreSynopsis] = useState(false);
   const orientation = useOrientation();
 
-  const getDetail = async () => {
-    try {
-      setLoading(true);
-      const data = await getDataById(type, id);
-      setData(data);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getDetail();
-  }, [id]);
+  const {data, loading} = useDetail(type, id);
 
   return (
     <ScrollView>
