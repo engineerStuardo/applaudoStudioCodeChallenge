@@ -1,4 +1,3 @@
-import {View} from 'react-native';
 import {TextInput} from 'react-native-paper';
 import styled from 'styled-components/native';
 import * as Animatable from 'react-native-animatable';
