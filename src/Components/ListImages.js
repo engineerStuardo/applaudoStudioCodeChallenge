@@ -21,8 +21,6 @@ export const ListImages = ({
 
   return (
     <ListImageContainer
-      animation="swing"
-      iterationCount={2}
       isPortrait={orientation.isPortrait}
       orientation={orientation}>
       {dataList && !loadingSearch && (

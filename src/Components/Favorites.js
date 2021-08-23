@@ -14,7 +14,7 @@ export const Favorites = () => {
   const keyExtractor = favorite => `${favorite.id}+${Math.random()}`;
 
   return (
-    <FavoritesContainer isPortrait={orientation.isPortrait}>
+    <FavoritesContainer animation="flipInX" isPortrait={orientation.isPortrait}>
       <FavoriteImage
         isPortrait={orientation.isPortrait}
         animation="pulse"

@@ -1,8 +1,7 @@
-import {View} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import styled from 'styled-components/native';
 
-const ScreenContainer = styled(View)`
+const ScreenContainer = styled(Animatable.View)`
   flex: 1;
   background-color: #ffffff;
   flex-direction: ${({isPortrait}) => (isPortrait ? 'column' : 'row')};

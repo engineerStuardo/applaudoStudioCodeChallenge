@@ -1,8 +1,7 @@
 import {View} from 'react-native';
 import styled from 'styled-components/native';
-import * as Animatable from 'react-native-animatable';
 
-const ListImageContainer = styled(Animatable.View)`
+const ListImageContainer = styled(View)`
   flex: 1;
   width: 360px;
   align-items: center;

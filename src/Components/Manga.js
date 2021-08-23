@@ -27,7 +27,9 @@ export const Manga = () => {
       {mangas.length === 0 ? (
         <ListLoader loading />
       ) : (
-        <ScreenContainer isPortrait={orientation.isPortrait}>
+        <ScreenContainer
+          animation="flipInY"
+          isPortrait={orientation.isPortrait}>
           <View>
             <InputText
               isPortrait={orientation.isPortrait}
