@@ -53,6 +53,10 @@ const BackgroundImage = styled(ImageBackground)`
   justify-content: center;
 `;
 
+const DetailMainContainer = styled(View)`
+  align-items: center;
+`;
+
 const DescriptionContainer = styled(Animatable.View)`
   z-index: 10;
   border-top-left-radius: 50px;
@@ -64,7 +68,7 @@ const DescriptionContainer = styled(Animatable.View)`
   margin-bottom: ${({isPortrait}) => (isPortrait ? '0px' : '30px')};
   border-bottom-left-radius: ${({isPortrait}) => (isPortrait ? '0px' : '50px')};
   border-bottom-right-radius: ${({isPortrait}) =>
-    isPortrait ? '0px' : '50px'}; ;
+    isPortrait ? '0px' : '50px'};
 `;
 
 const SynopsisContainer = styled(View)`
@@ -93,6 +97,7 @@ export {
   CoverImageContainer,
   CoverImage,
   BackgroundImage,
+  DetailMainContainer,
   DescriptionContainer,
   SynopsisContainer,
   SynopsisText,

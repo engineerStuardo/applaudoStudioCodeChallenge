@@ -5,7 +5,7 @@ import {ListLoader} from './ListLoader';
 import {TopCoverImage} from './CoverImage';
 import {DetailContainer} from './DetailContainer';
 import {useOrientation} from '../CustomHooks/useOrientation';
-import {BackgroundImage} from '../Styles/DetailStyles';
+import {BackgroundImage, DetailMainContainer} from '../Styles/DetailStyles';
 import {GoBackIcon} from './GoBackIcon';
 import {useDetail} from '../CustomHooks/useDetail';
 
@@ -30,13 +30,13 @@ export const Detail = ({route, navigation}) => {
             <TopCoverImage dataInfo={data} navigation={navigation} />
           )}
           <GoBackIcon navigation={navigation} />
-          <View style={{alignItems: 'center'}}>
+          <DetailMainContainer isPortrait={orientation.isPortrait}>
             <DetailContainer
               dataInfo={data}
               moreSynopsis={moreSynopsis}
               setMoreSynopsis={setMoreSynopsis}
             />
-          </View>
+          </DetailMainContainer>
         </BackgroundImage>
       )}
     </ScrollView>
