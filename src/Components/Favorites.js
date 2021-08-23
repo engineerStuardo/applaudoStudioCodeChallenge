@@ -17,6 +17,7 @@ export const Favorites = () => {
     <FavoritesContainer animation="flipInX" isPortrait={orientation.isPortrait}>
       <FavoriteImage
         isPortrait={orientation.isPortrait}
+        orientation={orientation}
         animation="pulse"
         iterationCount="infinite"
         source={require('../Assets/Images/favorite.jpg')}
