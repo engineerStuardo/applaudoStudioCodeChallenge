@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {ScrollView, View} from 'react-native';
+import {ScrollView} from 'react-native';
 
 import {ListLoader} from './ListLoader';
 import {TopCoverImage} from './CoverImage';
@@ -17,28 +17,32 @@ export const Detail = ({route, navigation}) => {
   const {data, loading} = useDetail(type, id);
 
   return (
-    <ScrollView>
+    <>
       {loading && <ListLoader loading />}
       {data && (
-        <BackgroundImage
-          source={{
-            uri: orientation.isPortrait
-              ? 'white'
-              : data.attributes.posterImage.original,
-          }}>
-          {orientation.isPortrait && (
-            <TopCoverImage dataInfo={data} navigation={navigation} />
-          )}
+        <>
+          <ScrollView>
+            <BackgroundImage
+              source={{
+                uri: orientation.isPortrait
+                  ? 'white'
+                  : data.attributes.posterImage.original,
+              }}>
+              {orientation.isPortrait && (
+                <TopCoverImage dataInfo={data} navigation={navigation} />
+              )}
+              <DetailMainContainer isPortrait={orientation.isPortrait}>
+                <DetailContainer
+                  dataInfo={data}
+                  moreSynopsis={moreSynopsis}
+                  setMoreSynopsis={setMoreSynopsis}
+                />
+              </DetailMainContainer>
+            </BackgroundImage>
+          </ScrollView>
           <GoBackIcon navigation={navigation} />
-          <DetailMainContainer isPortrait={orientation.isPortrait}>
-            <DetailContainer
-              dataInfo={data}
-              moreSynopsis={moreSynopsis}
-              setMoreSynopsis={setMoreSynopsis}
-            />
-          </DetailMainContainer>
-        </BackgroundImage>
+        </>
       )}
-    </ScrollView>
+    </>
   );
 };
