@@ -27,7 +27,9 @@ export const ListImages = ({
         <FlatList
           key={orientation.isPortrait && 2}
           onEndReached={
-            searchText ? () => getMoreDataBySearch() : () => getData()
+            searchText
+              ? () => getMoreDataBySearch()
+              : () => getData(false, true)
           }
           onEndReachedThreshold={0.5}
           ListFooterComponent={listFooter}

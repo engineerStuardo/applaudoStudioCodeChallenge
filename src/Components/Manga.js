@@ -12,6 +12,7 @@ export const Manga = () => {
   const orientation = useOrientation();
 
   const {
+    loadingScreen,
     dataByCategory: mangas,
     loading,
     searchCategoryByText,
@@ -24,8 +25,8 @@ export const Manga = () => {
 
   return (
     <>
-      {loading ? (
-        <ListLoader loading />
+      {loadingScreen ? (
+        <ListLoader loadingScreen />
       ) : (
         <ScreenContainer
           animation="flipInY"

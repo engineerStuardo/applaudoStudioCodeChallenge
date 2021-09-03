@@ -6,13 +6,14 @@ export const useApi = typeCategory => {
   const [dataByCategory, setDataByCategory] = useState([]);
   const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [loadingScreen, setLoadingScreen] = useState(false);
   const [type, setType] = useState(typeCategory);
   const [loadingSearch, setLoadingSearch] = useState(false);
   const [searchText, setSearchText] = useState();
 
-  const apiRequest = async start => {
+  const apiRequest = async (start, spinner) => {
     try {
-      setLoading(true);
+      spinner ? setLoading(true) : setLoadingScreen(true);
       if (start) {
         const data = await getFullData(type, 0);
         setDataByCategory(data);
@@ -24,9 +25,9 @@ export const useApi = typeCategory => {
       }
     } catch (error) {
       console.log(error);
-      setLoading(false);
+      spinner ? setLoading(false) : setLoadingScreen(false);
     } finally {
-      setLoading(false);
+      spinner ? setLoading(false) : setLoadingScreen(false);
     }
   };
 
@@ -62,6 +63,7 @@ export const useApi = typeCategory => {
   }, []);
 
   return {
+    loadingScreen,
     dataByCategory,
     offset,
     loading,
