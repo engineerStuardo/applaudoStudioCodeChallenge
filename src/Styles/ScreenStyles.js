@@ -1,3 +1,4 @@
+import {View} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import styled from 'styled-components/native';
 
@@ -13,4 +14,10 @@ const Logo = styled(Animatable.Image)`
   height: 150px;
 `;
 
-export {ScreenContainer, Logo};
+const NotFound = styled(View)`
+  flex: 1;
+  align-items: center;
+  margin-top: 50px;
+`;
+
+export {ScreenContainer, Logo, NotFound};
