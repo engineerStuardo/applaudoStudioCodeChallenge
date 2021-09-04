@@ -1,5 +1,6 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
+import {useSelector} from 'react-redux';
 
 import {
   MainContainer,
@@ -13,6 +14,9 @@ import {useOrientation} from '../CustomHooks/useOrientation';
 
 export const HomeScreen = () => {
   const orientation = useOrientation();
+
+  const state = useSelector(state => state.seriesReducer);
+  console.log(state);
 
   return (
     <ScrollView>
