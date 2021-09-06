@@ -12,40 +12,35 @@ import * as actions from '../Redux/Actions/seriesActions';
 export const Anime = () => {
   const orientation = useOrientation();
   const dispatch = useDispatch();
-  const {loading, type, anime, loadingSearch, offset} = useSelector(
+  const {loading, type, anime, offsetAnime} = useSelector(
     state => state.seriesReducer,
   );
 
   useEffect(() => {
-    type === 'anime' && dispatch(actions.getData(type, false, offset));
+    type === 'anime' && dispatch(actions.getData(type, false, 0));
   }, [type]);
 
   return (
     <>
-      {loading ? (
-        <ListLoader loading />
-      ) : (
-        <ScreenContainer
-          animation="flipInY"
-          isPortrait={orientation.isPortrait}>
-          <View>
-            <InputText isPortrait={orientation.isPortrait} />
-            <Logo
-              animation="pulse"
-              iterationCount="infinite"
-              source={require('../Assets/Images/anime.png')}
-            />
-          </View>
-          {loadingSearch && <ListLoader loadingSearch />}
-          {anime.length === 0 ? (
-            <NotFound>
-              <Text>No Anime was found... Try again.</Text>
-            </NotFound>
-          ) : (
-            <ListImages dataList={anime} />
-          )}
-        </ScreenContainer>
-      )}
+      <ScreenContainer animation="flipInY" isPortrait={orientation.isPortrait}>
+        <View>
+          <InputText isPortrait={orientation.isPortrait} />
+          <Logo
+            animation="pulse"
+            iterationCount="infinite"
+            source={require('../Assets/Images/anime.png')}
+          />
+        </View>
+        {loading ? (
+          <ListLoader loading />
+        ) : anime.length === 0 ? (
+          <NotFound>
+            <Text>No Anime was found... Try again.</Text>
+          </NotFound>
+        ) : (
+          <ListImages dataList={anime} offset={offsetAnime} />
+        )}
+      </ScreenContainer>
     </>
   );
 };

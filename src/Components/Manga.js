@@ -12,40 +12,35 @@ import * as actions from '../Redux/Actions/seriesActions';
 export const Manga = () => {
   const orientation = useOrientation();
   const dispatch = useDispatch();
-  const {loading, type, manga, loadingSearch, offset} = useSelector(
+  const {loading, type, manga, offsetManga} = useSelector(
     state => state.seriesReducer,
   );
 
   useEffect(() => {
-    type === 'manga' && dispatch(actions.getData(type, false, offset));
+    type === 'manga' && dispatch(actions.getData(type, false, 0));
   }, [type]);
 
   return (
     <>
-      {loading ? (
-        <ListLoader loading />
-      ) : (
-        <ScreenContainer
-          animation="flipInY"
-          isPortrait={orientation.isPortrait}>
-          <View>
-            <InputText isPortrait={orientation.isPortrait} />
-            <Logo
-              animation="pulse"
-              iterationCount="infinite"
-              source={require('../Assets/Images/manga.png')}
-            />
-            {loadingSearch && <ListLoader loadingSearch />}
-          </View>
-          {manga.length === 0 ? (
-            <NotFound>
-              <Text>No Manga was found... Try again.</Text>
-            </NotFound>
-          ) : (
-            <ListImages dataList={manga} />
-          )}
-        </ScreenContainer>
-      )}
+      <ScreenContainer animation="flipInY" isPortrait={orientation.isPortrait}>
+        <View>
+          <InputText isPortrait={orientation.isPortrait} />
+          <Logo
+            animation="pulse"
+            iterationCount="infinite"
+            source={require('../Assets/Images/manga.png')}
+          />
+        </View>
+        {loading ? (
+          <ListLoader loading />
+        ) : manga.length === 0 ? (
+          <NotFound>
+            <Text>No Manga was found... Try again.</Text>
+          </NotFound>
+        ) : (
+          <ListImages dataList={manga} offset={offsetManga} />
+        )}
+      </ScreenContainer>
     </>
   );
 };

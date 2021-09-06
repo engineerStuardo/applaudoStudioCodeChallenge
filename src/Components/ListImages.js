@@ -1,19 +1,21 @@
 import React from 'react';
 import {FlatList} from 'react-native';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 
 import {CardList} from './CardList';
 import {ListLoader} from './ListLoader';
 import {ListImageContainer} from '../Styles/ListImagesStyles';
 import {useOrientation} from '../CustomHooks/useOrientation';
+import * as actions from '../Redux/Actions/seriesActions';
 
-export const ListImages = ({dataList}) => {
+export const ListImages = ({dataList, offset}) => {
   const orientation = useOrientation();
-  const {searchText, loadingSearch, loading} = useSelector(
+  const dispatch = useDispatch();
+  const {searchText, type, loadingFooter} = useSelector(
     state => state.seriesReducer,
   );
 
-  const listFooter = () => <ListLoader loading={loading} />;
+  const listFooter = () => <ListLoader loadingFooter={loadingFooter} />;
   const renderItem = dataItem => <CardList dataItem={dataItem} />;
   const keyExtractor = dataItem => dataItem.id;
 
@@ -21,13 +23,15 @@ export const ListImages = ({dataList}) => {
     <ListImageContainer
       isPortrait={orientation.isPortrait}
       orientation={orientation}>
-      {dataList && !loadingSearch && (
+      {dataList && (
         <FlatList
           key={orientation.isPortrait && 2}
           onEndReached={
             searchText
               ? () => getMoreDataBySearch()
-              : () => getData(false, true)
+              : () =>
+                  !loadingFooter &&
+                  dispatch(actions.getData(type, false, offset, true))
           }
           onEndReachedThreshold={0.5}
           ListFooterComponent={listFooter}

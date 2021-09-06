@@ -3,10 +3,10 @@ import {ActivityIndicator, Colors} from 'react-native-paper';
 
 import {LoaderContainer} from '../Styles/ListLoaderStyles';
 
-export const ListLoader = ({loading, loadingSearch, loadingScreen}) => {
+export const ListLoader = ({loading, loadingSearch, loadingFooter}) => {
   return (
     <LoaderContainer>
-      {(loading || loadingSearch || loadingScreen) && (
+      {(loading || loadingSearch || loadingFooter) && (
         <ActivityIndicator
           animating={true}
           color={Colors.yellow800}

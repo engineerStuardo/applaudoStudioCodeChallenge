@@ -6,16 +6,16 @@ export const addType = type => ({
   payload: type,
 });
 
-export const getData = (type, start, offset) => {
+export const getData = (type, start, offset, more = false) => {
   return async dispatch => {
-    dispatch(searchStarted());
+    dispatch(searchStarted(start, more));
     try {
       if (start) {
         const data = await getFullData(type, 0);
-        dispatch(searchSuccess(data));
+        dispatch(searchSuccess(data, start));
       } else {
         const data = await getFullData(type, offset);
-        dispatch(searchSuccess(data, start));
+        dispatch(searchSuccess(data, start, more));
       }
     } catch (error) {
       dispatch(searchFailure(error));
@@ -23,16 +23,18 @@ export const getData = (type, start, offset) => {
   };
 };
 
-const searchSuccess = (data, start) => ({
+const searchSuccess = (data, start, more) => ({
   type: SeriesActionsTypes.DATA_SUCCESS,
   payload: {
     data,
     start,
+    more,
   },
 });
 
-const searchStarted = () => ({
+const searchStarted = (start, more) => ({
   type: SeriesActionsTypes.DATA_STARTED,
+  payload: {start, more},
 });
 
 const searchFailure = error => ({
