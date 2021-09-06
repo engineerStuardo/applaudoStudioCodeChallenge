@@ -5,8 +5,8 @@ const initialState = {
   loadingFooter: false,
   loadingSearch: false,
   type: '',
-  anime: [],
-  manga: [],
+  anime: {},
+  manga: {},
   offset: 0,
   searchText: '',
   error: '',
@@ -19,18 +19,20 @@ export const seriesReducer = (state = initialState, action) => {
         ...state,
         type: action.payload,
       };
-    case SeriesActionsTypes.SEARCH_STARTED:
+    case SeriesActionsTypes.DATA_STARTED:
       return {
         ...state,
         loading: true,
       };
-    case SeriesActionsTypes.SEARCH_SUCCESS:
-      let animes = [];
-      let mangas = [];
+    case SeriesActionsTypes.DATA_SUCCESS:
+      let animes = {};
+      let mangas = {};
       if (state.type === 'anime') {
-        animes = [action.payload];
+        animes = action.payload.data;
+        mangas = state.manga;
       } else {
-        mangas = [action.payload];
+        mangas = action.payload.data;
+        animes = state.anime;
       }
       return {
         ...state,
@@ -38,7 +40,7 @@ export const seriesReducer = (state = initialState, action) => {
         manga: mangas,
         loading: false,
       };
-    case SeriesActionsTypes.SEARCH_FAILURE:
+    case SeriesActionsTypes.DATA_FAILURE:
       return {
         ...state,
         error: action.payload,

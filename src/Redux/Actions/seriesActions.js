@@ -15,7 +15,7 @@ export const getData = (type, start, offset) => {
         dispatch(searchSuccess(data));
       } else {
         const data = await getFullData(type, offset);
-        dispatch(searchSuccess(data));
+        dispatch(searchSuccess(data, start));
       }
     } catch (error) {
       dispatch(searchFailure(error));
@@ -23,19 +23,20 @@ export const getData = (type, start, offset) => {
   };
 };
 
-const searchSuccess = data => ({
-  type: SeriesActionsTypes.SEARCH_SUCCESS,
+const searchSuccess = (data, start) => ({
+  type: SeriesActionsTypes.DATA_SUCCESS,
   payload: {
-    ...data,
+    data,
+    start,
   },
 });
 
 const searchStarted = () => ({
-  type: SeriesActionsTypes.SEARCH_STARTED,
+  type: SeriesActionsTypes.DATA_STARTED,
 });
 
 const searchFailure = error => ({
-  type: SeriesActionsTypes.SEARCH_FAILURE,
+  type: SeriesActionsTypes.DATA_FAILURE,
   payload: {
     error,
   },

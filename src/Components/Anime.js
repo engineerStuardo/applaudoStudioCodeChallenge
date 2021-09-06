@@ -7,24 +7,23 @@ import {InputText} from '../Components/InputText';
 import {ListImages} from '../Components/ListImages';
 import {ScreenContainer, Logo, NotFound} from '../Styles/ScreenStyles';
 import {useOrientation} from '../CustomHooks/useOrientation';
-import {useApi} from '../CustomHooks/useApi';
 import * as actions from '../Redux/Actions/seriesActions';
 
 export const Anime = () => {
   const orientation = useOrientation();
   const dispatch = useDispatch();
-  const {loading, type, anime, loadingSearch} = useSelector(
+  const {loading, type, anime, loadingSearch, offset} = useSelector(
     state => state.seriesReducer,
   );
 
   useEffect(() => {
-    dispatch(actions.getData('anime', false, 0));
-  }, []);
+    type === 'anime' && dispatch(actions.getData(type, false, offset));
+  }, [type]);
 
   return (
     <>
       {loading ? (
-        <ListLoader loadingScreen />
+        <ListLoader loading />
       ) : (
         <ScreenContainer
           animation="flipInY"

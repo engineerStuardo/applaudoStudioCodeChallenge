@@ -1,44 +1,35 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
 
 import {ListLoader} from '../Components/ListLoader';
 import {InputText} from '../Components/InputText';
 import {ListImages} from '../Components/ListImages';
 import {ScreenContainer, Logo, NotFound} from '../Styles/ScreenStyles';
 import {useOrientation} from '../CustomHooks/useOrientation';
-import {useApi} from '../CustomHooks/useApi';
+import * as actions from '../Redux/Actions/seriesActions';
 
 export const Manga = () => {
   const orientation = useOrientation();
+  const dispatch = useDispatch();
+  const {loading, type, manga, loadingSearch, offset} = useSelector(
+    state => state.seriesReducer,
+  );
 
-  const {
-    loadingScreen,
-    dataByCategory: mangas,
-    loading,
-    searchCategoryByText,
-    getMoreDataBySearch,
-    loadingSearch,
-    searchText,
-    setSearchText,
-    apiRequest,
-  } = useApi('manga');
+  useEffect(() => {
+    type === 'manga' && dispatch(actions.getData(type, false, offset));
+  }, [type]);
 
   return (
     <>
-      {loadingScreen ? (
-        <ListLoader loadingScreen />
+      {loading ? (
+        <ListLoader loading />
       ) : (
         <ScreenContainer
           animation="flipInY"
           isPortrait={orientation.isPortrait}>
           <View>
-            <InputText
-              isPortrait={orientation.isPortrait}
-              searchText={searchText}
-              setSearchText={setSearchText}
-              searchCategoryByText={searchCategoryByText}
-              getData={apiRequest}
-            />
+            <InputText isPortrait={orientation.isPortrait} />
             <Logo
               animation="pulse"
               iterationCount="infinite"
@@ -46,19 +37,12 @@ export const Manga = () => {
             />
             {loadingSearch && <ListLoader loadingSearch />}
           </View>
-          {mangas.length === 0 ? (
+          {manga.length === 0 ? (
             <NotFound>
               <Text>No Manga was found... Try again.</Text>
             </NotFound>
           ) : (
-            <ListImages
-              dataList={mangas}
-              loadingSearch={loadingSearch}
-              searchText={searchText}
-              getMoreDataBySearch={getMoreDataBySearch}
-              getData={apiRequest}
-              loading={loading}
-            />
+            <ListImages dataList={manga} />
           )}
         </ScreenContainer>
       )}
