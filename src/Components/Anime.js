@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text} from 'react-native';
-import {useDispatch} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 
 import {ListLoader} from '../Components/ListLoader';
 import {InputText} from '../Components/InputText';
@@ -13,36 +13,24 @@ import * as actions from '../Redux/Actions/seriesActions';
 export const Anime = () => {
   const orientation = useOrientation();
   const dispatch = useDispatch();
-  dispatch(actions.getData('anime', false, 10));
+  const {loading, type, anime, loadingSearch} = useSelector(
+    state => state.seriesReducer,
+  );
 
-  const {
-    loadingScreen,
-    dataByCategory: animes,
-    loading,
-    searchCategoryByText,
-    getMoreDataBySearch,
-    loadingSearch,
-    searchText,
-    setSearchText,
-    apiRequest,
-  } = useApi('anime');
+  useEffect(() => {
+    dispatch(actions.getData('anime', false, 0));
+  }, []);
 
   return (
     <>
-      {loadingScreen ? (
+      {loading ? (
         <ListLoader loadingScreen />
       ) : (
         <ScreenContainer
           animation="flipInY"
           isPortrait={orientation.isPortrait}>
           <View>
-            <InputText
-              isPortrait={orientation.isPortrait}
-              searchText={searchText}
-              setSearchText={setSearchText}
-              searchCategoryByText={searchCategoryByText}
-              getData={apiRequest}
-            />
+            <InputText isPortrait={orientation.isPortrait} />
             <Logo
               animation="pulse"
               iterationCount="infinite"
@@ -50,19 +38,12 @@ export const Anime = () => {
             />
           </View>
           {loadingSearch && <ListLoader loadingSearch />}
-          {animes.length === 0 ? (
+          {anime.length === 0 ? (
             <NotFound>
               <Text>No Anime was found... Try again.</Text>
             </NotFound>
           ) : (
-            <ListImages
-              dataList={animes}
-              loadingSearch={loadingSearch}
-              searchText={searchText}
-              getMoreDataBySearch={getMoreDataBySearch}
-              getData={apiRequest}
-              loading={loading}
-            />
+            <ListImages dataList={anime} />
           )}
         </ScreenContainer>
       )}

@@ -10,13 +10,11 @@ import {useOrientation} from '../CustomHooks/useOrientation';
 
 export const CardList = ({dataItem}) => {
   const {
-    item: {
-      attributes: {
-        posterImage: {original},
-      },
-      id: dataId,
-      type: dataType,
+    attributes: {
+      posterImage: {original},
     },
+    id: dataId,
+    type: dataType,
   } = dataItem;
 
   const orientation = useOrientation();

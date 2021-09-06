@@ -1,23 +1,21 @@
 import React from 'react';
 import {FlatList} from 'react-native';
+import {useSelector} from 'react-redux';
 
 import {CardList} from './CardList';
 import {ListLoader} from './ListLoader';
 import {ListImageContainer} from '../Styles/ListImagesStyles';
 import {useOrientation} from '../CustomHooks/useOrientation';
 
-export const ListImages = ({
-  dataList,
-  loadingSearch,
-  searchText,
-  getMoreDataBySearch,
-  getData,
-  loading,
-}) => {
+export const ListImages = ({dataList}) => {
+  const orientation = useOrientation();
+  const {searchText, loadingSearch, loading} = useSelector(
+    state => state.seriesReducer,
+  );
+
   const listFooter = () => <ListLoader loading={loading} />;
   const renderItem = dataItem => <CardList dataItem={dataItem} />;
   const keyExtractor = dataItem => dataItem.id;
-  const orientation = useOrientation();
 
   return (
     <ListImageContainer

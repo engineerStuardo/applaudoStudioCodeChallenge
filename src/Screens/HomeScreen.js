@@ -16,7 +16,7 @@ export const HomeScreen = () => {
   const orientation = useOrientation();
 
   const state = useSelector(state => state.seriesReducer);
-  console.log(state);
+  // console.log(JSON.stringify(state, null, 2));
 
   return (
     <ScrollView>
