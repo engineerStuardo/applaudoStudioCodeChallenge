@@ -1,7 +1,8 @@
 import {SeriesActionsTypes} from '../Types/seriesTypes';
 
 const initialState = {
-  loading: false,
+  loadingAnime: false,
+  loadingManga: false,
   loadingFooter: false,
   loadingSearch: false,
   type: '',
@@ -19,43 +20,55 @@ export const seriesReducer = (state = initialState, action) => {
       return {
         ...state,
         type: action.payload,
-        offsetAnime: 0,
-        offsetManga: 0,
       };
-    case SeriesActionsTypes.DATA_STARTED:
+    case SeriesActionsTypes.DATA_ANIME_STARTED:
       return {
         ...state,
-        loading: action.payload.more ? false : true,
+        loadingAnime: action.payload.more ? false : true,
         loadingFooter: action.payload.more ? true : false,
       };
-    case SeriesActionsTypes.DATA_SUCCESS:
+    case SeriesActionsTypes.DATA_ANIME_SUCCESS:
       let animes = [];
-      let mangas = [];
       let offsetAnimes = 0;
-      let offsetMangas = 0;
-      if (state.type === 'anime') {
-        animes = [...state.anime, ...action.payload.data];
-        offsetAnimes = action.payload.start ? 0 : state.offsetAnime + 10;
-        offsetMangas = state.offsetManga;
-      } else {
-        mangas = [...state.manga, ...action.payload.data];
-        offsetMangas = action.payload.start ? 0 : state.offsetManga + 10;
-        offsetAnimes = state.offsetAnime;
-      }
+      animes = [...state.anime, ...action.payload.data];
+      offsetAnimes = action.payload.start ? 0 : state.offsetAnime + 10;
       return {
         ...state,
         anime: animes,
-        manga: mangas,
-        loading: false,
+        loadingAnime: false,
         loadingFooter: false,
         offsetAnime: offsetAnimes,
-        offsetManga: offsetMangas,
       };
-    case SeriesActionsTypes.DATA_FAILURE:
+    case SeriesActionsTypes.DATA_ANIME_FAILURE:
       return {
         ...state,
         error: action.payload,
-        loading: false,
+        loadingAnime: false,
+        loadingFooter: false,
+      };
+    case SeriesActionsTypes.DATA_MANGA_STARTED:
+      return {
+        ...state,
+        loadingManga: action.payload.more ? false : true,
+        loadingFooter: action.payload.more ? true : false,
+      };
+    case SeriesActionsTypes.DATA_MANGA_SUCCESS:
+      let mangas = [];
+      let offsetManga = 0;
+      mangas = [...state.manga, ...action.payload.data];
+      offsetManga = action.payload.start ? 0 : state.offsetManga + 10;
+      return {
+        ...state,
+        manga: mangas,
+        loadingManga: false,
+        loadingFooter: false,
+        offsetManga: offsetManga,
+      };
+    case SeriesActionsTypes.DATA_MANGA_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        loadingManga: false,
         loadingFooter: false,
       };
 

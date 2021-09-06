@@ -12,13 +12,11 @@ import * as actions from '../Redux/Actions/seriesActions';
 export const Manga = () => {
   const orientation = useOrientation();
   const dispatch = useDispatch();
-  const {loading, type, manga, offsetManga} = useSelector(
-    state => state.seriesReducer,
-  );
+  const {loadingManga, manga} = useSelector(state => state.seriesReducer);
 
   useEffect(() => {
-    type === 'manga' && dispatch(actions.getData(type, false, 0));
-  }, [type]);
+    dispatch(actions.getDataManga(false, 0));
+  }, []);
 
   return (
     <>
@@ -31,14 +29,10 @@ export const Manga = () => {
             source={require('../Assets/Images/manga.png')}
           />
         </View>
-        {loading ? (
-          <ListLoader loading />
-        ) : manga.length === 0 ? (
-          <NotFound>
-            <Text>No Manga was found... Try again.</Text>
-          </NotFound>
+        {loadingManga ? (
+          <ListLoader loading={loadingManga} />
         ) : (
-          <ListImages dataList={manga} offset={offsetManga} />
+          <ListImages dataList={manga} />
         )}
       </ScreenContainer>
     </>

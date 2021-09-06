@@ -9,22 +9,43 @@ const headers = {
   },
 };
 
-export const getFullData = async (type, offset) => {
+export const getFullDataAnime = async offset => {
   const resp = await axios.get(
-    `${apiURL}/${type}?page[limit]=10&page[offset]=${offset}`,
+    `${apiURL}/anime?page[limit]=10&page[offset]=${offset}`,
     headers,
   );
   return resp.data.data;
 };
 
-export const getDataById = async (type, id) => {
-  const resp = await axios.get(`${apiURL}/${type}/${id}`, headers);
+export const getDataByIdAnime = async id => {
+  const resp = await axios.get(`${apiURL}/anime/${id}`, headers);
   return resp.data.data;
 };
 
-export const getSearch = async (type, text, offset) => {
+export const getSearchAnime = async (text, offset) => {
   const resp = await axios.get(
-    `${apiURL}/${type}?filter[text]=${text}&page[offset]=${offset}`,
+    `${apiURL}/anime?filter[text]=${text}&page[offset]=${offset}`,
+    headers,
+  );
+  return resp.data.data;
+};
+
+export const getFullDataManga = async offset => {
+  const resp = await axios.get(
+    `${apiURL}/manga?page[limit]=10&page[offset]=${offset}`,
+    headers,
+  );
+  return resp.data.data;
+};
+
+export const getDataByIdManga = async id => {
+  const resp = await axios.get(`${apiURL}/manga/${id}`, headers);
+  return resp.data.data;
+};
+
+export const getSearchManga = async (text, offset) => {
+  const resp = await axios.get(
+    `${apiURL}/manga?filter[text]=${text}&page[offset]=${offset}`,
     headers,
   );
   return resp.data.data;

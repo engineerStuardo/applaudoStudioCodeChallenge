@@ -12,13 +12,11 @@ import * as actions from '../Redux/Actions/seriesActions';
 export const Anime = () => {
   const orientation = useOrientation();
   const dispatch = useDispatch();
-  const {loading, type, anime, offsetAnime} = useSelector(
-    state => state.seriesReducer,
-  );
+  const {loadingAnime, anime} = useSelector(state => state.seriesReducer);
 
   useEffect(() => {
-    type === 'anime' && dispatch(actions.getData(type, false, 0));
-  }, [type]);
+    dispatch(actions.getDataAnime(false, 0));
+  }, []);
 
   return (
     <>
@@ -31,14 +29,10 @@ export const Anime = () => {
             source={require('../Assets/Images/anime.png')}
           />
         </View>
-        {loading ? (
-          <ListLoader loading />
-        ) : anime.length === 0 ? (
-          <NotFound>
-            <Text>No Anime was found... Try again.</Text>
-          </NotFound>
+        {loadingAnime ? (
+          <ListLoader loading={loadingAnime} />
         ) : (
-          <ListImages dataList={anime} offset={offsetAnime} />
+          <ListImages dataList={anime} />
         )}
       </ScreenContainer>
     </>

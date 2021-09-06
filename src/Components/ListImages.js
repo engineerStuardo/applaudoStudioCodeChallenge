@@ -8,12 +8,11 @@ import {ListImageContainer} from '../Styles/ListImagesStyles';
 import {useOrientation} from '../CustomHooks/useOrientation';
 import * as actions from '../Redux/Actions/seriesActions';
 
-export const ListImages = ({dataList, offset}) => {
+export const ListImages = ({dataList}) => {
   const orientation = useOrientation();
   const dispatch = useDispatch();
-  const {searchText, type, loadingFooter} = useSelector(
-    state => state.seriesReducer,
-  );
+  const {searchText, type, loadingFooter, offsetAnime, offsetManga} =
+    useSelector(state => state.seriesReducer);
 
   const listFooter = () => <ListLoader loadingFooter={loadingFooter} />;
   const renderItem = dataItem => <CardList dataItem={dataItem} />;
@@ -30,8 +29,9 @@ export const ListImages = ({dataList, offset}) => {
             searchText
               ? () => getMoreDataBySearch()
               : () =>
-                  !loadingFooter &&
-                  dispatch(actions.getData(type, false, offset, true))
+                  !loadingFooter && type === 'anime'
+                    ? dispatch(actions.getDataAnime(false, offsetAnime, true))
+                    : dispatch(actions.getDataManga(false, offsetAnime, true))
           }
           onEndReachedThreshold={0.5}
           ListFooterComponent={listFooter}
