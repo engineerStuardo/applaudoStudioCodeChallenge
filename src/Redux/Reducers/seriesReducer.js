@@ -78,6 +78,7 @@ export const seriesReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+        animeDetail: {},
       };
     case SeriesActionsTypes.DATA_ANIME_BY_ID_SUCCESS:
       return {
@@ -86,6 +87,24 @@ export const seriesReducer = (state = initialState, action) => {
         animeDetail: action.payload,
       };
     case SeriesActionsTypes.DATA_ANIME_BY_ID_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+      };
+    case SeriesActionsTypes.DATA_MANGA_BY_ID_STARTED:
+      return {
+        ...state,
+        loading: true,
+        mangaDetail: {},
+      };
+    case SeriesActionsTypes.DATA_MANGA_BY_ID_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        mangaDetail: action.payload,
+      };
+    case SeriesActionsTypes.DATA_MANGA_BY_ID_FAILURE:
       return {
         ...state,
         loading: false,

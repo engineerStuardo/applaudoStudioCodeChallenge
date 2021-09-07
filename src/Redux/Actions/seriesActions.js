@@ -3,6 +3,7 @@ import {
   getFullDataAnime,
   getFullDataManga,
   getDataByIdAnime,
+  getDataByIdManga,
 } from '../../Services/Services';
 
 export const addType = type => ({
@@ -111,6 +112,36 @@ const animeByIdStarted = () => ({
 
 const animeByIdFailure = error => ({
   type: SeriesActionsTypes.DATA_ANIME_BY_ID_FAILURE,
+  payload: {
+    error,
+  },
+});
+
+export const getDataMangaById = id => {
+  return async dispatch => {
+    dispatch(mangaByIdStarted());
+    try {
+      const data = await getDataByIdManga(id);
+      dispatch(mangaByIdSuccess(data));
+    } catch (error) {
+      dispatch(animeByIdFailure(error));
+    }
+  };
+};
+
+const mangaByIdSuccess = data => ({
+  type: SeriesActionsTypes.DATA_MANGA_BY_ID_SUCCESS,
+  payload: {
+    data,
+  },
+});
+
+const mangaByIdStarted = () => ({
+  type: SeriesActionsTypes.DATA_MANGA_BY_ID_STARTED,
+});
+
+const mangaByIdFailure = error => ({
+  type: SeriesActionsTypes.DATA_MANGA_BY_ID_FAILURE,
   payload: {
     error,
   },

@@ -16,18 +16,26 @@ export const Detail = ({route, navigation}) => {
   const [moreSynopsis, setMoreSynopsis] = useState(false);
   const orientation = useOrientation();
   const dispatch = useDispatch();
-  const {type, animeDetail, loading} = useSelector(
+  const {type, animeDetail, mangaDetail, loading} = useSelector(
     state => state.seriesReducer,
   );
   const [data, setData] = useState({});
 
   useEffect(() => {
-    dispatch(actions.getDataAnimeById(id));
+    if (type === 'anime') {
+      dispatch(actions.getDataAnimeById(id));
+    } else {
+      dispatch(actions.getDataMangaById(id));
+    }
   }, []);
 
   useEffect(() => {
-    setData(animeDetail);
-  }, [animeDetail]);
+    if (type === 'anime') {
+      setData(animeDetail);
+    } else {
+      setData(mangaDetail);
+    }
+  }, [animeDetail, mangaDetail]);
 
   return (
     <>
