@@ -14,7 +14,7 @@ export const TopCoverImage = ({dataInfo}) => {
           coverHeight={height}
           resizeMode="cover"
           source={{
-            uri: dataInfo.attributes.posterImage.original,
+            uri: dataInfo.data.attributes.posterImage.original,
           }}
         />
       </CoverImageContainer>

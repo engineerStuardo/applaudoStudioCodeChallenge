@@ -16,7 +16,9 @@ const {height} = Dimensions.get('screen');
 
 export const DetailContainer = ({dataInfo, moreSynopsis, setMoreSynopsis}) => {
   const {
-    attributes: {youtubeVideoId, synopsis, titles},
+    data: {
+      attributes: {youtubeVideoId, synopsis, titles},
+    },
   } = dataInfo;
   const orientation = useOrientation();
 

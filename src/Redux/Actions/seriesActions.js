@@ -1,5 +1,9 @@
 import {SeriesActionsTypes} from '../Types/seriesTypes';
-import {getFullDataAnime, getFullDataManga} from '../../Services/Services';
+import {
+  getFullDataAnime,
+  getFullDataManga,
+  getDataByIdAnime,
+} from '../../Services/Services';
 
 export const addType = type => ({
   type: SeriesActionsTypes.ADD_TYPE,
@@ -77,6 +81,36 @@ const mangaStarted = (start, more) => ({
 
 const mangaFailure = error => ({
   type: SeriesActionsTypes.DATA_MANGA_FAILURE,
+  payload: {
+    error,
+  },
+});
+
+export const getDataAnimeById = id => {
+  return async dispatch => {
+    dispatch(animeByIdStarted());
+    try {
+      const data = await getDataByIdAnime(id);
+      dispatch(animeByIdSuccess(data));
+    } catch (error) {
+      dispatch(animeByIdFailure(error));
+    }
+  };
+};
+
+const animeByIdSuccess = data => ({
+  type: SeriesActionsTypes.DATA_ANIME_BY_ID_SUCCESS,
+  payload: {
+    data,
+  },
+});
+
+const animeByIdStarted = () => ({
+  type: SeriesActionsTypes.DATA_ANIME_BY_ID_STARTED,
+});
+
+const animeByIdFailure = error => ({
+  type: SeriesActionsTypes.DATA_ANIME_BY_ID_FAILURE,
   payload: {
     error,
   },

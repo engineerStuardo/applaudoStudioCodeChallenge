@@ -15,16 +15,18 @@ import {useOrientation} from '../CustomHooks/useOrientation';
 export const Description = ({dataInfo}) => {
   const {favorites} = useFavoritesContext();
   const {
-    attributes: {
-      posterImage,
-      titles,
-      popularityRank,
-      ratingRank,
-      episodeCount,
-      episodeLength,
+    data: {
+      attributes: {
+        posterImage,
+        titles,
+        popularityRank,
+        ratingRank,
+        episodeCount,
+        episodeLength,
+      },
+      id: dataId,
+      type: dataType,
     },
-    id: dataId,
-    type: dataType,
   } = dataInfo;
   const orientation = useOrientation();
 

@@ -1,13 +1,16 @@
 import {SeriesActionsTypes} from '../Types/seriesTypes';
 
 const initialState = {
+  loading: false,
   loadingAnime: false,
   loadingManga: false,
   loadingFooter: false,
   loadingSearch: false,
   type: '',
   anime: [],
+  animeDetail: {},
   manga: [],
+  mangaDetail: {},
   offsetAnime: 0,
   offsetManga: 0,
   searchText: '',
@@ -70,6 +73,23 @@ export const seriesReducer = (state = initialState, action) => {
         error: action.payload,
         loadingManga: false,
         loadingFooter: false,
+      };
+    case SeriesActionsTypes.DATA_ANIME_BY_ID_STARTED:
+      return {
+        ...state,
+        loading: true,
+      };
+    case SeriesActionsTypes.DATA_ANIME_BY_ID_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        animeDetail: action.payload,
+      };
+    case SeriesActionsTypes.DATA_ANIME_BY_ID_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
       };
 
     default:

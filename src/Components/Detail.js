@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {ScrollView} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
 
 import {ListLoader} from './ListLoader';
 import {TopCoverImage} from './CoverImage';
@@ -8,18 +9,30 @@ import {useOrientation} from '../CustomHooks/useOrientation';
 import {BackgroundImage, DetailMainContainer} from '../Styles/DetailStyles';
 import {GoBackIcon} from './GoBackIcon';
 import {useDetail} from '../CustomHooks/useDetail';
+import * as actions from '../Redux/Actions/seriesActions';
 
 export const Detail = ({route, navigation}) => {
-  const {id, type} = route.params;
+  const {id} = route.params;
   const [moreSynopsis, setMoreSynopsis] = useState(false);
   const orientation = useOrientation();
+  const dispatch = useDispatch();
+  const {type, animeDetail, loading} = useSelector(
+    state => state.seriesReducer,
+  );
+  const [data, setData] = useState({});
 
-  const {data, loading} = useDetail(type, id);
+  useEffect(() => {
+    dispatch(actions.getDataAnimeById(id));
+  }, []);
+
+  useEffect(() => {
+    setData(animeDetail);
+  }, [animeDetail]);
 
   return (
     <>
       {loading && <ListLoader loading />}
-      {data && (
+      {data && Object.keys(data).length > 0 && (
         <>
           <ScrollView>
             <BackgroundImage
