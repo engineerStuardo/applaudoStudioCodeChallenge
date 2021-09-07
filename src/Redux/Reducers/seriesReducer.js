@@ -33,8 +33,13 @@ export const seriesReducer = (state = initialState, action) => {
     case SeriesActionsTypes.DATA_ANIME_SUCCESS:
       let animes = [];
       let offsetAnimes = 0;
-      animes = [...state.anime, ...action.payload.data];
-      offsetAnimes = action.payload.start ? 0 : state.offsetAnime + 10;
+      if (action.payload.start) {
+        animes = action.payload.data;
+        offsetAnimes = 10;
+      } else {
+        animes = [...state.anime, ...action.payload.data];
+        offsetAnimes = action.payload.start ? 0 : state.offsetAnime + 10;
+      }
       return {
         ...state,
         anime: animes,
@@ -58,8 +63,13 @@ export const seriesReducer = (state = initialState, action) => {
     case SeriesActionsTypes.DATA_MANGA_SUCCESS:
       let mangas = [];
       let offsetManga = 0;
-      mangas = [...state.manga, ...action.payload.data];
-      offsetManga = action.payload.start ? 0 : state.offsetManga + 10;
+      if (action.payload.start) {
+        mangas = action.payload.data;
+        offsetManga = 10;
+      } else {
+        mangas = [...state.manga, ...action.payload.data];
+        offsetManga = action.payload.start ? 0 : state.offsetManga + 10;
+      }
       return {
         ...state,
         manga: mangas,

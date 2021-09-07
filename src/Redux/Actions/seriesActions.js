@@ -124,7 +124,7 @@ export const getDataMangaById = id => {
       const data = await getDataByIdManga(id);
       dispatch(mangaByIdSuccess(data));
     } catch (error) {
-      dispatch(animeByIdFailure(error));
+      dispatch(mangaByIdFailure(error));
     }
   };
 };

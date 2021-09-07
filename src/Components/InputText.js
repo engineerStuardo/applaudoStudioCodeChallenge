@@ -1,36 +1,36 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Keyboard} from 'react-native';
 import {Colors} from 'react-native-paper';
+import {useSelector, useDispatch} from 'react-redux';
 
 import {
   InputContainer,
   InputTextField,
   InputTextIcon,
 } from '../Styles/InputTextStyles';
-import {useTypeContext} from '../CustomHooks/useTypeContext';
+import * as actions from '../Redux/Actions/seriesActions';
 
-export const InputText = ({
-  searchText,
-  setSearchText,
-  searchCategoryByText,
-  getData,
-  isPortrait,
-}) => {
-  const {type} = useTypeContext();
+export const InputText = ({isPortrait}) => {
+  const [search, setSearch] = useState();
+  const {type} = useSelector(state => state.seriesReducer);
+  const dispatch = useDispatch();
 
   return (
     <InputContainer isPortrait={isPortrait} animation="fadeInLeft">
       <InputTextField
         mode="flat"
         label={type === 'anime' ? 'Search Anime' : 'Search Manga'}
-        value={searchText}
+        value={search}
         textContentType="name"
         keyboardType="default"
         autoCapitalize="none"
-        onChangeText={search => setSearchText(search)}
+        onChangeText={search => setSearch(search)}
         theme={{colors: {primary: 'orange'}}}
         onSubmitEditing={() => {
-          searchCategoryByText(searchText);
+          if (type === 'anime') {
+            searchCategoryByText(search);
+          } else {
+          }
         }}
         right={
           <InputTextIcon.Icon
@@ -40,8 +40,12 @@ export const InputText = ({
             onPress={() => {
               const start = true;
               Keyboard.dismiss();
-              setSearchText('');
-              getData(start);
+              setSearch('');
+              if (type == 'anime') {
+                dispatch(actions.getDataAnime(start));
+              } else {
+                dispatch(actions.getDataManga(start));
+              }
             }}
           />
         }
