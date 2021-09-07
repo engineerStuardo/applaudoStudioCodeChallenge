@@ -12,7 +12,7 @@ import * as actions from '../Redux/Actions/seriesActions';
 
 export const InputText = ({isPortrait}) => {
   const [search, setSearch] = useState();
-  const {type} = useSelector(state => state.seriesReducer);
+  const {type, offsetAnimeSearch} = useSelector(state => state.seriesReducer);
   const dispatch = useDispatch();
 
   return (
@@ -28,7 +28,9 @@ export const InputText = ({isPortrait}) => {
         theme={{colors: {primary: 'orange'}}}
         onSubmitEditing={() => {
           if (type === 'anime') {
-            searchCategoryByText(search);
+            dispatch(
+              actions.getDataAnimeSearch(search, offsetAnimeSearch, true),
+            );
           } else {
           }
         }}

@@ -12,6 +12,7 @@ const initialState = {
   manga: [],
   mangaDetail: {},
   offsetAnime: 0,
+  offsetAnimeSearch: 0,
   offsetManga: 0,
   searchText: '',
   error: '',
@@ -46,6 +47,8 @@ export const seriesReducer = (state = initialState, action) => {
         loadingAnime: false,
         loadingFooter: false,
         offsetAnime: offsetAnimes,
+        offsetAnimeSearch: 0,
+        searchText: '',
       };
     case SeriesActionsTypes.DATA_ANIME_FAILURE:
       return {
@@ -118,6 +121,42 @@ export const seriesReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        error: action.payload.error,
+      };
+    case SeriesActionsTypes.DATA_ANIME_SEARCH_STARTED:
+      let loadingAnimes = false;
+      let loadingFooterSearch = false;
+      if (action.payload.start) {
+        loadingAnimes = true;
+      } else {
+        loadingFooterSearch = true;
+      }
+      return {
+        ...state,
+        loadingAnime: loadingAnimes,
+        loadingFooter: loadingFooterSearch,
+        anime: action.payload.start ? [] : state.anime,
+      };
+    case SeriesActionsTypes.DATA_ANIME_SEARCH_SUCCESS:
+      let animesFilter = [];
+      if (action.payload.start) {
+        animesFilter = action.payload.data;
+      } else {
+        animesFilter = [...state.anime, ...action.payload.data];
+      }
+      return {
+        ...state,
+        loadingAnime: false,
+        loadingFooter: false,
+        anime: animesFilter,
+        searchText: action.payload.text,
+        offsetAnimeSearch: state.offsetAnimeSearch + 10,
+      };
+    case SeriesActionsTypes.DATA_ANIME_SEARCH_FAILURE:
+      return {
+        ...state,
+        loadingAnime: false,
+        loadingFooter: false,
         error: action.payload.error,
       };
 

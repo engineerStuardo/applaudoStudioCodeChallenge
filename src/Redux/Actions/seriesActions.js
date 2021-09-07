@@ -4,6 +4,7 @@ import {
   getFullDataManga,
   getDataByIdAnime,
   getDataByIdManga,
+  getSearchAnime,
 } from '../../Services/Services';
 
 export const addType = type => ({
@@ -142,6 +143,39 @@ const mangaByIdStarted = () => ({
 
 const mangaByIdFailure = error => ({
   type: SeriesActionsTypes.DATA_MANGA_BY_ID_FAILURE,
+  payload: {
+    error,
+  },
+});
+
+export const getDataAnimeSearch = (text, offset, start = false) => {
+  return async dispatch => {
+    dispatch(animeSearchStarted(start));
+    try {
+      const data = await getSearchAnime(text, offset);
+      dispatch(animeSearchSuccess(data, text, start));
+    } catch (error) {
+      dispatch(animeSearchFailure(error));
+    }
+  };
+};
+
+const animeSearchSuccess = (data, text, start) => ({
+  type: SeriesActionsTypes.DATA_ANIME_SEARCH_SUCCESS,
+  payload: {
+    data,
+    text,
+    start,
+  },
+});
+
+const animeSearchStarted = start => ({
+  type: SeriesActionsTypes.DATA_ANIME_SEARCH_STARTED,
+  payload: {start},
+});
+
+const animeSearchFailure = error => ({
+  type: SeriesActionsTypes.DATA_ANIME_SEARCH_FAILURE,
   payload: {
     error,
   },
