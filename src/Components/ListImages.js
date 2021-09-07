@@ -28,10 +28,15 @@ export const ListImages = ({dataList}) => {
           onEndReached={
             searchText
               ? () => getMoreDataBySearch()
-              : () =>
-                  !loadingFooter && type === 'anime'
-                    ? dispatch(actions.getDataAnime(false, offsetAnime, true))
-                    : dispatch(actions.getDataManga(false, offsetAnime, true))
+              : () => {
+                  if (!loadingFooter) {
+                    if (type === 'anime') {
+                      dispatch(actions.getDataAnime(false, offsetAnime, true));
+                    } else {
+                      dispatch(actions.getDataManga(false, offsetManga, true));
+                    }
+                  }
+                }
           }
           onEndReachedThreshold={0.5}
           ListFooterComponent={listFooter}
