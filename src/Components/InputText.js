@@ -12,7 +12,9 @@ import * as actions from '../Redux/Actions/seriesActions';
 
 export const InputText = ({isPortrait}) => {
   const [search, setSearch] = useState();
-  const {type, offsetAnimeSearch} = useSelector(state => state.seriesReducer);
+  const {type, offsetAnimeSearch, offsetMangaSearch} = useSelector(
+    state => state.seriesReducer,
+  );
   const dispatch = useDispatch();
 
   return (
@@ -32,6 +34,9 @@ export const InputText = ({isPortrait}) => {
               actions.getDataAnimeSearch(search, offsetAnimeSearch, true),
             );
           } else {
+            dispatch(
+              actions.getDataMangaSearch(search, offsetMangaSearch, true),
+            );
           }
         }}
         right={

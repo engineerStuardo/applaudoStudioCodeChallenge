@@ -18,6 +18,7 @@ export const ListImages = ({dataList}) => {
     offsetAnime,
     offsetManga,
     offsetAnimeSearch,
+    offsetMangaSearch,
   } = useSelector(state => state.seriesReducer);
 
   const listFooter = () => <ListLoader loadingFooter={loadingFooter} />;
@@ -40,6 +41,13 @@ export const ListImages = ({dataList}) => {
                         actions.getDataAnimeSearch(
                           searchText,
                           offsetAnimeSearch,
+                        ),
+                      );
+                    } else {
+                      dispatch(
+                        actions.getDataMangaSearch(
+                          searchText,
+                          offsetMangaSearch,
                         ),
                       );
                     }

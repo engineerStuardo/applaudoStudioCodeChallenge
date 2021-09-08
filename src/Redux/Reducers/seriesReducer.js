@@ -14,6 +14,7 @@ const initialState = {
   offsetAnime: 0,
   offsetAnimeSearch: 0,
   offsetManga: 0,
+  offsetMangaSearch: 0,
   searchText: '',
   error: '',
 };
@@ -156,6 +157,42 @@ export const seriesReducer = (state = initialState, action) => {
       return {
         ...state,
         loadingAnime: false,
+        loadingFooter: false,
+        error: action.payload.error,
+      };
+    case SeriesActionsTypes.DATA_MANGA_SEARCH_STARTED:
+      let loadingMangas = false;
+      let loadingFooterSearchManga = false;
+      if (action.payload.start) {
+        loadingMangas = true;
+      } else {
+        loadingFooterSearchManga = true;
+      }
+      return {
+        ...state,
+        loadingManga: loadingMangas,
+        loadingFooter: loadingFooterSearchManga,
+        manga: action.payload.start ? [] : state.manga,
+      };
+    case SeriesActionsTypes.DATA_MANGA_SEARCH_SUCCESS:
+      let mangasFilter = [];
+      if (action.payload.start) {
+        mangasFilter = action.payload.data;
+      } else {
+        mangasFilter = [...state.manga, ...action.payload.data];
+      }
+      return {
+        ...state,
+        loadingManga: false,
+        loadingFooter: false,
+        manga: mangasFilter,
+        searchText: action.payload.text,
+        offsetMangaSearch: state.offsetMangaSearch + 10,
+      };
+    case SeriesActionsTypes.DATA_MANGA_SEARCH_FAILURE:
+      return {
+        ...state,
+        loadingManga: false,
         loadingFooter: false,
         error: action.payload.error,
       };
