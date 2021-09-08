@@ -5,7 +5,6 @@ const initialState = {
   loadingAnime: false,
   loadingManga: false,
   loadingFooter: false,
-  loadingSearch: false,
   type: '',
   anime: [],
   animeDetail: {},
@@ -80,6 +79,7 @@ export const seriesReducer = (state = initialState, action) => {
         loadingManga: false,
         loadingFooter: false,
         offsetManga: offsetManga,
+        searchText: '',
       };
     case SeriesActionsTypes.DATA_MANGA_FAILURE:
       return {
