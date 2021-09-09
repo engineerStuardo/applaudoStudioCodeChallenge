@@ -24,7 +24,7 @@ export const FavoriteComponent = ({favorite}) => {
           })
         }>
         <DescriptionContainer>
-          <Description dataInfo={favorite.item} />
+          <Description dataInfo={{data: favorite.item}} />
         </DescriptionContainer>
       </TouchableOpacity>
     </>

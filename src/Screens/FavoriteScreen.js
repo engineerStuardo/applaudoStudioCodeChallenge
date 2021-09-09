@@ -1,5 +1,6 @@
 import React, {useCallback} from 'react';
 import {useFocusEffect} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 
 import {FavoriteContainer} from '../Styles/FavoriteScreenStyles';
 import {NoFavorites} from '../Components/NoFavorites';
@@ -10,7 +11,7 @@ import {NoConnection} from '../Components/NoConnection';
 import {useCheckInternet} from '../CustomHooks/useCheckInternet';
 
 export const FavoriteScreen = () => {
-  const {favorites} = useFavoritesContext();
+  const {favorites} = useSelector(state => state.favoritesReducer);
   const orientation = useOrientation();
   const {internet, checkInternet} = useCheckInternet();
 
