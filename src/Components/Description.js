@@ -3,7 +3,6 @@ import {View, Text} from 'react-native';
 import {useSelector} from 'react-redux';
 
 import {FavoriteButton} from '../Components/FavouriteButton';
-import {useFavoritesContext} from '../CustomHooks/useFavoritesContext';
 import {
   DescriptionContainer,
   AvatarImage,

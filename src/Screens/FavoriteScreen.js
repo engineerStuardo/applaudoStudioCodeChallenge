@@ -5,7 +5,6 @@ import {useSelector} from 'react-redux';
 import {FavoriteContainer} from '../Styles/FavoriteScreenStyles';
 import {NoFavorites} from '../Components/NoFavorites';
 import {Favorites} from '../Components/Favorites';
-import {useFavoritesContext} from '../CustomHooks/useFavoritesContext';
 import {useOrientation} from '../CustomHooks/useOrientation';
 import {NoConnection} from '../Components/NoConnection';
 import {useCheckInternet} from '../CustomHooks/useCheckInternet';

@@ -3,10 +3,8 @@ import {View, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 
-import {useFavoritesContext} from '../CustomHooks/useFavoritesContext';
 import {FavoriteButton} from './FavouriteButton';
 import {CardImage} from '../Styles/CardListStyles';
-import {useTypeContext} from '../CustomHooks/useTypeContext';
 import {useOrientation} from '../CustomHooks/useOrientation';
 
 export const CardList = ({dataItem}) => {

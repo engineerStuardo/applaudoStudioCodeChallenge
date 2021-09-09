@@ -2,7 +2,6 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import {useDispatch} from 'react-redux';
 
-import {useFavoritesContext} from '../CustomHooks/useFavoritesContext';
 import {FavoriteIcon} from '../Styles/FavoriteButtonStyles';
 import * as actions from '../Redux/Actions/favoritesActions';
 

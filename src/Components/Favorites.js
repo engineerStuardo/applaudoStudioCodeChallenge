@@ -4,12 +4,10 @@ import {useSelector} from 'react-redux';
 
 import {FavoriteImage, FavoritesContainer} from '../Styles/FavoritesStyles';
 import {FavoriteComponent} from './FavoriteComponent';
-import {useFavoritesContext} from '../CustomHooks/useFavoritesContext';
 import {useOrientation} from '../CustomHooks/useOrientation';
 
 export const Favorites = () => {
   const {favorites} = useSelector(state => state.favoritesReducer);
-  console.log(favorites);
   const orientation = useOrientation();
 
   const renderItem = favorite => <FavoriteComponent favorite={favorite} />;
