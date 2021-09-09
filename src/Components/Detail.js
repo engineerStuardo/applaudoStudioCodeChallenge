@@ -8,7 +8,6 @@ import {DetailContainer} from './DetailContainer';
 import {useOrientation} from '../CustomHooks/useOrientation';
 import {BackgroundImage, DetailMainContainer} from '../Styles/DetailStyles';
 import {GoBackIcon} from './GoBackIcon';
-import {useDetail} from '../CustomHooks/useDetail';
 import * as actions from '../Redux/Actions/seriesActions';
 
 export const Detail = ({route, navigation}) => {
