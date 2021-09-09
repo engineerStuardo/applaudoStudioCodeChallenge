@@ -31,8 +31,12 @@ export const Manga = () => {
         </View>
         {loadingManga ? (
           <ListLoader loading={loadingManga} />
-        ) : (
+        ) : manga.length > 0 ? (
           <ListImages dataList={manga} />
+        ) : (
+          <NotFound>
+            <Text>No manga was found... try again</Text>
+          </NotFound>
         )}
       </ScreenContainer>
     </>

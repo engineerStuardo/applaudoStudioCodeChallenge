@@ -31,8 +31,12 @@ export const Anime = () => {
         </View>
         {loadingAnime ? (
           <ListLoader loading={loadingAnime} />
-        ) : (
+        ) : anime.length > 0 ? (
           <ListImages dataList={anime} />
+        ) : (
+          <NotFound>
+            <Text>No anime was found... try again</Text>
+          </NotFound>
         )}
       </ScreenContainer>
     </>
