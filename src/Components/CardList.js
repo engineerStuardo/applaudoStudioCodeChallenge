@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 
 import {useFavoritesContext} from '../CustomHooks/useFavoritesContext';
 import {FavoriteButton} from './FavouriteButton';
@@ -19,10 +20,10 @@ export const CardList = ({dataItem}) => {
     },
   } = dataItem;
 
+  const {favorites} = useSelector(state => state.favoritesReducer);
+  const {type} = useSelector(state => state.seriesReducer);
   const orientation = useOrientation();
-  const {type} = useTypeContext();
   const redirectTo = type === 'anime' ? 'AnimeDetail' : 'MangaDetail';
-  const {favorites} = useFavoritesContext();
   const isFavorite = favorites.find(
     item => item.id === dataId && dataType === item.type,
   );

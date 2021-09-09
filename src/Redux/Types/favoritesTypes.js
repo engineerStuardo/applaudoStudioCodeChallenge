@@ -1,0 +1,4 @@
+export const SeriesActionsTypes = {
+  ADD_FAVORITES: 'ADD_FAVORITES',
+  REMOVE_FAVORITES: 'REMOVE_FAVORITES',
+};

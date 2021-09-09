@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
+import {useSelector} from 'react-redux';
 
 import {FavoriteButton} from '../Components/FavouriteButton';
 import {useFavoritesContext} from '../CustomHooks/useFavoritesContext';
@@ -13,7 +14,7 @@ import {
 import {useOrientation} from '../CustomHooks/useOrientation';
 
 export const Description = ({dataInfo}) => {
-  const {favorites} = useFavoritesContext();
+  const {favorites} = useSelector(state => state.favoritesReducer);
   const {
     data: {
       attributes: {
