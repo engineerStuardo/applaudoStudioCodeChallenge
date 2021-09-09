@@ -12,11 +12,11 @@ import {useDetail} from '../CustomHooks/useDetail';
 import * as actions from '../Redux/Actions/seriesActions';
 
 export const Detail = ({route, navigation}) => {
-  const {id} = route.params;
+  const {id, type} = route.params;
   const [moreSynopsis, setMoreSynopsis] = useState(false);
   const orientation = useOrientation();
   const dispatch = useDispatch();
-  const {type, animeDetail, mangaDetail, loading} = useSelector(
+  const {animeDetail, mangaDetail, loading} = useSelector(
     state => state.seriesReducer,
   );
   const [data, setData] = useState({});
