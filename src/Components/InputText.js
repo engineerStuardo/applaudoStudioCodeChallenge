@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Keyboard} from 'react-native';
+import {Keyboard, Platform} from 'react-native';
 import {Colors} from 'react-native-paper';
 import {useSelector, useDispatch} from 'react-redux';
 
@@ -20,6 +20,7 @@ export const InputText = ({isPortrait}) => {
   return (
     <InputContainer isPortrait={isPortrait} animation="fadeInLeft">
       <InputTextField
+        platform={Platform.OS}
         mode="flat"
         label={type === 'anime' ? 'Search Anime' : 'Search Manga'}
         value={search}

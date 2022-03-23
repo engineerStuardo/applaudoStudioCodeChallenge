@@ -34,6 +34,7 @@ export const DetailContainer = ({dataInfo, moreSynopsis, setMoreSynopsis}) => {
 
   return (
     <DescriptionContainer
+      screenHeight={Dimensions.get('window').height}
       isPortrait={orientation.isPortrait}
       animation="slideInDown"
       delay={400}

@@ -10,6 +10,7 @@ const InputContainer = styled(Animatable.View)`
 
 const InputTextField = styled(TextInput)`
   height: 55px;
+  margin-top: ${({platform}) => (platform === 'ios' ? '50px' : '0px')};
 `;
 
 const InputTextIcon = styled(TextInput)`

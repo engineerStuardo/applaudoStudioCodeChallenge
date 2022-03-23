@@ -70,5 +70,9 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
 	</array>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+  	<string>armv64</string>
+	</array>	
 </dict>
 </plist>

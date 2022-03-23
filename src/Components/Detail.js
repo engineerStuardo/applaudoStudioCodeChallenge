@@ -45,8 +45,8 @@ export const Detail = ({route, navigation}) => {
             <BackgroundImage
               source={{
                 uri: orientation.isPortrait
-                  ? 'white'
-                  : data.attributes.posterImage.original,
+                  ? 'https://upload.wikimedia.org/wikipedia/commons/9/99/White_Background_%28To_id_screen_dust_during_cleanup%29.jpg'
+                  : data.data.attributes.posterImage.original,
               }}>
               {orientation.isPortrait && (
                 <TopCoverImage dataInfo={data} navigation={navigation} />
